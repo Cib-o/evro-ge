@@ -48,21 +48,40 @@ function relatedAmounts(a) {
     .sort((p, q) => p - q);
 }
 
+// ვარიანტის ინდექსი — დამოკიდებულია თანხაზე, მიმართულებასა და ვალუტაზე,
+// რომ მეზობელი/პარალელური გვერდები ერთსა და იმავე ტექსტს არ იმეორებდნენ.
+function variantIndex(a, c, toGel) {
+  return (AMOUNTS.indexOf(a) + (toGel ? 0 : 1) + (c.code === "USD" ? 2 : 0)) % 4;
+}
+
 function paragraph(a, c, toGel) {
-  const idx = AMOUNTS.indexOf(a);
   const toGelV = [
     `${a} ${c.nom} ლარში გადაიყვანება დღევანდელ ${c.code}/GEL კურსზე გამრავლებით. კურსს ადგენს საქართველოს ეროვნული ბანკი და ის დღეში ერთხელ ახლდება, ამიტომ ზემოთ ნაჩვენები თანხა ყოველთვის უახლეს ოფიციალურ მაჩვენებელს ასახავს.`,
     `რამდენი ლარია ${a} ${c.nom}? პასუხი დღევანდელ კურსზეა დამოკიდებული, რომელიც ავტომატურად ჩაიტვირთა გვერდის თავში. თუ ${a} ${c.gen} გადარიცხვას ან გადაცვლას აპირებ, ჯობია წინასწარ შეადარო ბანკებისა და გადარიცხვის სერვისების პირობები.`,
     `${a} ${c.gen} ღირებულება ლარში მუდმივად მერყეობს ვალუტის ბაზრის მიხედვით. აქ ნაჩვენები რიცხვი ეროვნული ბანკის ოფიციალურ კურსს ეყრდნობა — იმავე კურსს, რომელსაც ბანკები საბაზისოდ იყენებენ.`,
-    `${a} ${c.nom} დღეს რამდენ ლარს უდრის? გამოთვლა მარტივია — ${a} მრავლდება ერთი ${c.gen} მიმდინარე კურსზე. ქვემოთ ასევე ნახავ უკუმიმართულებას, ანუ ${a} ლარი რამდენი ${c.a}.`,
+    `${a} ${c.nom} დღეს რამდენ ლარს უდრის? გამოთვლა მარტივია — ${a} მრავლდება ერთი ${c.gen} მიმდინარე კურსზე. ქვემოთ ასევე ნახავ საპირისპირო გადათვლასაც, ანუ ${a} ლარი რამდენი ${c.a}.`,
   ];
   const fromGelV = [
-    `${a} ლარი ${c.loc} გადაიყვანება დღევანდელ კურსზე გაყოფით. კურსს ადგენს საქართველოს ეროვნული ბანკი და ის დღეში ერთხელ ახლდება, ამიტომ ${a} ლარის ღირებულება ${c.loc} დროთა განმავლობაში იცვლება.`,
-    `რამდენი ${c.a} ${a} ლარი? ზემოთ ნაჩვენები თანხა გამოითვალა ეროვნული ბანკის უახლესი ${c.code}/GEL კურსით. თუ ${c.loc} თანხის გადარიცხვა გჭირდება, შეადარე სხვადასხვა სერვისის საკომისიო და კურსი.`,
+    `${a} ლარი ${c.loc} გადაიყვანება ერთი ${c.gen} დღევანდელ კურსზე გაყოფით. კურსს ადგენს საქართველოს ეროვნული ბანკი და ის დღეში ერთხელ ახლდება, ამიტომ ${a} ლარის ღირებულება ${c.loc} დროთა განმავლობაში იცვლება.`,
+    `${a} ლარი რამდენი ${c.a}? ზემოთ ნაჩვენები თანხა გამოითვალა ეროვნული ბანკის უახლესი ${c.code}/GEL კურსით. თუ ${c.loc} თანხის გადარიცხვა გჭირდება, შეადარე სხვადასხვა სერვისის საკომისიო და კურსი.`,
     `${a} ლარის ღირებულება ${c.loc} დამოკიდებულია მიმდინარე გაცვლით კურსზე. აქ ნაჩვენები რიცხვი ოფიციალურ NBG კურსს ეყრდნობა და ავტომატურად ახლდება.`,
-    `${a} ლარი დღეს რამდენი ${c.a}? გამოთვლა ხდება ${a}-ის ერთ ${c.loc} გაყოფით მიმდინარე კურსით. ქვემოთ ნახავ უკუმიმართულებასაც — ${a} ${c.nom} რამდენი ლარია.`,
+    `${a} ლარი დღეს რამდენი ${c.a}? გამოთვლა მარტივია — ${a} ლარი იყოფა ერთი ${c.gen} მიმდინარე კურსზე. ქვემოთ ნახავ საპირისპირო გადათვლასაც — ${a} ${c.nom} რამდენი ლარია.`,
   ];
-  return (toGel ? toGelV : fromGelV)[idx % 4];
+  return (toGel ? toGelV : fromGelV)[variantIndex(a, c, toGel)];
+}
+
+// worked-example აბზაცი — ცოცხალი (SSR) რიცხვებით + ლათინური ტრანსლიტერაცია.
+// ამით თითო გვერდს უნიკალური, რეალური მონაცემი აქვს (thin-content-ის საწინააღმდეგოდ).
+function workedExample(a, c, toGel) {
+  const exprResult = toGel ? `${a}*${c.code}` : `${a}/${c.code}`;
+  const exprRev = toGel ? `${a}/${c.code}` : `${a}*${c.code}`;
+  const span = (e) => `<span class="num" data-ssr="${e}" data-dp="2">—</span>`;
+  if (toGel) {
+    const latin = `${a} ${c.latin} lari, ${a} ${c.code} to GEL`;
+    return `${a} ${c.nom} დღევანდელი ოფიციალური კურსით არის ${span(exprResult)} ლარი (${latin}). მაჩვენებელი საქართველოს ეროვნული ბანკის კურსს ეყრდნობა და დღეში ერთხელ ახლდება. საპირისპიროდ, ${a} ლარი დაახლოებით ${span(exprRev)} ${c.nom}.`;
+  }
+  const latin = `${a} lari ${c.latin}, ${a} GEL to ${c.code}`;
+  return `${a} ლარი დღევანდელი ოფიციალური კურსით არის ${span(exprResult)} ${c.nom} (${latin}). მაჩვენებელი საქართველოს ეროვნული ბანკის კურსს ეყრდნობა და დღეში ერთხელ ახლდება. საპირისპიროდ, ${a} ${c.nom} დაახლოებით ${span(exprRev)} ლარი.`;
 }
 
 // ── საერთო CSS / head ─────────────────────────────────────────────────────────
@@ -85,7 +104,7 @@ main{padding:42px 0 10px}
 h1{font-family:"Noto Serif Georgian",serif;font-size:clamp(23px,5.2vw,33px);font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
 .sub{color:var(--muted);font-size:15px;margin-bottom:26px}
 .result{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:0 1px 2px rgba(11,21,48,.04)}
-.result .big{font-size:clamp(40px,11vw,72px);font-weight:600;line-height:1;color:var(--ink)}
+.result .big{font-size:clamp(40px,11vw,72px);font-weight:600;line-height:1;color:var(--ink);display:inline-block;min-width:3.5ch}
 .result .cur{font-size:clamp(19px,5vw,28px);color:var(--euro);font-weight:500;margin-left:6px}
 .result .meta{margin-top:14px;font-size:13.5px;color:var(--muted);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .live{width:7px;height:7px;border-radius:50%;background:#0E8A5F;display:inline-block}
@@ -94,7 +113,9 @@ h1{font-family:"Noto Serif Georgian",serif;font-size:clamp(23px,5.2vw,33px);font
 .rev a{color:var(--euro);font-weight:600;text-decoration:none}
 .rev a:hover{text-decoration:underline}
 .prose{margin-top:28px}
+.prose h2{font-family:"Noto Serif Georgian",serif;font-size:20px;margin-bottom:10px;font-weight:700}
 .prose p{color:#33405A;font-size:15.5px;margin-bottom:14px;max-width:64ch}
+.prose .num{color:var(--ink);font-weight:600}
 .related{margin-top:30px}
 .related h2{font-family:"Noto Serif Georgian",serif;font-size:18px;margin-bottom:12px;font-weight:700}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
@@ -103,7 +124,7 @@ h1{font-family:"Noto Serif Georgian",serif;font-size:clamp(23px,5.2vw,33px);font
 .cta{display:inline-block;margin-top:24px;background:var(--euro);color:#fff;font-weight:600;font-size:15px;padding:11px 18px;border-radius:10px;text-decoration:none}
 .cta:hover{background:var(--euro-2)}
 .foot{border-top:1px solid var(--line);margin-top:36px;padding:24px 0 50px;color:var(--muted);font-size:13px}
-.foot .disc{margin-top:10px;font-size:12px;color:#8A92A3;max-width:60ch}
+.foot .disc{margin-top:10px;font-size:12px;color:#5A6478;max-width:60ch}
 .err{color:#C0392B;font-weight:500}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}`;
 
@@ -134,7 +155,9 @@ function buildAmountPage(a, curKey, toGel) {
   const sub = toGel
     ? `${a} ${c.gen} ღირებულება ლარში დღევანდელი ოფიციალური კურსით`
     : `${a} ლარის ღირებულება ${c.loc} დღევანდელი ოფიციალური კურსით`;
-  const title = `${h1} დღეს | evro.ge`;
+  const title = toGel
+    ? `${a} ${c.nom} რამდენი ლარია დღეს | evro.ge`
+    : `${a} ლარი რამდენი ${c.a} დღეს | evro.ge`;
   const desc = toGel
     ? `${a} ${c.nom} (${c.code}) რამდენი ლარია (GEL) დღეს? ნახე ${a} ${c.gen} ღირებულება ლარში ეროვნული ბანკის ოფიციალური კურსით — ცოცხალი, ყოველდღიურად განახლებადი გადათვლა.`
     : `${a} ლარი (GEL) რამდენი ${c.a} (${c.code}) დღეს? ნახე ${a} ლარის ღირებულება ${c.loc} ეროვნული ბანკის ოფიციალური კურსით — ცოცხალი, ყოველდღიურად განახლებადი გადათვლა.`;
@@ -159,6 +182,14 @@ function buildAmountPage(a, curKey, toGel) {
       return `<a class="chip" href="/${rslug}/">${label}</a>`;
     })
     .join("");
+
+  // ჯვარედინი ბმული მეორე ვალუტის კლასტერზე (link-equity ორ კლასტერს შორის).
+  const oc = CUR[curKey === "EUR" ? "USD" : "EUR"];
+  const crossSlug = toGel ? `${a}-${oc.slug}-lari` : `${a}-lari-${oc.slug}`;
+  const crossLabel = toGel ? `${a} ${oc.nom} ლარში` : `${a} ლარი ${oc.loc}`;
+  const crossChip = `<a class="chip" href="/${crossSlug}/">${crossLabel}</a>`;
+
+  const proseH2 = toGel ? `${a} ${c.nom} ლარში დღეს` : `${a} ლარი ${c.loc} დღეს`;
 
   const breadcrumb = JSON.stringify({
     "@context": "https://schema.org",
@@ -218,12 +249,14 @@ ${BASE_CSS}
     </div>
 
     <div class="prose">
+      <h2>${proseH2}</h2>
+      <p>${workedExample(a, c, toGel)}</p>
       <p>${paragraph(a, c, toGel)}</p>
     </div>
 
     <div class="related">
       <h2>სხვა თანხები</h2>
-      <div class="chips">${rel}<a class="chip" href="/${revSlug}/">${revLabel}</a></div>
+      <div class="chips">${rel}<a class="chip" href="/${revSlug}/">${revLabel}</a>${crossChip}</div>
     </div>
 
     <a class="cta" href="/">ყველა კურსი და კონვერტერი →</a>
@@ -232,7 +265,7 @@ ${BASE_CSS}
 
 <footer class="foot">
   <div class="wrap">
-    <div>© <span id="yr"></span> evro.ge — ევრო ლარის კურსი</div>
+    <div>© <span id="yr">${TODAY.slice(0, 4)}</span> evro.ge — ევრო ლარის კურსი</div>
     <p class="disc">კურსები ინფორმაციული დანიშნულებისაა და ეყრდნობა საქართველოს ეროვნული ბანკის ოფიციალურ მონაცემებს. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს.</p>
   </div>
 </footer>
@@ -297,7 +330,7 @@ function buildDollarLanding() {
     ],
   });
 
-  const popular = [50, 100, 200, 500]
+  const popular = [50, 100, 200, 500, 1000]
     .map((x) => `<a class="chip" href="/${x}-dolari-lari/">${x} დოლარი ლარში</a>`)
     .join("");
 
@@ -332,7 +365,7 @@ ${FONT_LINKS}
 ${BASE_CSS}
 .hero-rate{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:0 1px 2px rgba(11,21,48,.04)}
 .hero-rate .eyebrow{font-family:"Noto Serif Georgian",serif;font-size:16px;color:var(--muted);font-weight:600;margin-bottom:8px}
-.hero-rate .big{font-size:clamp(46px,13vw,86px);font-weight:600;line-height:.95}
+.hero-rate .big{font-size:clamp(46px,13vw,86px);font-weight:600;line-height:.95;display:inline-block;min-width:4ch}
 .hero-rate .cur{font-size:clamp(20px,5vw,30px);color:var(--euro);font-weight:500;margin-left:6px}
 .hero-rate .meta{margin-top:14px;font-size:13.5px;color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .strip{margin-top:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
@@ -387,7 +420,7 @@ a.strip-item:hover .pair{color:var(--euro)}
     </div>
 
     <div class="strip">
-      <a class="strip-item" href="/"><div class="pair">EUR / GEL</div><div class="val num" data-ssr="EUR" data-dp="4">—</div></a>
+      <div class="strip-item"><div class="pair">EUR / GEL</div><div class="val num" data-ssr="EUR" data-dp="4">—</div></div>
       <div class="strip-item"><div class="pair">GBP / GEL</div><div class="val num" data-ssr="GBP" data-dp="4">—</div></div>
       <div class="strip-item"><div class="pair">TRY / GEL</div><div class="val num" data-ssr="TRY" data-dp="4">—</div></div>
       <div class="strip-item"><div class="pair">RUB / GEL</div><div class="val num" data-ssr="RUB" data-dp="4">—</div></div>
@@ -396,12 +429,12 @@ a.strip-item:hover .pair{color:var(--euro)}
     <div class="conv">
       <div class="conv-cell">
         <label for="usdIn">დოლარი (USD)</label>
-        <input class="conv-input num" id="usdIn" inputmode="decimal" value="100" aria-label="თანხა დოლარში">
+        <input class="conv-input num" id="usdIn" inputmode="decimal" value="100">
       </div>
       <div class="conv-eq">=</div>
       <div class="conv-cell">
         <label for="gelIn">ლარი (GEL)</label>
-        <input class="conv-input num" id="gelIn" data-ssr="100*USD" data-dp="2" inputmode="decimal" value="—" aria-label="თანხა ლარში">
+        <input class="conv-input num" id="gelIn" data-ssr="100*USD" data-dp="2" inputmode="decimal" value="">
       </div>
     </div>
 
@@ -433,7 +466,7 @@ ${faqHtml}
 
 <footer class="foot">
   <div class="wrap">
-    <div>© <span id="yr"></span> evro.ge — ვალუტის კურსი</div>
+    <div>© <span id="yr">${TODAY.slice(0, 4)}</span> evro.ge — ვალუტის კურსი</div>
     <p class="disc">კურსები ინფორმაციული დანიშნულებისაა და ეყრდნობა საქართველოს ეროვნული ბანკის ოფიციალურ მონაცემებს. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს.</p>
   </div>
 </footer>
