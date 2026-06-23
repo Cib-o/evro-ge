@@ -1,60 +1,39 @@
 # evro.ge — ევრო/ლარის კურსის საიტი
 
 ცოცხალი EUR/GEL კურსი ეროვნული ბანკის მონაცემებით + კონვერტერი + გადარიცხვის/სესხის აფილიატ-სლოტები.
+დიფლოი: **Cloudflare Worker** (სტატიკური ასეტები + API route).
 
 ## სტრუქტურა
 ```
-index.html              # მთელი საიტი (HTML + CSS + JS ერთ ფაილში)
-functions/api/rates.js  # Cloudflare Function — NBG კურსის proxy (CORS-ის გადასაჭრელად)
+public/index.html       # მთელი საიტი (HTML + CSS + JS). მხოლოდ ეს იტვირთება საჯაროდ.
+src/index.js            # Worker: /api/rates → NBG proxy; დანარჩენი → public/-დან
+wrangler.jsonc          # კონფიგი (assets → ./public, ანუ .git/README საჯაროდ არ ჩანს)
 ```
 
-## დიფლოი (ერთხელ) — Git + Cloudflare Pages
+## რატომ public/ საქაღალდე
+`wrangler.jsonc`-ში `assets.directory = "./public"` — ანუ საჯაროდ **მხოლოდ** public/-ის შიგთავსი იტვირთება.
+`.git`, `wrangler.jsonc`, `src/`, `README` — public/-ის გარეთაა, ანუ ბრაუზერით ვერ გაიხსნება.
 
-1. ატვირთე ეს repo GitHub-ზე (იხ. ქვემოთ ბრძანებები).
-2. Cloudflare → Workers & Pages → Create → Pages → **Connect to Git** → აირჩიე ეს repo.
-3. Build settings:
-   - **Framework preset:** None
-   - **Build command:** (ცარიელი)
-   - **Build output directory:** `/`
-4. Save and Deploy. `functions/` ავტომატურად ამოიცნობა.
-5. Custom domains → `evro.ge`.
-
-ამის შემდეგ ყოველი `git push` → ავტომატური დიფლოი. drag-drop აღარ სჭირდება.
+## დიფლოი
+Cloudflare Pages/Workers → Connect to Git → build/deploy command: `npx wrangler deploy`
+(wrangler.jsonc რომ არსებობს, კონფიგი ავტომატურად აიყვანება. Custom domain → evro.ge.)
+ყოველი `git push` → ავტომატური დიფლოი.
 
 ## განახლება
-დაარედაქტირე `index.html`, შემდეგ:
+დაარედაქტირე `public/index.html`, შემდეგ:
 ```bash
-git add .
-git commit -m "r.რა შეიცვალა"
+git add -A
+git commit -m "რა შეიცვალა"
 git push
 ```
-Cloudflare თავად დაბილდავს და დიფლოის ~1 წუთში.
 
-## პირველი push GitHub-ზე
-GitHub CLI-ით (უმარტივესი):
-```bash
-cd evro
-git init
-git add .
-git commit -m "evro.ge: initial"
-gh repo create evro-ge --public --source=. --remote=origin --push
-```
-ან ხელით: შექმენი repo github.com-ზე, შემდეგ:
-```bash
-git remote add origin https://github.com/USERNAME/evro-ge.git
-git branch -M main
-git push -u origin main
-```
-
-## მონაცემთა წყაროები (index.html, თვით-აღმდგენი ჯაჭვი)
-1. `/api/rates` — Cloudflare Function (ოფიციალური NBG, CORS-ის გარეშე)
-2. NBG პირდაპირ — ოფიციალური კურსი
+## მონაცემთა წყაროები (public/index.html, თვით-აღმდგენი ჯაჭვი)
+1. /api/rates — Worker → ოფიციალური NBG, CORS-ის გარეშე
+2. NBG პირდაპირ — სარეზერვო
 3. open.er-api.com — სარეზერვო საბაზრო კურსი
 
 ## ცვლილების ისარი ▲/▼
-NBG-ის `diff`-ის ნიშანზეა. თუ ისარი არასწორ მიმართულებას აჩვენებს —
-`index.html`-ში შეცვალე `DIFF_SIGN = 1` → `-1`.
+NBG-ის diff-ის ნიშანზეა. თუ შებრუნებულია — public/index.html-ში `DIFF_SIGN = 1` → `-1`.
 
-## შესავსები (აფილიატ-სლოტები)
-`index.html`-ში `[სერვისის სახელი]`, `[საკომისიო]`, `[აფილიატ-ლინკი]` —
-შეავსე მხოლოდ რეალური აფილიატ-დილების შემდეგ.
+## შესავსები
+public/index.html-ში `[სერვისის სახელი]`, `[საკომისიო]`, `[აფილიატ-ლინკი]` — შეავსე რეალური აფილიატ-დილების შემდეგ.
