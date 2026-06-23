@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1000 ევრო რამდენი ლარია — 1000 EUR to GEL დღეს | evro.ge</title>
 <meta name="description" content="1000 ევრო (EUR) რამდენი ლარია (GEL) დღეს? ნახე 1000 ევროს ღირებულება ლარში ეროვნული ბანკის ოფიციალური კურსით — ცოცხალი, ყოველდღიურად განახლებადი გადათვლა.">
+<meta name="keywords" content="1000 ევრო ლარი, 1000 evro lari, 1000 EUR GEL, 1000 ევრო რამდენი ლარია">
 <link rel="canonical" href="https://evro.ge/1000-evro-lari/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="evro.ge">
@@ -44,8 +45,9 @@ h1{font-family:"Noto Serif Georgian",serif;font-size:clamp(23px,5.2vw,33px);font
 .result{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:0 1px 2px rgba(11,21,48,.04)}
 .result .big{font-size:clamp(40px,11vw,72px);font-weight:600;line-height:1;color:var(--ink)}
 .result .cur{font-size:clamp(19px,5vw,28px);color:var(--euro);font-weight:500;margin-left:6px}
-.result .meta{margin-top:14px;font-size:13.5px;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.result .meta{margin-top:14px;font-size:13.5px;color:var(--muted);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .live{width:7px;height:7px;border-radius:50%;background:#0E8A5F;display:inline-block}
+.pill{display:inline-flex;align-items:center;gap:6px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:12.5px}
 .rev{margin-top:16px;font-size:15px;color:#33405A}
 .rev a{color:var(--euro);font-weight:600;text-decoration:none}
 .rev a:hover{text-decoration:underline}
@@ -78,12 +80,12 @@ h1{font-family:"Noto Serif Georgian",serif;font-size:clamp(23px,5.2vw,33px);font
     <p class="sub">1000 ევროს ღირებულება ლარში დღევანდელი ოფიციალური კურსით</p>
 
     <div class="result">
-      <div><span class="big num" id="result">—</span><span class="cur">₾ ლარი</span></div>
+      <div><span class="big num" id="result" data-ssr="1000*EUR" data-dp="2">—</span><span class="cur">₾ ლარი</span></div>
       <div class="meta">
-        <span class="num" id="rate">—</span>
-        <span class="pill"><span class="live"></span> <span id="date">იტვირთება…</span></span>
+        <span>1 ევრო = <span class="num" data-ssr="EUR" data-dp="4">—</span> ₾</span>
+        <span class="pill"><span class="live"></span> <span id="date" data-ssr="date">იტვირთება…</span></span>
       </div>
-      <div class="rev" id="reverse"></div>
+      <div class="rev">ან: 1000 ლარი = <span class="num" data-ssr="1000/EUR" data-dp="2">—</span> ევრო · <a href="/1000-lari-evro/">1000 ლარი ევროში →</a></div>
     </div>
 
     <div class="prose">
@@ -109,39 +111,24 @@ h1{font-family:"Noto Serif Georgian",serif;font-size:clamp(23px,5.2vw,33px);font
 <script>
 (function(){
   "use strict";
-  var AMOUNT=1000, DIR="eur2gel";
-  var SOURCES=[
-    {url:"/api/rates",p:nbg},
-    {url:"https://nbg.gov.ge/gw/api/ct/monetarypolicy/currencies/ka/json",p:nbg},
-    {url:"https://open.er-api.com/v6/latest/EUR",p:er}
-  ];
-  var resultEl=document.getElementById("result"),
-      rateEl=document.getElementById("rate"),
-      revEl=document.getElementById("reverse"),
-      dateEl=document.getElementById("date");
+  var CODE="EUR";
+  var SOURCES=[{url:"/api/rates",p:"nbg"},{url:"https://nbg.gov.ge/gw/api/ct/monetarypolicy/currencies/ka/json",p:"nbg"},{url:"https://open.er-api.com/v6/latest/EUR",p:"er"}];
+  var dateEl=document.getElementById("date");
   var y=document.getElementById("yr"); if(y) y.textContent=new Date().getFullYear();
-  function fmt(n,d){d=(d==null?2:d);return n.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});}
-  function nbg(data){var day=Array.isArray(data)?data[0]:data;if(!day||!day.currencies)return null;var e=null;day.currencies.forEach(function(c){if(c.code==="EUR")e=c;});if(!e||!e.rate)return null;return{rate:e.rate/e.quantity,date:(e.validFromDate||day.date||"").slice(0,10),src:"ეროვნული ბანკი"};}
-  function er(d){var r=d.rates||d.conversion_rates;if(!r||!r.GEL)return null;return{rate:r.GEL,date:d.time_last_update_utc?new Date(d.time_last_update_utc).toISOString().slice(0,10):"",src:"საბაზრო კურსი"};}
-  function paint(m){
-    var rate=m.rate;
-    rateEl.textContent="1 ევრო = "+fmt(rate,4)+" ₾";
-    if(dateEl) dateEl.textContent=m.date?("კურსი "+m.date+" · "+m.src):m.src;
-    if(DIR==="eur2gel"){
-      resultEl.textContent=fmt(AMOUNT*rate,2);
-      revEl.innerHTML='ან: '+AMOUNT+' ლარი = <strong class="num">'+fmt(AMOUNT/rate,2)+'</strong> ევრო · <a href="/'+AMOUNT+'-lari-evro/">'+AMOUNT+' ლარი ევროში →</a>';
-    } else {
-      resultEl.textContent=fmt(AMOUNT/rate,2);
-      revEl.innerHTML='ან: '+AMOUNT+' ევრო = <strong class="num">'+fmt(AMOUNT*rate,2)+'</strong> ლარი · <a href="/'+AMOUNT+'-evro-lari/">'+AMOUNT+' ევრო ლარში →</a>';
-    }
-  }
-  function fail(){resultEl.innerHTML='<span class="err">ვერ ჩაიტვირთა</span>';if(dateEl)dateEl.textContent="";}
+
+  function fmt(n,d){d=(d==null?4:d);return n.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});}
+  function evalSSR(spec,map){var x=/^(?:(\d+(?:\.\d+)?)([*\/]))?([A-Z]{3})$/.exec(spec);if(!x)return null;var r=map[x[3]];if(r==null||!isFinite(r))return null;if(!x[1])return r;var a=parseFloat(x[1]);return x[2]==="*"?a*r:a/r;}
+  function fillSSR(map){var ns=document.querySelectorAll("[data-ssr]");for(var i=0;i<ns.length;i++){var el=ns[i],spec=el.getAttribute("data-ssr");if(spec==="date")continue;var dp=parseInt(el.getAttribute("data-dp")||"4",10);var v=evalSSR(spec,map);if(v==null)continue;var s=fmt(v,dp);if(el.tagName==="INPUT")el.value=s;else el.textContent=s;}}
+  function nbgMap(data,codes){var day=Array.isArray(data)?data[0]:data;if(!day||!day.currencies)return null;var m={};day.currencies.forEach(function(c){m[c.code]=c;});var map={},ok=false;codes.forEach(function(c){if(m[c]&&m[c].rate){map[c]=m[c].rate/m[c].quantity;ok=true;}});if(!ok)return null;var an=m[codes[0]];return{map:map,date:((an&&an.validFromDate)||day.date||"").slice(0,10),src:"ეროვნული ბანკი"};}
+  function erMap(d,codes){var r=d.rates||d.conversion_rates;if(!r||!r.GEL)return null;var map={},ok=false;codes.forEach(function(c){if(c==="EUR"){map[c]=r.GEL;ok=true;}else if(r[c]){map[c]=r.GEL/r[c];ok=true;}});if(!ok)return null;return{map:map,date:d.time_last_update_utc?new Date(d.time_last_update_utc).toISOString().slice(0,10):"",src:"საბაზრო კურსი"};}
+  function paint(o){ fillSSR(o.map); if(dateEl) dateEl.textContent=o.date?("კურსი "+o.date+" · "+o.src):o.src; }
+  function fail(){ var r=document.getElementById("result"); if(r) r.innerHTML='<span class="err">ვერ ჩაიტვირთა</span>'; if(dateEl) dateEl.textContent=""; }
   (function go(i){
     if(i>=SOURCES.length){fail();return;}
     var s=SOURCES[i];
     fetch(s.url,{cache:"no-store"})
       .then(function(r){if(!r.ok)throw 0;return r.json();})
-      .then(function(d){var m=s.p(d);if(m&&m.rate)paint(m);else throw 0;})
+      .then(function(d){var o=s.p==="nbg"?nbgMap(d,[CODE]):erMap(d,[CODE]);if(o&&o.map[CODE]!=null)paint(o);else throw 0;})
       .catch(function(){go(i+1);});
   })(0);
 })();

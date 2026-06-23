@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ევრო ლარი დღეს — ევროს კურსი | EUR/GEL | evro.ge</title>
-<meta name="description" content="ევროს კურსი ლარში დღეს — 1 ევრო რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე ნებისმიერი თანხა (100, 200, 500 ევრო) ლარში ცოცხალი კონვერტერით.">
-<meta name="keywords" content="ევრო ლარი, ევროს კურსი, რა ღირს ევრო, რა ღირს ეურო, ra ghirs evro, ra xirs evro, evro lari, lari evro, euro lari, EUR GEL">
+<title>ევროს კურსი დღეს — 1 ევრო რამდენი ლარია | evro.ge</title>
+<meta name="description" content="ევროს ოფიციალური კურსი ლარში დღეს — 1 ევრო რამდენი ლარია ეროვნული ბანკის კურსით. გადათვალე ნებისმიერი თანხა ცოცხალი EUR/GEL კონვერტერით.">
+<meta name="keywords" content="ევროს კურსი, ევროს კურსი დღეს, ევრო ლარი, რა ღირს ევრო, evros kursi, ra ghirs evro, evro lari, lari evro, euro lari, EUR GEL">
 <link rel="canonical" href="https://evro.ge/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="evro.ge">
 <meta property="og:locale" content="ka_GE">
-<meta property="og:title" content="ევრო ლარი დღეს — ევროს კურსი | EUR/GEL">
-<meta property="og:description" content="ევროს ოფიციალური კურსი ლარში დღეს, ეროვნული ბანკის მონაცემებით. გადათვალე ევრო ლარში ცოცხალი კონვერტერით.">
+<meta property="og:title" content="ევროს კურსი დღეს — 1 ევრო რამდენი ლარია">
+<meta property="og:description" content="ევროს ოფიციალური კურსი ლარში დღეს — 1 ევრო რამდენი ლარია ეროვნული ბანკის კურსით. გადათვალე ევრო ლარში ცოცხალი კონვერტერით.">
 <meta property="og:url" content="https://evro.ge/">
 <meta property="og:image" content="https://evro.ge/og.svg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ევრო ლარი დღეს — ევროს კურსი | EUR/GEL">
-<meta name="twitter:description" content="ევროს ოფიციალური კურსი ლარში დღეს, ეროვნული ბანკის მონაცემებით. გადათვალე ევრო ლარში ცოცხალი კონვერტერით.">
+<meta name="twitter:title" content="ევროს კურსი დღეს — 1 ევრო რამდენი ლარია">
+<meta name="twitter:description" content="ევროს ოფიციალური კურსი ლარში დღეს — 1 ევრო რამდენი ლარია ეროვნული ბანკის კურსით. გადათვალე ევრო ლარში ცოცხალი კონვერტერით.">
 <meta name="twitter:image" content="https://evro.ge/og.svg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B3A8F'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23C19A2E' text-anchor='middle'%3E%E2%82%AC%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,7 +73,8 @@
   @media(max-width:480px){.conv{flex-direction:column}.conv-eq{width:100%;height:30px;transform:rotate(90deg)}}
 
   .strip{margin-top:34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-  .strip-item{text-align:center}
+  .strip-item{text-align:center;text-decoration:none}
+  a.strip-item:hover .pair{color:var(--euro)}
   .strip-item .pair{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:3px}
   .strip-item .val{font-size:19px;font-weight:600}
   @media(max-width:480px){.strip{grid-template-columns:repeat(2,1fr);gap:18px 8px}}
@@ -128,11 +129,21 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "evro.ge",
-  "url": "https://evro.ge",
-  "inLanguage": "ka",
-  "description": "ევროს ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით."
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "evro.ge",
+      "url": "https://evro.ge",
+      "inLanguage": "ka",
+      "description": "ევროს ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით."
+    },
+    {
+      "@type": "Organization",
+      "name": "evro.ge",
+      "url": "https://evro.ge",
+      "logo": "https://evro.ge/og.svg"
+    }
+  ]
 }
 </script>
 <script type="application/ld+json">
@@ -176,7 +187,7 @@
     <a class="brand" href="/"><span class="mark">€</span>evro<span class="dot">.ge</span></a>
     <nav class="nav">
       <a href="#convert">კონვერტერი</a>
-      <a href="#transfer">გადარიცხვა</a>
+      <a href="/dolari-lari/">დოლარის კურსი</a>
       <a href="#about">კურსის შესახებ</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -186,16 +197,16 @@
 <main>
   <section class="hero">
     <div class="wrap">
-      <h1 class="hero-h1">ევრო ლარი — ევროს კურსი დღეს</h1>
+      <h1 class="hero-h1">ევროს კურსი დღეს — ევრო ლარი</h1>
       <div class="eyebrow">1 ევრო დღეს უდრის</div>
       <div class="rate-line">
-        <span class="rate-big num" id="heroRate">—.————</span>
+        <span class="rate-big num" id="heroRate" data-ssr="EUR" data-dp="4">—.————</span>
         <span class="rate-cur">₾ ლარს</span>
         <span class="delta" id="delta" style="display:none"></span>
       </div>
       <div class="rate-meta" id="heroMeta">
         <span class="rule"></span>
-        <span class="pill"><span class="live"></span> <span id="updatedAt">იტვირთება…</span></span>
+        <span class="pill"><span class="live"></span> <span id="updatedAt" data-ssr="date">იტვირთება…</span></span>
         <span>წყარო: <span id="source">—</span></span>
       </div>
 
@@ -207,15 +218,15 @@
         <div class="conv-eq">=</div>
         <div class="conv-cell">
           <label for="gelIn">ლარი (GEL)</label>
-          <input class="conv-input num" id="gelIn" inputmode="decimal" value="—" aria-label="თანხა ლარში">
+          <input class="conv-input num" id="gelIn" data-ssr="100*EUR" data-dp="2" inputmode="decimal" value="—" aria-label="თანხა ლარში">
         </div>
       </div>
 
       <div class="strip" id="strip">
-        <div class="strip-item"><div class="pair">USD / GEL</div><div class="val num" data-pair="USD">—</div></div>
-        <div class="strip-item"><div class="pair">GBP / GEL</div><div class="val num" data-pair="GBP">—</div></div>
-        <div class="strip-item"><div class="pair">TRY / GEL</div><div class="val num" data-pair="TRY">—</div></div>
-        <div class="strip-item"><div class="pair">RUB / GEL</div><div class="val num" data-pair="RUB">—</div></div>
+        <a class="strip-item" href="/dolari-lari/" title="დოლარის კურსი"><div class="pair">USD / GEL</div><div class="val num" data-pair="USD" data-ssr="USD" data-dp="4">—</div></a>
+        <div class="strip-item"><div class="pair">GBP / GEL</div><div class="val num" data-pair="GBP" data-ssr="GBP" data-dp="4">—</div></div>
+        <div class="strip-item"><div class="pair">TRY / GEL</div><div class="val num" data-pair="TRY" data-ssr="TRY" data-dp="4">—</div></div>
+        <div class="strip-item"><div class="pair">RUB / GEL</div><div class="val num" data-pair="RUB" data-ssr="RUB" data-dp="4">—</div></div>
       </div>
     </div>
   </section>
@@ -230,6 +241,13 @@
         <a class="chip" href="/200-evro-lari/">200 ევრო ლარში</a>
         <a class="chip" href="/500-evro-lari/">500 ევრო ლარში</a>
         <a class="chip" href="/100-lari-evro/">100 ლარი ევროში</a>
+      </div>
+      <p class="sec-sub" style="margin:22px 0 12px">დოლარის კურსი და თანხები:</p>
+      <div class="chips">
+        <a class="chip" href="/dolari-lari/">დოლარის კურსი</a>
+        <a class="chip" href="/100-dolari-lari/">100 დოლარი ლარში</a>
+        <a class="chip" href="/200-dolari-lari/">200 დოლარი ლარში</a>
+        <a class="chip" href="/500-dolari-lari/">500 დოლარი ლარში</a>
       </div>
     </div>
   </section>
@@ -283,7 +301,8 @@
   <section class="prose" id="about">
     <div class="wrap">
       <h2>ევროს კურსი ლარში დღეს</h2>
-      <p>ამ გვერდზე ნახავ ევროს (EUR) დღევანდელ ოფიციალურ კურსს ლარში (GEL), საქართველოს ეროვნული ბანკის მონაცემებით. კურსი ავტომატურად ნახლდება და გიჩვენებს, რამდენი ლარი უდრის ერთ ევროს. გადათვალე ნებისმიერი თანხა ზემოთ კონვერტერით — ჩაწერე ევრო და მაშინვე დაინახავ ლარს, ან პირიქით.</p>
+      <p><strong>1 ევრო დღეს ≈ <span class="num" id="proseEur" data-ssr="EUR" data-dp="2">—</span> ლარი</strong> — დღევანდელი ოფიციალური კურსით.</p>
+      <p>ამ გვერდზე ნახავ ევროს (EUR) დღევანდელ ოფიციალურ კურსს ლარში (GEL), საქართველოს ეროვნული ბანკის მონაცემებით. ევროს კურსი (evros kursi) ავტომატურად ნახლდება და გიჩვენებს, რამდენი ლარი უდრის ერთ ევროს. გადათვალე ნებისმიერი თანხა ზემოთ კონვერტერით — ჩაწერე ევრო და მაშინვე დაინახავ ლარს, ან პირიქით.</p>
       <h2>როგორ ითვლება EUR/GEL კურსი</h2>
       <p>ეროვნული ბანკი ყოველდღე ადგენს ოფიციალურ კურსს, რომელიც მეორე დღეს მოქმედებს. ბანკსა და გადამცვლელ პუნქტებში კომერციული კურსი ხშირად ოდნავ განსხვავდება ოფიციალურისგან — სწორედ ამიტომ ღირს პირობების შედარება, სანამ ფულს გადაცვლი ან გადარიცხავ.</p>
       <h2>ფულის გადარიცხვა ევროპიდან საქართველოში</h2>
@@ -414,6 +433,7 @@
     } else { deltaEl.style.display="none"; }
     updatedAt.textContent=m.date?("კურსი "+m.date):"განახლდა";
     sourceEl.textContent=m.source;
+    var pe=document.getElementById("proseEur"); if(pe) pe.textContent=fmt(m.eurgel,2);
     document.querySelectorAll("#strip .val").forEach(function(el){
       var c=el.getAttribute("data-pair");
       if(m.pairs[c]!=null) el.textContent=fmt(m.pairs[c],4);
