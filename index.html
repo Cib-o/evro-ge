@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ევრო ლარი დღეს — EUR/GEL კურსი | evro.ge</title>
+<meta name="description" content="ევროს ოფიციალური კურსი ლარში დღეს, ეროვნული ბანკის მონაცემებით. გადათვალე ევრო ლარში და შეადარე ფულის გადარიცხვის სერვისები ევროპიდან საქართველოში.">
+<meta property="og:title" content="ევრო ლარი დღეს — EUR/GEL კურსი | evro.ge">
+<meta property="og:description" content="ევროს ოფიციალური კურსი ლარში, ეროვნული ბანკის მონაცემებით. გადათვალე ევრო ლარში.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ka_GE">
+<meta property="og:url" content="https://evro.ge/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B3A8F'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23C19A2E' text-anchor='middle'%3E%E2%82%AC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700&family=Noto+Serif+Georgian:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1F4F7; --panel:#FFFFFF; --ink:#0B1530;
+    --euro:#1B3A8F; --euro-2:#2E54B8; --gold:#B58A23;
+    --up:#0E8A5F; --down:#C0392B; --muted:#5A6478;
+    --line:rgba(11,21,48,.10); --line-strong:rgba(11,21,48,.16); --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:"Noto Sans Georgian",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .num{font-family:"Space Grotesk",monospace;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .wrap{width:100%;max-width:760px;margin:0 auto;padding:0 20px}
+  a{color:inherit}
+  :focus-visible{outline:2.5px solid var(--euro);outline-offset:3px;border-radius:6px}
+
+  .top{border-bottom:1px solid var(--line);background:rgba(241,244,247,.85);backdrop-filter:saturate(160%) blur(8px);position:sticky;top:0;z-index:10}
+  .top-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none}
+  .brand .mark{width:30px;height:30px;border-radius:8px;background:var(--euro);color:var(--gold);display:grid;place-items:center;font-family:Georgia,serif;font-size:19px;font-weight:700}
+  .brand .dot{color:var(--euro)}
+  .nav{display:flex;gap:22px;font-size:14.5px;font-weight:500;color:var(--muted)}
+  .nav a{text-decoration:none}
+  .nav a:hover{color:var(--ink)}
+  @media(max-width:560px){.nav{display:none}}
+
+  .hero{padding:54px 0 40px}
+  .eyebrow{font-family:"Noto Serif Georgian",serif;font-size:17px;color:var(--muted);font-weight:600;margin-bottom:10px}
+  .rate-line{display:flex;align-items:baseline;flex-wrap:wrap;gap:12px}
+  .rate-big{font-size:clamp(60px,16vw,112px);font-weight:600;line-height:.95;color:var(--ink)}
+  .rate-cur{font-size:clamp(28px,7vw,44px);font-weight:500;color:var(--euro);align-self:flex-end;padding-bottom:8px}
+  .delta{align-self:flex-end;padding-bottom:13px;font-family:"Space Grotesk",monospace;font-weight:600;font-size:clamp(15px,3.6vw,21px)}
+  .delta.up{color:var(--up)} .delta.down{color:var(--down)}
+  .rate-meta{margin-top:16px;display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted);flex-wrap:wrap}
+  .rule{height:1px;background:var(--line);width:56px}
+  .pill{display:inline-flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:500}
+  .live{width:7px;height:7px;border-radius:50%;background:var(--up);animation:ping 2.2s infinite}
+  @keyframes ping{0%{box-shadow:0 0 0 0 rgba(14,138,95,.45)}70%{box-shadow:0 0 0 8px rgba(14,138,95,0)}100%{box-shadow:0 0 0 0 rgba(14,138,95,0)}}
+  .state-err{color:var(--down);font-weight:500}
+  .retry{background:none;border:1px solid var(--down);color:var(--down);border-radius:999px;padding:3px 11px;font-family:inherit;font-size:12.5px;cursor:pointer}
+
+  .conv{margin-top:30px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:8px;display:flex;align-items:stretch;gap:8px;box-shadow:0 1px 2px rgba(11,21,48,.04)}
+  .conv-cell{flex:1;padding:14px 16px;border-radius:12px;transition:background .15s}
+  .conv-cell:focus-within{background:var(--paper)}
+  .conv-cell label{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:3px}
+  .conv-input{width:100%;border:none;background:none;font-family:"Space Grotesk",monospace;font-variant-numeric:tabular-nums;font-size:26px;font-weight:600;color:var(--ink)}
+  .conv-input:focus{outline:none}
+  .conv-eq{display:grid;place-items:center;width:42px;color:var(--euro);font-size:20px;font-weight:600;flex:0 0 auto}
+  @media(max-width:480px){.conv{flex-direction:column}.conv-eq{width:100%;height:30px;transform:rotate(90deg)}}
+
+  .strip{margin-top:34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .strip-item{text-align:center}
+  .strip-item .pair{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:3px}
+  .strip-item .val{font-size:19px;font-weight:600}
+  @media(max-width:480px){.strip{grid-template-columns:repeat(2,1fr);gap:18px 8px}}
+
+  .sec{padding:48px 0}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+  .sec-num{font-family:"Space Grotesk",monospace;font-size:13px;color:var(--gold);font-weight:600}
+  .sec-title{font-family:"Noto Serif Georgian",serif;font-size:clamp(24px,5vw,30px);font-weight:700;letter-spacing:-.01em}
+  .sec-sub{color:var(--muted);font-size:15px;margin:8px 0 26px;max-width:54ch}
+
+  .cards{display:grid;grid-template-columns:1fr;gap:12px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;display:flex;align-items:center;gap:18px;text-decoration:none;transition:border-color .15s,transform .15s,box-shadow .15s}
+  .card:hover{border-color:var(--euro);transform:translateY(-2px);box-shadow:0 8px 24px rgba(27,58,143,.10)}
+  .card-logo{width:54px;height:54px;border-radius:13px;background:var(--paper);border:1px dashed var(--line-strong);display:grid;place-items:center;font-size:11px;color:var(--muted);text-align:center;flex:0 0 auto;line-height:1.2}
+  .card-body{flex:1;min-width:0}
+  .card-name{font-weight:700;font-size:17px}
+  .card-desc{font-size:13.5px;color:var(--muted);margin-top:1px}
+  .card-fee{text-align:right;flex:0 0 auto}
+  .card-fee .v{font-family:"Space Grotesk",monospace;font-weight:600;font-size:16px}
+  .card-fee .l{font-size:11.5px;color:var(--muted)}
+  .card-cta{flex:0 0 auto;background:var(--euro);color:#fff;font-weight:600;font-size:14px;padding:9px 16px;border-radius:10px}
+  .card:hover .card-cta{background:var(--euro-2)}
+  @media(max-width:560px){.card{flex-wrap:wrap;gap:12px}.card-fee{order:3;text-align:left}.card-cta{order:4;margin-left:auto}}
+
+  .prose{padding:40px 0 10px}
+  .prose h2{font-family:"Noto Serif Georgian",serif;font-size:22px;margin-bottom:10px;margin-top:26px;font-weight:700}
+  .prose h2:first-child{margin-top:0}
+  .prose p{color:#33405A;font-size:15.5px;margin-bottom:14px;max-width:64ch}
+
+  .foot{border-top:1px solid var(--line);margin-top:30px;padding:30px 0 50px;color:var(--muted);font-size:13.5px}
+  .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+  .foot a{text-decoration:none}
+  .foot a:hover{color:var(--ink)}
+  .disclaimer{margin-top:18px;font-size:12px;color:#8A92A3;max-width:60ch}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="/"><span class="mark">€</span>evro<span class="dot">.ge</span></a>
+    <nav class="nav">
+      <a href="#convert">კონვერტერი</a>
+      <a href="#transfer">გადარიცხვა</a>
+      <a href="#about">კურსის შესახებ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">1 ევრო დღეს უდრის</div>
+      <div class="rate-line">
+        <span class="rate-big num" id="heroRate">—.————</span>
+        <span class="rate-cur">₾ ლარს</span>
+        <span class="delta" id="delta" style="display:none"></span>
+      </div>
+      <div class="rate-meta" id="heroMeta">
+        <span class="rule"></span>
+        <span class="pill"><span class="live"></span> <span id="updatedAt">იტვირთება…</span></span>
+        <span>წყარო: <span id="source">—</span></span>
+      </div>
+
+      <div class="conv" id="convert">
+        <div class="conv-cell">
+          <label for="eurIn">ევრო (EUR)</label>
+          <input class="conv-input num" id="eurIn" inputmode="decimal" value="100" aria-label="თანხა ევროში">
+        </div>
+        <div class="conv-eq">=</div>
+        <div class="conv-cell">
+          <label for="gelIn">ლარი (GEL)</label>
+          <input class="conv-input num" id="gelIn" inputmode="decimal" value="—" aria-label="თანხა ლარში">
+        </div>
+      </div>
+
+      <div class="strip" id="strip">
+        <div class="strip-item"><div class="pair">USD / GEL</div><div class="val num" data-pair="USD">—</div></div>
+        <div class="strip-item"><div class="pair">GBP / GEL</div><div class="val num" data-pair="GBP">—</div></div>
+        <div class="strip-item"><div class="pair">TRY / GEL</div><div class="val num" data-pair="TRY">—</div></div>
+        <div class="strip-item"><div class="pair">RUB / GEL</div><div class="val num" data-pair="RUB">—</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="transfer">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">გადარიცხე ფული საქართველოში</h2></div>
+      <p class="sec-sub">ევროპიდან ლარში გადარიცხვის სერვისები — საკომისიო და კურსი ერთ ცხრილში. აირჩიე საუკეთესო პირობა.</p>
+      <div class="cards">
+        <!-- ════════ AFFILIATE სლოტი 1 — შეავსე ════════
+             card-name → სერვისის სახელი (მაგ. Wise / Profee / Paysend)
+             card-fee  → რეალური საკომისიო (ნუ მოიგონებ — მხოლოდ გადამოწმებული)
+             href      → შენი აფილიატ-ლინკი -->
+        <a class="card" href="#" rel="sponsored nofollow" target="_blank">
+          <div class="card-logo">ლოგო</div>
+          <div class="card-body"><div class="card-name">[სერვისის სახელი]</div><div class="card-desc">[მოკლე აღწერა]</div></div>
+          <div class="card-fee"><div class="v">[—]</div><div class="l">საკომისიო</div></div>
+          <span class="card-cta">გადარიცხვა</span>
+        </a>
+        <a class="card" href="#" rel="sponsored nofollow" target="_blank">
+          <div class="card-logo">ლოგო</div>
+          <div class="card-body"><div class="card-name">[სერვისის სახელი]</div><div class="card-desc">[მოკლე აღწერა]</div></div>
+          <div class="card-fee"><div class="v">[—]</div><div class="l">საკომისიო</div></div>
+          <span class="card-cta">გადარიცხვა</span>
+        </a>
+        <a class="card" href="#" rel="sponsored nofollow" target="_blank">
+          <div class="card-logo">ლოგო</div>
+          <div class="card-body"><div class="card-name">[სერვისის სახელი]</div><div class="card-desc">[მოკლე აღწერა]</div></div>
+          <div class="card-fee"><div class="v">[—]</div><div class="l">საკომისიო</div></div>
+          <span class="card-cta">გადარიცხვა</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="loans" style="padding-top:8px">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">სესხის შედარება</h2></div>
+      <p class="sec-sub">ონლაინ სესხი და განვადება — განაკვეთები ერთ სივრცეში. (აქ ჩაჯდება ფინანსური აფილიატ-სლოტები იმავე ფორმატით.)</p>
+      <div class="cards">
+        <a class="card" href="#" rel="sponsored nofollow" target="_blank">
+          <div class="card-logo">ლოგო</div>
+          <div class="card-body"><div class="card-name">[გამსესხებლის სახელი]</div><div class="card-desc">[თანხა / ვადა]</div></div>
+          <div class="card-fee"><div class="v">[—%]</div><div class="l">განაკვეთი</div></div>
+          <span class="card-cta">სესხის აღება</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="prose" id="about">
+    <div class="wrap">
+      <h2>ევროს კურსი ლარში დღეს</h2>
+      <p>ამ გვერდზე ნახავ ევროს (EUR) დღევანდელ ოფიციალურ კურსს ლარში (GEL), საქართველოს ეროვნული ბანკის მონაცემებით. კურსი ავტომატურად ნახლდება და გიჩვენებს, რამდენი ლარი უდრის ერთ ევროს. გადათვალე ნებისმიერი თანხა ზემოთ კონვერტერით — ჩაწერე ევრო და მაშინვე დაინახავ ლარს, ან პირიქით.</p>
+      <h2>როგორ ითვლება EUR/GEL კურსი</h2>
+      <p>ეროვნული ბანკი ყოველდღე ადგენს ოფიციალურ კურსს, რომელიც მეორე დღეს მოქმედებს. ბანკსა და გადამცვლელ პუნქტებში კომერციული კურსი ხშირად ოდნავ განსხვავდება ოფიციალურისგან — სწორედ ამიტომ ღირს პირობების შედარება, სანამ ფულს გადაცვლი ან გადარიცხავ.</p>
+      <h2>ფულის გადარიცხვა ევროპიდან საქართველოში</h2>
+      <p>თუ ევროპიდან ლარში აგზავნი ფულს, საბოლოო თანხაზე ორი რამ მოქმედებს: საკომისიო და გადაცვლის კურსი. ზემოთ მოცემული ცხრილი დაგეხმარება შეადარო პირობები და აირჩიო ის სერვისი, რომელიც ყველაზე მეტ ლარს მიგიტანს მიმღებამდე.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-row">
+      <div>© <span id="yr"></span> evro.ge — ევრო ლარის კურსი</div>
+      <div><a href="#convert">კონვერტერი</a> · <a href="#transfer">გადარიცხვა</a> · <a href="#about">კურსის შესახებ</a></div>
+    </div>
+    <p class="disclaimer">კურსები ინფორმაციული დანიშნულებისაა. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს. გადაამოწმე საბოლოო პირობები ტრანზაქციამდე.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // ════════════════════════════════════════════════════════════
+  //  ცვლილების ისრის ნიშანი (▲/▼)
+  //  ეროვნული ბანკის diff-ის ნიშანს ვიყენებ. გადაამოწმე ერთხელ ბრაუზერში:
+  //  თუ ისარი არასწორ მიმართულებას აჩვენებს (იზრდება, მაგრამ ▼-ს გიჩვენებს),
+  //  შეცვალე ქვემოთ 1 → -1. ეს ერთადერთი ციფრია, რაც შესაძლოა საჭიროებდეს გასწორებას.
+  var DIFF_SIGN = 1;
+
+  // ════════════════════════════════════════════════════════════
+  //  წყაროები — თვით-აღმდგენი ჯაჭვი. ცდის რიგრიგობით, პირველივე რომელიც გამოვა:
+  //    1) /api/rates  — Cloudflare Function (თუ დააყენებ functions/api/rates.js-ს).
+  //                     იძლევა ოფიციალურ NBG კურსს CORS-პრობლემის გარეშე. ყველაზე საიმედო.
+  //    2) NBG პირდაპირ — ოფიციალური კურსი. მუშაობს თუ NBG ბრაუზერს უშვებს (CORS).
+  //    3) open.er-api.com — სარეზერვო საბაზრო კურსი (diff-ის გარეშე). რომ საიტი არასდროს გატყდეს.
+  // ════════════════════════════════════════════════════════════
+  var SOURCES = [
+    { url:"/api/rates", parse:parseNBG },
+    { url:"https://nbg.gov.ge/gw/api/ct/monetarypolicy/currencies/ka/json", parse:parseNBG },
+    { url:"https://open.er-api.com/v6/latest/EUR", parse:parseERAPI }
+  ];
+
+  var rateEURGEL=null;
+  var heroRate=document.getElementById("heroRate");
+  var updatedAt=document.getElementById("updatedAt");
+  var sourceEl=document.getElementById("source");
+  var deltaEl=document.getElementById("delta");
+  var heroMeta=document.getElementById("heroMeta");
+  var eurIn=document.getElementById("eurIn");
+  var gelIn=document.getElementById("gelIn");
+  document.getElementById("yr").textContent=new Date().getFullYear();
+
+  function fmt(n,d){d=(d==null?4:d);return n.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});}
+  function parseNum(s){return parseFloat(String(s).replace(/[^\d.,-]/g,"").replace(",","."));}
+
+  // ---- NBG ფორმატი: [{date, currencies:[{code,quantity,rate,diff,validFromDate},...]}] ----
+  function parseNBG(data){
+    var day=Array.isArray(data)?data[0]:data;
+    if(!day||!day.currencies) return null;
+    var m={}; day.currencies.forEach(function(c){m[c.code]=c;});
+    if(!m.EUR||!m.EUR.rate) return null;
+    function per(code){return m[code]?m[code].rate/m[code].quantity:null;} // quantity-ის გათვალისწინება!
+    var eur=m.EUR;
+    var pct=(eur.diff&&eur.rate)?(eur.diff/eur.rate)*100*DIFF_SIGN:null; // % ცვლილება
+    return {
+      eurgel:eur.rate/eur.quantity, deltaPct:pct,
+      pairs:{USD:per("USD"),GBP:per("GBP"),TRY:per("TRY"),RUB:per("RUB")},
+      source:"ეროვნული ბანკი",
+      date:(eur.validFromDate||day.date||"").slice(0,10)
+    };
+  }
+  // ---- სარეზერვო: open.er-api.com (base=EUR) ----
+  function parseERAPI(d){
+    var r=d.rates||d.conversion_rates;
+    if(!r||!r.GEL) return null;
+    function pair(c){return r[c]?r.GEL/r[c]:null;}
+    return {
+      eurgel:r.GEL, deltaPct:null,
+      pairs:{USD:pair("USD"),GBP:pair("GBP"),TRY:pair("TRY"),RUB:pair("RUB")},
+      source:"საბაზრო კურსი",
+      date:d.time_last_update_utc?new Date(d.time_last_update_utc).toISOString().slice(0,10):""
+    };
+  }
+
+  function animateTo(el,target){
+    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){el.textContent=fmt(target);return;}
+    var start=performance.now(),dur=650;
+    function step(t){var p=Math.min((t-start)/dur,1),e=1-Math.pow(1-p,3);el.textContent=fmt(target*e);if(p<1)requestAnimationFrame(step);}
+    requestAnimationFrame(step);
+  }
+
+  function recalc(from){
+    if(!rateEURGEL) return;
+    if(from==="eur"){var e=parseNum(eurIn.value);gelIn.value=isFinite(e)?fmt(e*rateEURGEL,2):"";}
+    else{var g=parseNum(gelIn.value);eurIn.value=isFinite(g)?fmt(g/rateEURGEL,2):"";}
+  }
+
+  function paint(m){
+    rateEURGEL=m.eurgel;
+    heroRate.style.fontSize="";
+    animateTo(heroRate,m.eurgel);
+    if(m.deltaPct!=null && isFinite(m.deltaPct)){
+      var up=m.deltaPct>=0;
+      deltaEl.style.display="";
+      deltaEl.className="delta "+(up?"up":"down");
+      deltaEl.textContent=(up?"▲ ":"▼ ")+Math.abs(m.deltaPct).toFixed(2)+"%";
+    } else { deltaEl.style.display="none"; }
+    updatedAt.textContent=m.date?("კურსი "+m.date):"განახლდა";
+    sourceEl.textContent=m.source;
+    document.querySelectorAll("#strip .val").forEach(function(el){
+      var c=el.getAttribute("data-pair");
+      if(m.pairs[c]!=null) el.textContent=fmt(m.pairs[c],4);
+    });
+    recalc("eur");
+  }
+
+  function showError(){
+    heroRate.textContent="ვერ ჩაიტვირთა";
+    heroRate.style.fontSize="clamp(32px,8vw,52px)";
+    deltaEl.style.display="none";
+    heroMeta.innerHTML='<span class="state-err">კურსი ვერ განახლდა.</span> <button class="retry" id="retryBtn">სცადე თავიდან</button>';
+    document.getElementById("retryBtn").addEventListener("click",load);
+  }
+
+  function load(){
+    updatedAt.textContent="იტვირთება…";
+    (function tryNext(i){
+      if(i>=SOURCES.length){showError();return;}
+      var s=SOURCES[i];
+      fetch(s.url,{cache:"no-store"})
+        .then(function(r){if(!r.ok)throw 0;return r.json();})
+        .then(function(d){var m=s.parse(d);if(m&&m.eurgel){paint(m);}else{throw 0;}})
+        .catch(function(){tryNext(i+1);}); // შემდეგ წყაროზე გადასვლა
+    })(0);
+  }
+
+  eurIn.addEventListener("input",function(){recalc("eur");});
+  gelIn.addEventListener("input",function(){recalc("gel");});
+
+  load();
+  setInterval(load,60*60*1000); // საათში ერთხელ (NBG კურსი დღეში ერთხელ იცვლება)
+})();
+</script>
+</body>
+</html>
