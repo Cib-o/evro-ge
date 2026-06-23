@@ -506,6 +506,216 @@ ${SSR_HELPERS_JS}
 `;
 }
 
+// ── ცალკეული ვალუტის სადესანტო გვერდები (GBP/TRY/RUB) ────────────────────────
+// "ფუნტის კურსი", "ლირის კურსი", "რუბლის კურსი" — ე.წ. "მსგავსი სიტყვები".
+const LANDINGS = [
+  {
+    code: "GBP", slug: "funtis-kursi", full: "ბრიტანული ფუნტი",
+    nom: "ფუნტი", gen: "ფუნტის", loc: "ფუნტში", a: "ფუნტია", latin: "funtis kursi",
+    title: "ფუნტის კურსი დღეს — GBP/GEL ოფიციალური კურსი | evro.ge",
+    og: "ფუნტის კურსი დღეს — GBP/GEL ოფიციალური კურსი",
+    h1: "ფუნტის კურსი დღეს — ფუნტი ლარი",
+    keywords: "ფუნტის კურსი, ფუნტი ლარი, funtis kursi, ბრიტანული ფუნტი, GBP GEL",
+    context: "ფუნტი დიდი ბრიტანეთის ვალუტაა და მისი კურსი გლობალურ ბაზარზე იცვლება. ეროვნული ბანკი ადგენს ოფიციალურ კურსს, ბანკებსა და გადამცვლელ პუნქტებში კი ყიდვა-გაყიდვის კურსი ოდნავ განსხვავდება — ამიტომ სანამ ფუნტს გადაცვლი, შეადარე პირობები.",
+  },
+  {
+    code: "TRY", slug: "liris-kursi", full: "თურქული ლირა",
+    nom: "ლირა", gen: "ლირის", loc: "ლირაში", a: "ლირაა", latin: "liris kursi",
+    title: "ლირის კურსი დღეს — TRY/GEL ოფიციალური კურსი | evro.ge",
+    og: "ლირის კურსი დღეს — TRY/GEL ოფიციალური კურსი",
+    h1: "ლირის კურსი დღეს — თურქული ლირა ლარი",
+    keywords: "ლირის კურსი, თურქული ლირა, liris kursi, ლირა ლარი, TRY GEL",
+    context: "საქართველოსა და თურქეთს შორის ვაჭრობისა და მოგზაურობის გამო ლირის კურსი ბევრს აინტერესებს. ეროვნული ბანკი ლირის ოფიციალურ კურსს ყოველ სამუშაო დღეს ადგენს, კომერციული კურსი გადამცვლელებში კი ოდნავ განსხვავდება.",
+  },
+  {
+    code: "RUB", slug: "rublis-kursi", full: "რუსული რუბლი",
+    nom: "რუბლი", gen: "რუბლის", loc: "რუბლში", a: "რუბლია", latin: "rublis kursi",
+    title: "რუბლის კურსი დღეს — RUB/GEL ოფიციალური კურსი | evro.ge",
+    og: "რუბლის კურსი დღეს — RUB/GEL ოფიციალური კურსი",
+    h1: "რუბლის კურსი დღეს — რუსული რუბლი ლარი",
+    keywords: "რუბლის კურსი, რუსული რუბლი, rublis kursi, რუბლი ლარი, RUB GEL",
+    context: "რუბლის კურსი ხშირად აქტუალურია ფულადი გზავნილების დროს. ეროვნული ბანკი რუბლის ოფიციალურ კურსს ყოველ სამუშაო დღეს ადგენს, ბანკებსა და გადამცვლელ პუნქტებში კი კურსი ოდნავ განსხვავდება.",
+  },
+];
+
+function buildCurrencyLanding(cfg) {
+  const canonical = `${SITE}/${cfg.slug}/`;
+  const desc = `${cfg.gen} კურსი ლარში დღეს — 1 ${cfg.nom} რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე ${cfg.full} ლარში (${cfg.latin}).`;
+
+  const faq = [
+    { q: `რა ღირს 1 ${cfg.nom} დღეს?`, a: `1 ${cfg.gen} დღევანდელი ოფიციალური კურსი ლარში ნაჩვენებია გვერდის თავში, საქართველოს ეროვნული ბანკის მონაცემებით. კურსი ავტომატურად ახლდება.` },
+    { q: `100 ${cfg.nom} რამდენი ლარია?`, a: `100 ${cfg.gen} ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად გამოიყენე ზემოთ მოცემული კონვერტერი.` },
+    { q: `სად ვნახო ${cfg.gen} ოფიციალური კურსი?`, a: `${cfg.gen} ოფიციალურ კურსს ადგენს საქართველოს ეროვნული ბანკი (nbg.gov.ge) ყოველ სამუშაო დღეს. evro.ge სწორედ ამ მონაცემებს გიჩვენებს ცოცხლად.` },
+  ];
+  const faqLd = JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage", inLanguage: "ka",
+    mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  });
+  const graphLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "მთავარი", item: `${SITE}/` },
+        { "@type": "ListItem", position: 2, name: cfg.h1, item: canonical },
+      ] },
+      { "@type": "Organization", name: "evro.ge", url: SITE, logo: `${SITE}/og.svg` },
+    ],
+  });
+  const faqHtml = faq.map((f) => `        <details>\n          <summary>${f.q}</summary>\n          <div class="ans">${f.a}</div>\n        </details>`).join("\n");
+
+  return `<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${esc(cfg.title)}</title>
+<meta name="description" content="${esc(desc)}">
+<meta name="keywords" content="${esc(cfg.keywords)}">
+<link rel="canonical" href="${canonical}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="evro.ge">
+<meta property="og:locale" content="ka_GE">
+<meta property="og:title" content="${esc(cfg.og)}">
+<meta property="og:description" content="${esc(desc)}">
+<meta property="og:url" content="${canonical}">
+<meta property="og:image" content="${SITE}/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(cfg.og)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${SITE}/og.svg">
+${FONT_LINKS}
+<script type="application/ld+json">${graphLd}</script>
+<script type="application/ld+json">${faqLd}</script>
+<style>
+${BASE_CSS}
+.hero-rate{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:0 1px 2px rgba(11,21,48,.04)}
+.hero-rate .eyebrow{font-family:"Noto Serif Georgian",serif;font-size:16px;color:var(--muted);font-weight:600;margin-bottom:8px}
+.hero-rate .big{font-size:clamp(46px,13vw,86px);font-weight:600;line-height:.95;display:inline-block;min-width:4ch}
+.hero-rate .cur{font-size:clamp(20px,5vw,30px);color:var(--euro);font-weight:500;margin-left:6px}
+.hero-rate .meta{margin-top:14px;font-size:13.5px;color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.conv{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:8px;display:flex;align-items:stretch;gap:8px}
+.conv-cell{flex:1;padding:14px 16px;border-radius:12px}
+.conv-cell:focus-within{background:var(--paper)}
+.conv-cell label{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:3px}
+.conv-input{width:100%;border:none;background:none;font-family:"Space Grotesk",monospace;font-variant-numeric:tabular-nums;font-size:26px;font-weight:600;color:var(--ink)}
+.conv-input:focus{outline:none}
+.conv-eq{display:grid;place-items:center;width:42px;color:var(--euro);font-size:20px;font-weight:600;flex:0 0 auto}
+@media(max-width:480px){.conv{flex-direction:column}.conv-eq{width:100%;height:30px;transform:rotate(90deg)}}
+.faq{display:grid;gap:12px;margin-top:14px}
+.faq details{background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.faq summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--euro);font-size:22px;font-weight:600;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq .ans{padding:0 18px 16px;color:#33405A;font-size:15px}
+.block{margin-top:34px}
+.block h2{font-family:"Noto Serif Georgian",serif;font-size:22px;margin-bottom:12px;font-weight:700}
+.prose h2{font-family:"Noto Serif Georgian",serif;font-size:22px;margin:30px 0 10px;font-weight:700}
+.prose a{color:var(--euro);font-weight:600;text-decoration:none}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;text-decoration:none;font-weight:500}
+.chip:hover{border-color:var(--euro);color:var(--euro)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="/"><span class="mark">€</span>evro<span class="dot">.ge</span></a>
+    <a class="back" href="/valutis-kursi/">← ვალუტის კურსი</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <h1>${cfg.h1}</h1>
+    <p class="sub">${cfg.full} (${cfg.code}) ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით.</p>
+
+    <div class="hero-rate">
+      <div class="eyebrow">1 ${cfg.nom} დღეს უდრის</div>
+      <div><span class="big num" id="heroRate" data-ssr="${cfg.code}" data-dp="4">—.————</span><span class="cur">₾ ლარს</span></div>
+      <div class="meta">
+        <span class="pill"><span class="live"></span> <span id="date" data-ssr="date">იტვირთება…</span></span>
+        <span>წყარო: <span id="source">ეროვნული ბანკი</span></span>
+      </div>
+    </div>
+
+    <div class="conv">
+      <div class="conv-cell">
+        <label for="curIn">${cfg.full} (${cfg.code})</label>
+        <input class="conv-input num" id="curIn" inputmode="decimal" value="100">
+      </div>
+      <div class="conv-eq">=</div>
+      <div class="conv-cell">
+        <label for="gelIn">ლარი (GEL)</label>
+        <input class="conv-input num" id="gelIn" data-ssr="100*${cfg.code}" data-dp="2" inputmode="decimal" value="">
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>სხვა ვალუტა</h2>
+      <div class="chips">
+        <a class="chip" href="/valutis-kursi/">ვალუტის კურსი</a>
+        <a class="chip" href="/">ევროს კურსი</a>
+        <a class="chip" href="/dolari-lari/">დოლარის კურსი</a>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h2>${cfg.gen} კურსი ლარში დღეს</h2>
+      <p>ამ გვერდზე ნახავ ${cfg.gen} (${cfg.code}) დღევანდელ ოფიციალურ კურსს ლარში — ანუ რა ღირს 1 ${cfg.nom} დღეს. მონაცემები საქართველოს ეროვნული ბანკიდან მოდის და ავტომატურად ახლდება, ამიტომ ${cfg.gen} კურსი (${cfg.latin}) ყოველთვის უახლესია. კონვერტერით ნებისმიერ თანხას გადათვლი ლარში ან პირიქით.</p>
+      <p>${cfg.context} იხილე ასევე <a href="/valutis-kursi/">ვალუტის კურსი</a> და <a href="/">ევროს კურსი</a>.</p>
+    </div>
+
+    <div class="block">
+      <h2>ხშირად დასმული კითხვები</h2>
+      <div class="faq">
+${faqHtml}
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>© <span id="yr">${TODAY.slice(0, 4)}</span> evro.ge — ვალუტის კურსი</div>
+    <p class="disc">კურსები ინფორმაციული დანიშნულებისაა და ეყრდნობა საქართველოს ეროვნული ბანკის ოფიციალურ მონაცემებს. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var CODE="${cfg.code}";
+  var SOURCES=${SOURCES_JS};
+  var rate=null;
+  var dateEl=document.getElementById("date"), sourceEl=document.getElementById("source"),
+      curIn=document.getElementById("curIn"), gelIn=document.getElementById("gelIn");
+${SSR_HELPERS_JS}
+  function parseNum(s){return parseFloat(String(s).replace(/[^\\d.,-]/g,"").replace(",","."));}
+  function recalc(from){
+    if(!rate) return;
+    if(from==="cur"){var u=parseNum(curIn.value);gelIn.value=isFinite(u)?fmt(u*rate,2):"";}
+    else{var g=parseNum(gelIn.value);curIn.value=isFinite(g)?fmt(g/rate,2):"";}
+  }
+  function paint(o){ rate=o.map[CODE]; fillSSR(o.map); if(dateEl) dateEl.textContent=o.date?("კურსი "+o.date):"განახლდა"; if(sourceEl) sourceEl.textContent=o.src; }
+  function fail(){ var h=document.getElementById("heroRate"); if(h){h.textContent="ვერ ჩაიტვირთა";h.style.fontSize="clamp(28px,7vw,44px)";} if(dateEl) dateEl.textContent=""; }
+  curIn.addEventListener("input",function(){recalc("cur");});
+  gelIn.addEventListener("input",function(){recalc("gel");});
+  (function go(i){
+    if(i>=SOURCES.length){fail();return;}
+    var s=SOURCES[i];
+    fetch(s.url,{cache:"no-store"})
+      .then(function(r){if(!r.ok)throw 0;return r.json();})
+      .then(function(d){var o=s.p==="nbg"?nbgMap(d,[CODE]):erMap(d,[CODE]);if(o&&o.map[CODE]!=null)paint(o);else throw 0;})
+      .catch(function(){go(i+1);});
+  })(0);
+})();
+</script>
+</body>
+</html>
+`;
+}
+
 // ── ვალუტის კურსის hub /valutis-kursi/ ────────────────────────────────────────
 function buildHubPage() {
   const canonical = `${SITE}/valutis-kursi/`;
@@ -518,9 +728,9 @@ function buildHubPage() {
   const rows = [
     { code: "USD", name: "ამერიკული დოლარი", href: "/dolari-lari/" },
     { code: "EUR", name: "ევრო", href: "/" },
-    { code: "GBP", name: "ბრიტანული ფუნტი", href: null },
-    { code: "TRY", name: "თურქული ლირა", href: null },
-    { code: "RUB", name: "რუსული რუბლი", href: null },
+    { code: "GBP", name: "ბრიტანული ფუნტი", href: "/funtis-kursi/" },
+    { code: "TRY", name: "თურქული ლირა", href: "/liris-kursi/" },
+    { code: "RUB", name: "რუსული რუბლი", href: "/rublis-kursi/" },
   ]
     .map(
       (r) =>
@@ -713,13 +923,17 @@ function main() {
 
   writePage("dolari-lari", buildDollarLanding());
   writePage("valutis-kursi", buildHubPage());
+  LANDINGS.forEach((cfg) => {
+    writePage(cfg.slug, buildCurrencyLanding(cfg));
+    urls.push({ loc: `${SITE}/${cfg.slug}/`, priority: "0.85" });
+  });
 
   fs.writeFileSync(path.join(PUBLIC, "robots.txt"), buildRobots(), "utf8");
   fs.writeFileSync(path.join(PUBLIC, "sitemap.xml"), buildSitemap(urls), "utf8");
   fs.writeFileSync(path.join(PUBLIC, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY, "utf8");
 
   console.log(`✓ ${count} amount pages (EUR + USD)`);
-  console.log(`✓ landings: /dolari-lari/ + /valutis-kursi/`);
+  console.log(`✓ landings: /dolari-lari/ /valutis-kursi/ /funtis-kursi/ /liris-kursi/ /rublis-kursi/`);
   console.log(`✓ robots.txt + sitemap.xml (${urls.length} URLs) + IndexNow key file`);
 }
 
