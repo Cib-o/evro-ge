@@ -3,13 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ევრო ლარი დღეს — EUR/GEL კურსი | evro.ge</title>
-<meta name="description" content="ევროს ოფიციალური კურსი ლარში დღეს, ეროვნული ბანკის მონაცემებით. გადათვალე ევრო ლარში და შეადარე ფულის გადარიცხვის სერვისები ევროპიდან საქართველოში.">
-<meta property="og:title" content="ევრო ლარი დღეს — EUR/GEL კურსი | evro.ge">
-<meta property="og:description" content="ევროს ოფიციალური კურსი ლარში, ეროვნული ბანკის მონაცემებით. გადათვალე ევრო ლარში.">
+<title>ევრო ლარი დღეს — ევროს კურსი | EUR/GEL | evro.ge</title>
+<meta name="description" content="ევროს კურსი ლარში დღეს — 1 ევრო რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე ნებისმიერი თანხა (100, 200, 500 ევრო) ლარში ცოცხალი კონვერტერით.">
+<meta name="keywords" content="ევრო ლარი, ევროს კურსი, რა ღირს ევრო, რა ღირს ეურო, ra ghirs evro, ra xirs evro, evro lari, lari evro, euro lari, EUR GEL">
+<link rel="canonical" href="https://evro.ge/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="evro.ge">
 <meta property="og:locale" content="ka_GE">
+<meta property="og:title" content="ევრო ლარი დღეს — ევროს კურსი | EUR/GEL">
+<meta property="og:description" content="ევროს ოფიციალური კურსი ლარში დღეს, ეროვნული ბანკის მონაცემებით. გადათვალე ევრო ლარში ცოცხალი კონვერტერით.">
 <meta property="og:url" content="https://evro.ge/">
+<meta property="og:image" content="https://evro.ge/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ევრო ლარი დღეს — ევროს კურსი | EUR/GEL">
+<meta name="twitter:description" content="ევროს ოფიციალური კურსი ლარში დღეს, ეროვნული ბანკის მონაცემებით. გადათვალე ევრო ლარში ცოცხალი კონვერტერით.">
+<meta name="twitter:image" content="https://evro.ge/og.svg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B3A8F'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23C19A2E' text-anchor='middle'%3E%E2%82%AC%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +47,8 @@
   .nav a:hover{color:var(--ink)}
   @media(max-width:560px){.nav{display:none}}
 
-  .hero{padding:54px 0 40px}
+  .hero{padding:48px 0 40px}
+  .hero-h1{font-family:"Noto Serif Georgian",serif;font-size:clamp(22px,5vw,30px);font-weight:700;letter-spacing:-.01em;margin-bottom:18px;color:var(--ink)}
   .eyebrow{font-family:"Noto Serif Georgian",serif;font-size:17px;color:var(--muted);font-weight:600;margin-bottom:10px}
   .rate-line{display:flex;align-items:baseline;flex-wrap:wrap;gap:12px}
   .rate-big{font-size:clamp(60px,16vw,112px);font-weight:600;line-height:.95;color:var(--ink)}
@@ -94,6 +103,20 @@
   .prose h2:first-child{margin-top:0}
   .prose p{color:#33405A;font-size:15.5px;margin-bottom:14px;max-width:64ch}
 
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14.5px;text-decoration:none;font-weight:600;transition:border-color .15s,color .15s,transform .15s}
+  .chip:hover{border-color:var(--euro);color:var(--euro);transform:translateY(-1px)}
+
+  .faq{display:grid;gap:12px}
+  .faq details{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:4px 4px}
+  .faq summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--euro);font-size:22px;font-weight:600;line-height:1}
+  .faq details[open] summary::after{content:"−"}
+  .faq .ans{padding:0 18px 16px;color:#33405A;font-size:15px}
+  .faq .ans a{color:var(--euro);font-weight:600;text-decoration:none}
+  .faq .ans a:hover{text-decoration:underline}
+
   .foot{border-top:1px solid var(--line);margin-top:30px;padding:30px 0 50px;color:var(--muted);font-size:13.5px}
   .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
   .foot a{text-decoration:none}
@@ -102,6 +125,49 @@
 
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "evro.ge",
+  "url": "https://evro.ge",
+  "inLanguage": "ka",
+  "description": "ევროს ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "ka",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "რა ღირს 1 ევრო დღეს?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 ევროს დღევანდელი ოფიციალური კურსი ლარში ნაჩვენებია გვერდის თავში, საქართველოს ეროვნული ბანკის მონაცემებით. კურსი ავტომატურად ახლდება, ამიტომ ყოველთვის უახლეს მაჩვენებელს ხედავ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "რამდენი ლარია 100 ევრო?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "100 ევროს ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად ჩაწერე 100 კონვერტერში ან გახსენი გვერდი „100 ევრო ლარში“."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "სად ვნახო ევროს ოფიციალური კურსი?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ევროს ოფიციალურ კურსს ადგენს საქართველოს ეროვნული ბანკი (nbg.gov.ge) ყოველ სამუშაო დღეს. evro.ge სწორედ ამ მონაცემებს იყენებს და გიჩვენებს ცოცხალ კურსს."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -112,6 +178,7 @@
       <a href="#convert">კონვერტერი</a>
       <a href="#transfer">გადარიცხვა</a>
       <a href="#about">კურსის შესახებ</a>
+      <a href="#faq">FAQ</a>
     </nav>
   </div>
 </header>
@@ -119,6 +186,7 @@
 <main>
   <section class="hero">
     <div class="wrap">
+      <h1 class="hero-h1">ევრო ლარი — ევროს კურსი დღეს</h1>
       <div class="eyebrow">1 ევრო დღეს უდრის</div>
       <div class="rate-line">
         <span class="rate-big num" id="heroRate">—.————</span>
@@ -148,6 +216,20 @@
         <div class="strip-item"><div class="pair">GBP / GEL</div><div class="val num" data-pair="GBP">—</div></div>
         <div class="strip-item"><div class="pair">TRY / GEL</div><div class="val num" data-pair="TRY">—</div></div>
         <div class="strip-item"><div class="pair">RUB / GEL</div><div class="val num" data-pair="RUB">—</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="amounts" style="padding:36px 0">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">★</span><h2 class="sec-title">პოპულარული თანხები</h2></div>
+      <p class="sec-sub">ხშირად ძებნადი თანხები — ნახე, რამდენი ლარია კონკრეტული ევრო დღევანდელი კურსით.</p>
+      <div class="chips">
+        <a class="chip" href="/50-evro-lari/">50 ევრო ლარში</a>
+        <a class="chip" href="/100-evro-lari/">100 ევრო ლარში</a>
+        <a class="chip" href="/200-evro-lari/">200 ევრო ლარში</a>
+        <a class="chip" href="/500-evro-lari/">500 ევრო ლარში</a>
+        <a class="chip" href="/100-lari-evro/">100 ლარი ევროში</a>
       </div>
     </div>
   </section>
@@ -206,6 +288,27 @@
       <p>ეროვნული ბანკი ყოველდღე ადგენს ოფიციალურ კურსს, რომელიც მეორე დღეს მოქმედებს. ბანკსა და გადამცვლელ პუნქტებში კომერციული კურსი ხშირად ოდნავ განსხვავდება ოფიციალურისგან — სწორედ ამიტომ ღირს პირობების შედარება, სანამ ფულს გადაცვლი ან გადარიცხავ.</p>
       <h2>ფულის გადარიცხვა ევროპიდან საქართველოში</h2>
       <p>თუ ევროპიდან ლარში აგზავნი ფულს, საბოლოო თანხაზე ორი რამ მოქმედებს: საკომისიო და გადაცვლის კურსი. ზემოთ მოცემული ცხრილი დაგეხმარება შეადარო პირობები და აირჩიო ის სერვისი, რომელიც ყველაზე მეტ ლარს მიგიტანს მიმღებამდე.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">ხშირად დასმული კითხვები</h2></div>
+      <p class="sec-sub">ევროს კურსსა და ლარში გადათვლაზე ყველაზე ხშირი კითხვები.</p>
+      <div class="faq">
+        <details>
+          <summary>რა ღირს 1 ევრო დღეს?</summary>
+          <div class="ans">1 ევროს დღევანდელი ოფიციალური კურსი ლარში ნაჩვენებია გვერდის თავში, საქართველოს ეროვნული ბანკის მონაცემებით. კურსი ავტომატურად ახლდება, ამიტომ ყოველთვის უახლეს მაჩვენებელს ხედავ.</div>
+        </details>
+        <details>
+          <summary>რამდენი ლარია 100 ევრო?</summary>
+          <div class="ans">100 ევროს ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად ჩაწერე 100 კონვერტერში ან გახსენი გვერდი <a href="/100-evro-lari/">„100 ევრო ლარში“</a>.</div>
+        </details>
+        <details>
+          <summary>სად ვნახო ევროს ოფიციალური კურსი?</summary>
+          <div class="ans">ევროს ოფიციალურ კურსს ადგენს საქართველოს ეროვნული ბანკი (nbg.gov.ge) ყოველ სამუშაო დღეს. evro.ge სწორედ ამ მონაცემებს იყენებს და გიჩვენებს ცოცხალ კურსს.</div>
+        </details>
+      </div>
     </div>
   </section>
 </main>

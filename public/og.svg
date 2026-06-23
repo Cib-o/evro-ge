@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1B3A8F"/>
+      <stop offset="1" stop-color="#13265C"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g transform="translate(96,150)">
+    <rect x="0" y="0" width="96" height="96" rx="22" fill="#1B3A8F" stroke="#C19A2E" stroke-width="3"/>
+    <text x="48" y="70" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="700" fill="#C19A2E" text-anchor="middle">€</text>
+    <text x="128" y="68" font-family="'Segoe UI', system-ui, sans-serif" font-size="56" font-weight="700" fill="#FFFFFF">evro<tspan fill="#9FB4E8">.ge</tspan></text>
+  </g>
+  <text x="96" y="370" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" fill="#FFFFFF">ევრო ლარი</text>
+  <text x="96" y="470" font-family="'Segoe UI', system-ui, sans-serif" font-size="46" font-weight="500" fill="#9FB4E8">ევროს ოფიციალური კურსი დღეს · EUR / GEL</text>
+  <text x="96" y="556" font-family="'Segoe UI', system-ui, sans-serif" font-size="32" font-weight="400" fill="#C19A2E">საქართველოს ეროვნული ბანკის მონაცემებით</text>
+</svg>
