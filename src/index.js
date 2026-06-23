@@ -35,9 +35,11 @@ export default {
       .on("[data-ssr]", new SsrHandler(computed.rates, computed.date))
       .transform(res);
 
-    // HTML დღეში იცვლება — ვაჩერებთ ~30 წთ (რამდენადაც NBG ქეშია).
+    // HTML მცირე ხნით იქეშება ედჯზე (სისწრაფისთვის), მაგრამ სწრაფად ნახლდება:
+    // 5 წთ "ახალი", შემდეგ stale-while-revalidate — ანუ კურსის/დიფლოის ცვლილება
+    // სწრაფად ვრცელდება, client JS კი მომხმარებელს ისედაც აცოცხლებს რიცხვს.
     const headers = new Headers(out.headers);
-    headers.set("cache-control", "public, max-age=1800, must-revalidate");
+    headers.set("cache-control", "public, max-age=300, stale-while-revalidate=3600");
     return new Response(out.body, { status: out.status, statusText: out.statusText, headers });
   },
 };
