@@ -440,7 +440,7 @@ a.strip-item:hover .pair{color:var(--euro)}
 
     <div class="block">
       <h2>პოპულარული თანხები</h2>
-      <div class="chips">${popular}<a class="chip" href="/">ევროს კურსი →</a></div>
+      <div class="chips">${popular}<a class="chip" href="/">ევროს კურსი →</a><a class="chip" href="/valutis-kursi/">ვალუტის კურსი →</a></div>
     </div>
 
     <div class="prose">
@@ -506,6 +506,173 @@ ${SSR_HELPERS_JS}
 `;
 }
 
+// ── ვალუტის კურსის hub /valutis-kursi/ ────────────────────────────────────────
+function buildHubPage() {
+  const canonical = `${SITE}/valutis-kursi/`;
+  const title = `ვალუტის კურსი დღეს — დოლარი, ევრო, ფუნტი | evro.ge`;
+  const ogTitle = `ვალუტის კურსი დღეს — დოლარი, ევრო, ფუნტი`;
+  const desc = `ვალუტის კურსი ლარში დღეს — დოლარის, ევროს, ფუნტის, ლირის და რუბლის ოფიციალური კურსი ეროვნული ბანკის მონაცემებით (valutis kursi).`;
+  const keywords = `ვალუტის კურსი, ვალუტის კურსი დღეს, valutis kursi, ეროვნული ბანკის კურსი, დოლარის კურსი, ევროს კურსი`;
+  const h1 = `ვალუტის კურსი დღეს`;
+
+  const rows = [
+    { code: "USD", name: "ამერიკული დოლარი", href: "/dolari-lari/" },
+    { code: "EUR", name: "ევრო", href: "/" },
+    { code: "GBP", name: "ბრიტანული ფუნტი", href: null },
+    { code: "TRY", name: "თურქული ლირა", href: null },
+    { code: "RUB", name: "რუსული რუბლი", href: null },
+  ]
+    .map(
+      (r) =>
+        `        <tr>\n          <td>${r.name} <span class="code">${r.code}</span></td>\n          <td class="r"><span class="num" data-ssr="${r.code}" data-dp="4">—</span> ₾</td>\n          <td class="r">${r.href ? `<a href="${r.href}">დეტალურად →</a>` : ""}</td>\n        </tr>`
+    )
+    .join("\n");
+
+  const faq = [
+    { q: `რა არის დღევანდელი ვალუტის კურსი?`, a: `დღევანდელი ოფიციალური ვალუტის კურსი ნაჩვენებია ზემოთ მოცემულ ცხრილში — დოლარი, ევრო, ფუნტი, ლირა და რუბლი ლარის მიმართ, საქართველოს ეროვნული ბანკის მონაცემებით.` },
+    { q: `სად ვნახო ოფიციალური ვალუტის კურსი?`, a: `ოფიციალურ ვალუტის კურსს ადგენს საქართველოს ეროვნული ბანკი (nbg.gov.ge) ყოველ სამუშაო დღეს. evro.ge სწორედ ამ მონაცემებს გიჩვენებს ცოცხლად.` },
+    { q: `რამდენ ხანში ნახლდება კურსი?`, a: `კურსი დღეში ერთხელ ნახლდება — ეროვნული ბანკი ახალ ოფიციალურ კურსს ყოველ სამუშაო დღეს აქვეყნებს, ეს გვერდი კი ავტომატურად იღებს უახლეს მაჩვენებელს.` },
+  ];
+  const faqLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: "ka",
+    mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  });
+  const graphLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "მთავარი", item: `${SITE}/` },
+          { "@type": "ListItem", position: 2, name: "ვალუტის კურსი", item: canonical },
+        ],
+      },
+      { "@type": "Organization", name: "evro.ge", url: SITE, logo: `${SITE}/og.svg` },
+    ],
+  });
+
+  const faqHtml = faq
+    .map((f) => `        <details>\n          <summary>${f.q}</summary>\n          <div class="ans">${f.a}</div>\n        </details>`)
+    .join("\n");
+
+  return `<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(desc)}">
+<meta name="keywords" content="${esc(keywords)}">
+<link rel="canonical" href="${canonical}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="evro.ge">
+<meta property="og:locale" content="ka_GE">
+<meta property="og:title" content="${esc(ogTitle)}">
+<meta property="og:description" content="${esc(desc)}">
+<meta property="og:url" content="${canonical}">
+<meta property="og:image" content="${SITE}/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(ogTitle)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${SITE}/og.svg">
+${FONT_LINKS}
+<script type="application/ld+json">${graphLd}</script>
+<script type="application/ld+json">${faqLd}</script>
+<style>
+${BASE_CSS}
+.rates{width:100%;border-collapse:collapse;margin-top:6px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.rates th,.rates td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);font-size:15px}
+.rates th{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.rates tr:last-child td{border-bottom:none}
+.rates td.r{text-align:right;font-weight:600;white-space:nowrap}
+.rates .code{color:var(--muted);font-size:13px;font-weight:600}
+.rates a{color:var(--euro);font-weight:600;text-decoration:none}
+.rates a:hover{text-decoration:underline}
+.faq{display:grid;gap:12px;margin-top:14px}
+.faq details{background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.faq summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--euro);font-size:22px;font-weight:600;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq .ans{padding:0 18px 16px;color:#33405A;font-size:15px}
+.block{margin-top:34px}
+.block h2{font-family:"Noto Serif Georgian",serif;font-size:22px;margin-bottom:12px;font-weight:700}
+.prose h2{font-family:"Noto Serif Georgian",serif;font-size:22px;margin:30px 0 10px;font-weight:700}
+.prose a{color:var(--euro);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="/"><span class="mark">€</span>evro<span class="dot">.ge</span></a>
+    <a class="back" href="/">← მთავარი</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <h1>${h1}</h1>
+    <p class="sub">დოლარის, ევროს, ფუნტის, ლირის და რუბლის ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით.</p>
+
+    <table class="rates">
+      <thead>
+        <tr><th>ვალუტა</th><th class="r">1 ერთეული ₾</th><th class="r"></th></tr>
+      </thead>
+      <tbody>
+${rows}
+      </tbody>
+    </table>
+    <p class="sub" style="margin-top:12px"><span class="pill"><span class="live"></span> <span id="date" data-ssr="date">იტვირთება…</span></span></p>
+
+    <div class="prose">
+      <h2>ვალუტის კურსი ლარში დღეს</h2>
+      <p>ცხრილში ნაჩვენებია ძირითადი ვალუტების — დოლარის (USD), ევროს (EUR), ფუნტის (GBP), თურქული ლირისა (TRY) და რუბლის (RUB) — დღევანდელი ოფიციალური კურსი ლარში. მონაცემები საქართველოს ეროვნული ბანკიდან მოდის და ავტომატურად ახლდება, ამიტომ ვალუტის კურსი (valutis kursi) ყოველთვის უახლესია.</p>
+      <h2>ოფიციალური და კომერციული კურსი</h2>
+      <p>ეროვნული ბანკი ადგენს ოფიციალურ (ინდიკატიურ) კურსს, რომელიც საბაზისოა. ბანკებსა და გადამცვლელ პუნქტებში ყიდვა-გაყიდვის კურსი ამ მაჩვენებელს ოდნავ სცდება, ამიტომ სანამ ვალუტას გადაცვლი, ღირს პირობების შედარება. დეტალური კონვერტერისთვის ნახე <a href="/">ევროს კურსი</a> ან <a href="/dolari-lari/">დოლარის კურსი</a>.</p>
+    </div>
+
+    <div class="block">
+      <h2>ხშირად დასმული კითხვები</h2>
+      <div class="faq">
+${faqHtml}
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>© <span id="yr">${TODAY.slice(0, 4)}</span> evro.ge — ვალუტის კურსი</div>
+    <p class="disc">კურსები ინფორმაციული დანიშნულებისაა და ეყრდნობა საქართველოს ეროვნული ბანკის ოფიციალურ მონაცემებს. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var CODES=["USD","EUR","GBP","TRY","RUB"];
+  var SOURCES=${SOURCES_JS};
+  var dateEl=document.getElementById("date");
+${SSR_HELPERS_JS}
+  function paint(o){ fillSSR(o.map); if(dateEl) dateEl.textContent=o.date?("კურსი "+o.date+" · "+o.src):o.src; }
+  function fail(){ if(dateEl) dateEl.textContent="კურსი ვერ ჩაიტვირთა"; }
+  (function go(i){
+    if(i>=SOURCES.length){fail();return;}
+    var s=SOURCES[i];
+    fetch(s.url,{cache:"no-store"})
+      .then(function(r){if(!r.ok)throw 0;return r.json();})
+      .then(function(d){var o=s.p==="nbg"?nbgMap(d,CODES):erMap(d,CODES);if(o&&o.map.USD!=null)paint(o);else throw 0;})
+      .catch(function(){go(i+1);});
+  })(0);
+})();
+</script>
+</body>
+</html>
+`;
+}
+
 // ── crawl/index ფაილები ───────────────────────────────────────────────────────
 function buildRobots() {
   return `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`;
@@ -527,6 +694,7 @@ function writePage(slug, html) {
 function main() {
   const urls = [
     { loc: `${SITE}/`, priority: "1.0" },
+    { loc: `${SITE}/valutis-kursi/`, priority: "0.9" },
     { loc: `${SITE}/dolari-lari/`, priority: "0.9" },
   ];
   let count = 0;
@@ -544,13 +712,14 @@ function main() {
   });
 
   writePage("dolari-lari", buildDollarLanding());
+  writePage("valutis-kursi", buildHubPage());
 
   fs.writeFileSync(path.join(PUBLIC, "robots.txt"), buildRobots(), "utf8");
   fs.writeFileSync(path.join(PUBLIC, "sitemap.xml"), buildSitemap(urls), "utf8");
   fs.writeFileSync(path.join(PUBLIC, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY, "utf8");
 
   console.log(`✓ ${count} amount pages (EUR + USD)`);
-  console.log(`✓ dollar landing /dolari-lari/`);
+  console.log(`✓ landings: /dolari-lari/ + /valutis-kursi/`);
   console.log(`✓ robots.txt + sitemap.xml (${urls.length} URLs) + IndexNow key file`);
 }
 
