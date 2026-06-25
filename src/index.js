@@ -16,6 +16,15 @@ export default {
       return handleRates();
     }
 
+    // Yandex Webmaster verification — Worker-იდან პირდაპირ ვაბრუნებთ, რადგან Cloudflare
+    // assets-ი ".html" მისამართს clean-URL-ზე 307-ით ამისამართებს (verification იშლება).
+    if (url.pathname === "/yandex_a04709ce19b8497c.html") {
+      return new Response(
+        '<html>\n    <head>\n        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">\n    </head>\n    <body>Verification: a04709ce19b8497c</body>\n</html>\n',
+        { headers: { "content-type": "text/html; charset=utf-8" } }
+      );
+    }
+
     const res = await env.ASSETS.fetch(request);
 
     // SSR მხოლოდ ჩვენს HTML გვერდებზე (trailing-slash directory). ".html" პირდაპირი
