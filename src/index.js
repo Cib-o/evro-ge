@@ -18,9 +18,10 @@ export default {
 
     const res = await env.ASSETS.fetch(request);
 
-    // SSR მხოლოდ HTML-ზე; ყველაფერი დანარჩენი უცვლელად.
+    // SSR მხოლოდ ჩვენს HTML გვერდებზე (trailing-slash directory). ".html" პირდაპირი
+    // მისამართები (მაგ. Yandex/Google verification ფაილები) უცვლელად გადის.
     const ct = res.headers.get("content-type") || "";
-    if (!ct.includes("text/html") || request.method !== "GET") return res;
+    if (!ct.includes("text/html") || request.method !== "GET" || url.pathname.endsWith(".html")) return res;
 
     let computed = null;
     try {
