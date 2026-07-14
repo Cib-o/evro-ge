@@ -155,11 +155,13 @@ function computeRates(data) {
 
 // ── data-ssr → რიცხვი ──────────────────────────────────────────────────────────
 //  spec: "EUR" | "100*EUR" | "100/EUR" | "date"
+//  spec: "EUR" | "100*EUR" | "100/EUR" | "EUR/USD" | "100*EUR/USD" | "date"
 function evalSSR(spec, rates) {
-  const x = /^(?:(\d+(?:\.\d+)?)([*/]))?([A-Z]{3})$/.exec(spec);
+  const x = /^(?:(\d+(?:\.\d+)?)([*/]))?([A-Z]{3})(?:\/([A-Z]{3}))?$/.exec(spec);
   if (!x) return null;
-  const r = rates[x[3]];
+  let r = rates[x[3]];
   if (r == null || !isFinite(r)) return null;
+  if (x[4]) { const d = rates[x[4]]; if (d == null || !isFinite(d) || d === 0) return null; r = r / d; }
   if (!x[1]) return r;
   const a = parseFloat(x[1]);
   return x[2] === "*" ? a * r : a / r;

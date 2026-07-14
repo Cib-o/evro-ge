@@ -40,6 +40,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="evro.ge">
 <meta property="og:locale" content="ru_RU">
@@ -55,8 +71,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700&family=Noto+Serif+Georgian:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"მთავარი","item":"https://evro.ge/ru/"},{"@type":"ListItem","position":2,"name":"Курс доллара США","item":"https://evro.ge/ru/dolari-lari/"}]},{"@type":"Organization","name":"evro.ge","url":"https://evro.ge","logo":"https://evro.ge/og.svg"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ru","mainEntity":[{"@type":"Question","name":"Сколько стоит 1 USD сегодня?","acceptedAnswer":{"@type":"Answer","text":"Текущий официальный курс 1 USD в GEL отображается в верхней части страницы на основе данных Национального банка Грузии. Курс обновляется автоматически, поэтому вы всегда видите актуальные данные."}},{"@type":"Question","name":"100 USD — сколько это в GEL?","acceptedAnswer":{"@type":"Answer","text":"100 დოლარის ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად გამოიყენე კონვერტერი ან გახსენი გვერდი „100 დოლარი ლარში“."}},{"@type":"Question","name":"Где посмотреть официальный курс USD?","acceptedAnswer":{"@type":"Answer","text":"Официальный курс USD устанавливается Национальным банком Грузии (nbg.gov.ge) каждый рабочий день. evro.ge использует эти данные, чтобы показывать вам актуальный курс."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://evro.ge/ru/"},{"@type":"ListItem","position":2,"name":"Курс доллара США","item":"https://evro.ge/ru/dolari-lari/"}]},{"@type":"Organization","name":"evro.ge","url":"https://evro.ge","logo":"https://evro.ge/og.svg"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ru","mainEntity":[{"@type":"Question","name":"Сколько стоит 1 USD сегодня?","acceptedAnswer":{"@type":"Answer","text":"Текущий официальный курс 1 USD в GEL отображается в верхней части страницы на основе данных Национального банка Грузии. Курс обновляется автоматически, поэтому вы всегда видите актуальные данные."}},{"@type":"Question","name":"100 USD — сколько это в GEL?","acceptedAnswer":{"@type":"Answer","text":"Стоимость 100 USD в GEL рассчитывается путем умножения на сегодняшний курс. Чтобы увидеть точную сумму, используйте конвертер или откройте страницу «100 USD to GEL»."}},{"@type":"Question","name":"Где посмотреть официальный курс USD?","acceptedAnswer":{"@type":"Answer","text":"Официальный курс USD устанавливается Национальным банком Грузии (nbg.gov.ge) каждый рабочий день. evro.ge использует эти данные, чтобы показывать вам актуальный курс."}},{"@type":"Question","name":"50 USD — сколько это в GEL?","acceptedAnswer":{"@type":"Answer","text":"Стоимость 50 USD в GEL рассчитывается путем умножения на сегодняшний официальный курс. Точную сумму вы увидите в таблице выше или в конвертере."}},{"@type":"Question","name":"Сколько EUR составляет 1 USD?","acceptedAnswer":{"@type":"Answer","text":"1 USD в EUR рассчитывается по соотношению официальных курсов USD и EUR. Текущий показатель находится в столбце EUR таблицы."}}]}</script>
 <style>
 :root{--paper:#F1F4F7;--panel:#FFFFFF;--ink:#0B1530;--euro:#1B3A8F;--euro-2:#2E54B8;--gold:#B58A23;--muted:#5A6478;--line:rgba(11,21,48,.10);--radius:18px}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -135,7 +151,17 @@ a.strip-item:hover .pair{color:var(--euro)}
 .block h2{font-family:"Noto Serif Georgian",serif;font-size:22px;margin-bottom:12px;font-weight:700}
 .prose h2{font-family:"Noto Serif Georgian",serif;font-size:22px;margin:30px 0 10px;font-weight:700}
 .prose a{color:var(--euro);font-weight:600;text-decoration:none}
+.rtable{width:100%;border-collapse:collapse;margin-top:6px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.rtable th,.rtable td{padding:12px 16px;border-bottom:1px solid var(--line);font-size:15px;text-align:right}
+.rtable th{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.rtable th:first-child,.rtable td:first-child{text-align:left;font-weight:600}
+.rtable td:first-child a{color:var(--euro);text-decoration:none}
+.rtable td:first-child a:hover{text-decoration:underline}
+.rtable tr:last-child td{border-bottom:none}
+.rtable .num{font-family:"Space Grotesk",monospace;font-variant-numeric:tabular-nums}
 </style>
+
+
 
 
 
@@ -186,6 +212,25 @@ a.strip-item:hover .pair{color:var(--euro)}
       <div class="chips"><a class="chip" href="/ru/50-dolari-lari/">50 USD в GEL</a><a class="chip" href="/ru/100-dolari-lari/">100 USD в GEL</a><a class="chip" href="/ru/200-dolari-lari/">200 USD в GEL</a><a class="chip" href="/ru/500-dolari-lari/">500 USD в GEL</a><a class="chip" href="/ru/1000-dolari-lari/">1000 USD в GEL</a><a class="chip" href="/ru/">Курс евро →</a><a class="chip" href="/ru/valutis-kursi/">Курс валют →</a></div>
     </div>
 
+    <div class="block">
+      <h2>USD в GEL — популярные суммы</h2>
+      <p class="sub">Сколько GEL и EUR составляет конкретная сумма по сегодняшнему официальному курсу.</p>
+      <table class="rtable">
+        <thead><tr><th>Доллар США</th><th>GEL ₾</th><th>Евро €</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/ru/1-dolari-lari/">1 USD</a></td><td class="num" data-ssr="1*USD" data-dp="2">—</td><td class="num" data-ssr="1*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/ru/5-dolari-lari/">5 USD</a></td><td class="num" data-ssr="5*USD" data-dp="2">—</td><td class="num" data-ssr="5*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/ru/10-dolari-lari/">10 USD</a></td><td class="num" data-ssr="10*USD" data-dp="2">—</td><td class="num" data-ssr="10*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/ru/20-dolari-lari/">20 USD</a></td><td class="num" data-ssr="20*USD" data-dp="2">—</td><td class="num" data-ssr="20*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/ru/50-dolari-lari/">50 USD</a></td><td class="num" data-ssr="50*USD" data-dp="2">—</td><td class="num" data-ssr="50*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/ru/100-dolari-lari/">100 USD</a></td><td class="num" data-ssr="100*USD" data-dp="2">—</td><td class="num" data-ssr="100*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/ru/200-dolari-lari/">200 USD</a></td><td class="num" data-ssr="200*USD" data-dp="2">—</td><td class="num" data-ssr="200*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/ru/500-dolari-lari/">500 USD</a></td><td class="num" data-ssr="500*USD" data-dp="2">—</td><td class="num" data-ssr="500*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/ru/1000-dolari-lari/">1000 USD</a></td><td class="num" data-ssr="1000*USD" data-dp="2">—</td><td class="num" data-ssr="1000*USD/EUR" data-dp="2">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="prose">
       <h2>Курс доллара к лари сегодня</h2>
       <p>На этой странице вы найдете сегодняшний официальный курс доллара США (USD) к лари (GEL) — то есть, сколько стоят 1 долларов сегодня. Данные поступают из Национального банка Грузии и обновляются автоматически, поэтому курс доллара (dolaris kursi) всегда актуален. С помощью конвертера выше вы можете пересчитать любую сумму — введите количество долларов, чтобы узнать, сколько это в лари, или наоборот.</p>
@@ -213,6 +258,14 @@ a.strip-item:hover .pair{color:var(--euro)}
           <summary>Где посмотреть официальный курс USD?</summary>
           <div class="ans">Официальный курс USD устанавливается Национальным банком Грузии (nbg.gov.ge) каждый рабочий день. evro.ge использует эти данные, чтобы показывать вам актуальный курс.</div>
         </details>
+        <details>
+          <summary>50 USD — сколько это в GEL?</summary>
+          <div class="ans">Стоимость 50 USD в GEL рассчитывается путем умножения на сегодняшний официальный курс. Точную сумму вы увидите в таблице выше или в конвертере.</div>
+        </details>
+        <details>
+          <summary>Сколько EUR составляет 1 USD?</summary>
+          <div class="ans">1 USD в EUR рассчитывается по соотношению официальных курсов USD и EUR. Текущий показатель находится в столбце «EUR» таблицы, или смотрите <a href="/ru/">Курс евро</a>.</div>
+        </details>
       </div>
     </div>
   </div>
@@ -237,7 +290,7 @@ a.strip-item:hover .pair{color:var(--euro)}
   var y=document.getElementById("yr"); if(y) y.textContent=new Date().getFullYear();
 
   function fmt(n,d){d=(d==null?4:d);return n.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});}
-  function evalSSR(spec,map){var x=/^(?:(\d+(?:\.\d+)?)([*\/]))?([A-Z]{3})$/.exec(spec);if(!x)return null;var r=map[x[3]];if(r==null||!isFinite(r))return null;if(!x[1])return r;var a=parseFloat(x[1]);return x[2]==="*"?a*r:a/r;}
+  function evalSSR(spec,map){var x=/^(?:(\d+(?:\.\d+)?)([*\/]))?([A-Z]{3})(?:\/([A-Z]{3}))?$/.exec(spec);if(!x)return null;var r=map[x[3]];if(r==null||!isFinite(r))return null;if(x[4]){var d=map[x[4]];if(d==null||!isFinite(d)||d===0)return null;r=r/d;}if(!x[1])return r;var a=parseFloat(x[1]);return x[2]==="*"?a*r:a/r;}
   function fillSSR(map){var ns=document.querySelectorAll("[data-ssr]");for(var i=0;i<ns.length;i++){var el=ns[i],spec=el.getAttribute("data-ssr");if(spec==="date")continue;var dp=parseInt(el.getAttribute("data-dp")||"4",10);var v=evalSSR(spec,map);if(v==null)continue;var s=fmt(v,dp);if(el.tagName==="INPUT")el.value=s;else el.textContent=s;}}
   function nbgMap(data,codes){var day=Array.isArray(data)?data[0]:data;if(!day||!day.currencies)return null;var m={};day.currencies.forEach(function(c){m[c.code]=c;});var map={},ok=false;codes.forEach(function(c){if(m[c]&&m[c].rate){map[c]=m[c].rate/m[c].quantity;ok=true;}});if(!ok)return null;var an=m[codes[0]];return{map:map,date:((an&&an.validFromDate)||day.date||"").slice(0,10),src:"Национальный банк Грузии"};}
   function erMap(d,codes){var r=d.rates||d.conversion_rates;if(!r||!r.GEL)return null;var map={},ok=false;codes.forEach(function(c){if(c==="EUR"){map[c]=r.GEL;ok=true;}else if(r[c]){map[c]=r.GEL/r[c];ok=true;}});if(!ok)return null;return{map:map,date:d.time_last_update_utc?new Date(d.time_last_update_utc).toISOString().slice(0,10):"",src:"Рыночный курс"};}
@@ -261,6 +314,8 @@ a.strip-item:hover .pair{color:var(--euro)}
   })(0);
 })();
 </script>
+
+
 
 
 

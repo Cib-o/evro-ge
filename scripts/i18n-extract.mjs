@@ -1,7 +1,7 @@
 // DRY-RUN cataloguer: extracts translatable templates from all pages, dedupes,
 // and writes scripts/strings.ka.json. Does NOT modify any HTML.
 import { writeFileSync } from 'node:fs';
-import { listPages, loadDoc, translatableEls, elementTemplate, metaEntries, keyFor, ROOT } from './i18n-lib.mjs';
+import { listPages, loadDoc, translatableEls, elementTemplate, metaEntries, schemaEntries, keyFor, ROOT } from './i18n-lib.mjs';
 
 const pages = listPages();
 const catalog = new Map(); // key -> { ka, hasN, count, sample }
@@ -23,6 +23,7 @@ for (const path of pages) {
     add(t.tpl, t.n, t.placeholders, path);
   }
   for (const m of metaEntries(root)) { elCount += 1; add(m.tpl, m.n, 0, path); }
+  for (const s of schemaEntries(root)) { elCount += 1; add(s.tpl, s.n, 0, path); }
 }
 
 const obj = {};

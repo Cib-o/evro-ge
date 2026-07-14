@@ -40,6 +40,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="evro.ge">
 <meta property="og:locale" content="tr_TR">
@@ -158,10 +174,21 @@
   .foot .gh svg{width:15px;height:15px}
   .disclaimer{margin-top:18px;font-size:12px;color:#5A6478;max-width:60ch}
 
+  .rtable{width:100%;border-collapse:collapse;margin-top:8px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .rtable th,.rtable td{padding:12px 16px;border-bottom:1px solid var(--line);font-size:15px;text-align:right}
+  .rtable th{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+  .rtable th:first-child,.rtable td:first-child{text-align:left;font-weight:600}
+  .rtable td:first-child a{color:var(--euro);text-decoration:none}
+  .rtable td:first-child a:hover{text-decoration:underline}
+  .rtable tr:last-child td{border-bottom:none}
+  .rtable .num{font-family:"Space Grotesk",monospace;font-variant-numeric:tabular-nums}
+
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"evro.ge","url":"https://evro.ge","inLanguage":"tr","description":"ევროს ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით."},{"@type":"Organization","name":"evro.ge","url":"https://evro.ge","logo":"https://evro.ge/og.svg"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"tr","mainEntity":[{"@type":"Question","name":"Bugün 1 euro ne kadar?","acceptedAnswer":{"@type":"Answer","text":"1 euro'nun bugünkü resmi kuru GEL cinsinden sayfanın üst kısmında, Gürcistan Ulusal Bankası verilerine göre gösterilmektedir. Kur otomatik olarak güncellenir, bu nedenle her zaman en güncel değeri görürsünüz."}},{"@type":"Question","name":"100 euro kaç lari eder?","acceptedAnswer":{"@type":"Answer","text":"100 ევროს ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად ჩაწერე 100 კონვერტერში ან გახსენი გვერდი „100 ევრო ლარში“."}},{"@type":"Question","name":"Euro'nun resmi kurunu nerede bulabilirim?","acceptedAnswer":{"@type":"Answer","text":"Euro'nun resmi kuru, Gürcistan Ulusal Bankası (nbg.gov.ge) tarafından her iş günü belirlenir. evro.ge bu verileri kullanarak size canlı kuru gösterir."}},{"@type":"Question","name":"Euro'yu nerede alıp bozdurabilirim?","acceptedAnswer":{"@type":"Answer","text":"Euro'yu bankalarda ve döviz bürolarında alıp bozdurabilirsiniz. Unutmayın ki, onların alış-satış kurları resmi kurdan biraz farklıdır, bu yüzden değiştirmeden önce birkaç yerin koşullarını karşılaştırın."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"evro.ge","url":"https://evro.ge","inLanguage":"tr","description":"Gürcistan Merkez Bankası verilerine göre bugün EUR'un GEL karşısındaki resmi kuru."},{"@type":"Organization","name":"evro.ge","url":"https://evro.ge","logo":"https://evro.ge/og.svg"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"tr","mainEntity":[{"@type":"Question","name":"Bugün 1 euro ne kadar?","acceptedAnswer":{"@type":"Answer","text":"1 euro'nun bugünkü resmi kuru GEL cinsinden sayfanın üst kısmında, Gürcistan Ulusal Bankası verilerine göre gösterilmektedir. Kur otomatik olarak güncellenir, bu nedenle her zaman en güncel değeri görürsünüz."}},{"@type":"Question","name":"100 euro kaç lari eder?","acceptedAnswer":{"@type":"Answer","text":"100 EUR'un GEL değeri, bugünkü kur ile çarpılarak hesaplanır. Kesin tutarı görmek için dönüştürücüye 100 girin veya '100 EUR GEL' sayfasını açın."}},{"@type":"Question","name":"Euro'nun resmi kurunu nerede bulabilirim?","acceptedAnswer":{"@type":"Answer","text":"Euro'nun resmi kuru, Gürcistan Ulusal Bankası (nbg.gov.ge) tarafından her iş günü belirlenir. evro.ge bu verileri kullanarak size canlı kuru gösterir."}},{"@type":"Question","name":"Euro'yu nerede alıp bozdurabilirim?","acceptedAnswer":{"@type":"Answer","text":"Euro'yu bankalarda ve döviz bürolarında alıp bozdurabilirsiniz. Unutmayın ki, onların alış-satış kurları resmi kurdan biraz farklıdır, bu yüzden değiştirmeden önce birkaç yerin koşullarını karşılaştırın."}},{"@type":"Question","name":"50 EUR kaç GEL eder?","acceptedAnswer":{"@type":"Answer","text":"50 EUR'un GEL değeri, bugünkü resmi kur ile çarpılarak hesaplanır. Kesin tutarı yukarıdaki tabloda veya dönüştürücüde görebilirsiniz."}},{"@type":"Question","name":"100 EUR kaç USD eder?","acceptedAnswer":{"@type":"Answer","text":"100 EUR'un USD karşılığı, resmi EUR ve USD kurlarının oranına göre hesaplanır. Güncel değer tablonun USD sütununda yer almaktadır."}}]}</script>
+
+
 
 
 
@@ -220,7 +247,22 @@
   <section class="sec" id="amounts" style="padding:36px 0">
     <div class="wrap">
       <div class="sec-head"><span class="sec-num">★</span><h2 class="sec-title">Popüler tutarlar</h2></div>
-      <p class="sec-sub">Sıkça aranan tutarlar — Belirli bir EUR miktarının bugünkü kurla kaç GEL olduğunu görün.</p>
+      <p class="sec-sub">Sık aranan tutarlar — bugünkü resmi kur üzerinden belirli bir EUR tutarının kaç GEL ve USD ettiği.</p>
+      <table class="rtable">
+        <thead><tr><th>Euro</th><th>GEL ₾</th><th>ABD doları $</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/tr/1-evro-lari/">1 EUR</a></td><td class="num" data-ssr="1*EUR" data-dp="2">—</td><td class="num" data-ssr="1*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/tr/5-evro-lari/">5 EUR</a></td><td class="num" data-ssr="5*EUR" data-dp="2">—</td><td class="num" data-ssr="5*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/tr/10-evro-lari/">10 EUR</a></td><td class="num" data-ssr="10*EUR" data-dp="2">—</td><td class="num" data-ssr="10*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/tr/20-evro-lari/">20 EUR</a></td><td class="num" data-ssr="20*EUR" data-dp="2">—</td><td class="num" data-ssr="20*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/tr/50-evro-lari/">50 EUR</a></td><td class="num" data-ssr="50*EUR" data-dp="2">—</td><td class="num" data-ssr="50*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/tr/100-evro-lari/">100 EUR</a></td><td class="num" data-ssr="100*EUR" data-dp="2">—</td><td class="num" data-ssr="100*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/tr/200-evro-lari/">200 EUR</a></td><td class="num" data-ssr="200*EUR" data-dp="2">—</td><td class="num" data-ssr="200*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/tr/500-evro-lari/">500 EUR</a></td><td class="num" data-ssr="500*EUR" data-dp="2">—</td><td class="num" data-ssr="500*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/tr/1000-evro-lari/">1000 EUR</a></td><td class="num" data-ssr="1000*EUR" data-dp="2">—</td><td class="num" data-ssr="1000*EUR/USD" data-dp="2">—</td></tr>
+        </tbody>
+      </table>
+      <p class="sec-sub" style="margin:22px 0 12px">Hızlı bağlantılar:</p>
       <div class="chips">
         <a class="chip" href="/tr/50-evro-lari/">50 EUR GEL'e</a>
         <a class="chip" href="/tr/100-evro-lari/">100 EUR GEL'e</a>
@@ -319,6 +361,14 @@
           <summary>Euro'yu nerede alıp bozdurabilirim?</summary>
           <div class="ans">Euro'yu bankalarda ve döviz bürolarında alıp bozdurabilirsiniz. Unutmayın ki, onların alış-satış kurları resmi kurdan biraz farklıdır, bu yüzden değiştirmeden önce birkaç yerin koşullarını karşılaştırın.</div>
         </details>
+        <details>
+          <summary>50 EUR kaç GEL eder?</summary>
+          <div class="ans">50 EUR'un GEL değeri, bugünkü resmi kur ile çarpılarak hesaplanır. Kesin tutarı yukarıdaki tabloda veya dönüştürücüde görebilirsiniz.</div>
+        </details>
+        <details>
+          <summary>100 EUR kaç USD eder?</summary>
+          <div class="ans">100 EUR'un USD karşılığı, resmi EUR ve USD kurlarının oranına göre hesaplanır. Güncel değer tablonun 'USD' sütununda yer almaktadır.</div>
+        </details>
       </div>
     </div>
   </section>
@@ -413,6 +463,9 @@
     else{var g=parseNum(gelIn.value);eurIn.value=isFinite(g)?fmt(g/rateEURGEL,2):"";}
   }
 
+  // extended spec eval for the popular-amounts table
+  function evalSSRx(spec,map){var x=/^(?:(\d+(?:\.\d+)?)([*\/]))?([A-Z]{3})(?:\/([A-Z]{3}))?$/.exec(spec);if(!x)return null;var r=map[x[3]];if(r==null||!isFinite(r))return null;if(x[4]){var d=map[x[4]];if(d==null||!isFinite(d)||d===0)return null;r=r/d;}if(!x[1])return r;var a=parseFloat(x[1]);return x[2]==="*"?a*r:a/r;}
+
   function paint(m){
     rateEURGEL=m.eurgel;
     heroRate.style.fontSize="";
@@ -429,6 +482,11 @@
     document.querySelectorAll("#strip .val").forEach(function(el){
       var c=el.getAttribute("data-pair");
       if(m.pairs[c]!=null) el.textContent=fmt(m.pairs[c],4);
+    });
+    var rmap={EUR:m.eurgel,USD:m.pairs.USD,GBP:m.pairs.GBP,TRY:m.pairs.TRY,RUB:m.pairs.RUB};
+    document.querySelectorAll(".rtable [data-ssr]").forEach(function(el){
+      var v=evalSSRx(el.getAttribute("data-ssr"),rmap);
+      if(v!=null) el.textContent=fmt(v,parseInt(el.getAttribute("data-dp")||"2",10));
     });
     recalc("eur");
   }
@@ -460,6 +518,8 @@
   setInterval(load,60*60*1000); // საათში ერთხელ (NBG Kur დღეში ერთხელ იცვლება)
 })();
 </script>
+
+
 
 
 

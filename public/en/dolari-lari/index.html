@@ -40,6 +40,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="evro.ge">
 <meta property="og:locale" content="en_US">
@@ -55,8 +71,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700&family=Noto+Serif+Georgian:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"მთავარი","item":"https://evro.ge/en/"},{"@type":"ListItem","position":2,"name":"US dollar exchange rate","item":"https://evro.ge/en/dolari-lari/"}]},{"@type":"Organization","name":"evro.ge","url":"https://evro.ge","logo":"https://evro.ge/og.svg"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"How much is 1 USD today?","acceptedAnswer":{"@type":"Answer","text":"The current official exchange rate for 1 USD in GEL is shown at the top of the page, based on data from the National Bank of Georgia. The rate updates automatically, so you always see the latest figures."}},{"@type":"Question","name":"How many GEL is 100 USD?","acceptedAnswer":{"@type":"Answer","text":"100 დოლარის ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად გამოიყენე კონვერტერი ან გახსენი გვერდი „100 დოლარი ლარში“."}},{"@type":"Question","name":"Where can I see the official USD exchange rate?","acceptedAnswer":{"@type":"Answer","text":"The official USD exchange rate is set by the National Bank of Georgia (nbg.gov.ge) every business day. evro.ge uses this data to show you the live rate."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://evro.ge/en/"},{"@type":"ListItem","position":2,"name":"US dollar exchange rate","item":"https://evro.ge/en/dolari-lari/"}]},{"@type":"Organization","name":"evro.ge","url":"https://evro.ge","logo":"https://evro.ge/og.svg"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"How much is 1 USD today?","acceptedAnswer":{"@type":"Answer","text":"The current official exchange rate for 1 USD in GEL is shown at the top of the page, based on data from the National Bank of Georgia. The rate updates automatically, so you always see the latest figures."}},{"@type":"Question","name":"How many GEL is 100 USD?","acceptedAnswer":{"@type":"Answer","text":"The value of 100 USD in GEL is calculated by multiplying by today's rate. To see the exact amount, use the converter or open the page \"100 USD to GEL\"."}},{"@type":"Question","name":"Where can I see the official USD exchange rate?","acceptedAnswer":{"@type":"Answer","text":"The official USD exchange rate is set by the National Bank of Georgia (nbg.gov.ge) every business day. evro.ge uses this data to show you the live rate."}},{"@type":"Question","name":"How many GEL is 50 USD?","acceptedAnswer":{"@type":"Answer","text":"The value of 50 USD in GEL is calculated by multiplying by today's official rate. You can see the exact amount in the table above or in the converter."}},{"@type":"Question","name":"How many EUR is 1 USD?","acceptedAnswer":{"@type":"Answer","text":"1 USD in EUR is calculated by the ratio of the official rates of USD and EUR. The current indicator is in the EUR column of the table."}}]}</script>
 <style>
 :root{--paper:#F1F4F7;--panel:#FFFFFF;--ink:#0B1530;--euro:#1B3A8F;--euro-2:#2E54B8;--gold:#B58A23;--muted:#5A6478;--line:rgba(11,21,48,.10);--radius:18px}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -135,7 +151,17 @@ a.strip-item:hover .pair{color:var(--euro)}
 .block h2{font-family:"Noto Serif Georgian",serif;font-size:22px;margin-bottom:12px;font-weight:700}
 .prose h2{font-family:"Noto Serif Georgian",serif;font-size:22px;margin:30px 0 10px;font-weight:700}
 .prose a{color:var(--euro);font-weight:600;text-decoration:none}
+.rtable{width:100%;border-collapse:collapse;margin-top:6px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.rtable th,.rtable td{padding:12px 16px;border-bottom:1px solid var(--line);font-size:15px;text-align:right}
+.rtable th{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.rtable th:first-child,.rtable td:first-child{text-align:left;font-weight:600}
+.rtable td:first-child a{color:var(--euro);text-decoration:none}
+.rtable td:first-child a:hover{text-decoration:underline}
+.rtable tr:last-child td{border-bottom:none}
+.rtable .num{font-family:"Space Grotesk",monospace;font-variant-numeric:tabular-nums}
 </style>
+
+
 
 
 
@@ -186,6 +212,25 @@ a.strip-item:hover .pair{color:var(--euro)}
       <div class="chips"><a class="chip" href="/en/50-dolari-lari/">50 USD to GEL</a><a class="chip" href="/en/100-dolari-lari/">100 USD to GEL</a><a class="chip" href="/en/200-dolari-lari/">200 USD to GEL</a><a class="chip" href="/en/500-dolari-lari/">500 USD to GEL</a><a class="chip" href="/en/1000-dolari-lari/">1000 USD to GEL</a><a class="chip" href="/en/">Euro rate →</a><a class="chip" href="/en/valutis-kursi/">Currency rate →</a></div>
     </div>
 
+    <div class="block">
+      <h2>USD to GEL — popular amounts</h2>
+      <p class="sub">How many GEL and EUR is a specific amount at today's official rate.</p>
+      <table class="rtable">
+        <thead><tr><th>US dollar</th><th>GEL ₾</th><th>Euro €</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/en/1-dolari-lari/">1 USD</a></td><td class="num" data-ssr="1*USD" data-dp="2">—</td><td class="num" data-ssr="1*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/5-dolari-lari/">5 USD</a></td><td class="num" data-ssr="5*USD" data-dp="2">—</td><td class="num" data-ssr="5*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/10-dolari-lari/">10 USD</a></td><td class="num" data-ssr="10*USD" data-dp="2">—</td><td class="num" data-ssr="10*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/20-dolari-lari/">20 USD</a></td><td class="num" data-ssr="20*USD" data-dp="2">—</td><td class="num" data-ssr="20*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/50-dolari-lari/">50 USD</a></td><td class="num" data-ssr="50*USD" data-dp="2">—</td><td class="num" data-ssr="50*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/100-dolari-lari/">100 USD</a></td><td class="num" data-ssr="100*USD" data-dp="2">—</td><td class="num" data-ssr="100*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/200-dolari-lari/">200 USD</a></td><td class="num" data-ssr="200*USD" data-dp="2">—</td><td class="num" data-ssr="200*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/500-dolari-lari/">500 USD</a></td><td class="num" data-ssr="500*USD" data-dp="2">—</td><td class="num" data-ssr="500*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/1000-dolari-lari/">1000 USD</a></td><td class="num" data-ssr="1000*USD" data-dp="2">—</td><td class="num" data-ssr="1000*USD/EUR" data-dp="2">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="prose">
       <h2>Dollar rate in GEL today</h2>
       <p>On this page, you will find today's official USD to GEL exchange rate — i.e., how much 1 USD is worth today. Data comes from the National Bank of Georgia and updates automatically, so the dollar rate (dolaris kursi) is always current. Use the converter above to calculate any amount — enter the USD amount to see how much GEL it is, or vice versa.</p>
@@ -213,6 +258,14 @@ a.strip-item:hover .pair{color:var(--euro)}
           <summary>Where can I see the official USD exchange rate?</summary>
           <div class="ans">The official USD exchange rate is set by the National Bank of Georgia (nbg.gov.ge) every business day. evro.ge uses this data to show you the live rate.</div>
         </details>
+        <details>
+          <summary>How many GEL is 50 USD?</summary>
+          <div class="ans">The value of 50 USD in GEL is calculated by multiplying by today's official rate. You can see the exact amount in the table above or in the converter.</div>
+        </details>
+        <details>
+          <summary>How many EUR is 1 USD?</summary>
+          <div class="ans">1 USD in EUR is calculated by the ratio of the official rates of USD and EUR. The current indicator is in the "EUR" column of the table, or see <a href="/en/">EUR rate</a>.</div>
+        </details>
       </div>
     </div>
   </div>
@@ -237,7 +290,7 @@ a.strip-item:hover .pair{color:var(--euro)}
   var y=document.getElementById("yr"); if(y) y.textContent=new Date().getFullYear();
 
   function fmt(n,d){d=(d==null?4:d);return n.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});}
-  function evalSSR(spec,map){var x=/^(?:(\d+(?:\.\d+)?)([*\/]))?([A-Z]{3})$/.exec(spec);if(!x)return null;var r=map[x[3]];if(r==null||!isFinite(r))return null;if(!x[1])return r;var a=parseFloat(x[1]);return x[2]==="*"?a*r:a/r;}
+  function evalSSR(spec,map){var x=/^(?:(\d+(?:\.\d+)?)([*\/]))?([A-Z]{3})(?:\/([A-Z]{3}))?$/.exec(spec);if(!x)return null;var r=map[x[3]];if(r==null||!isFinite(r))return null;if(x[4]){var d=map[x[4]];if(d==null||!isFinite(d)||d===0)return null;r=r/d;}if(!x[1])return r;var a=parseFloat(x[1]);return x[2]==="*"?a*r:a/r;}
   function fillSSR(map){var ns=document.querySelectorAll("[data-ssr]");for(var i=0;i<ns.length;i++){var el=ns[i],spec=el.getAttribute("data-ssr");if(spec==="date")continue;var dp=parseInt(el.getAttribute("data-dp")||"4",10);var v=evalSSR(spec,map);if(v==null)continue;var s=fmt(v,dp);if(el.tagName==="INPUT")el.value=s;else el.textContent=s;}}
   function nbgMap(data,codes){var day=Array.isArray(data)?data[0]:data;if(!day||!day.currencies)return null;var m={};day.currencies.forEach(function(c){m[c.code]=c;});var map={},ok=false;codes.forEach(function(c){if(m[c]&&m[c].rate){map[c]=m[c].rate/m[c].quantity;ok=true;}});if(!ok)return null;var an=m[codes[0]];return{map:map,date:((an&&an.validFromDate)||day.date||"").slice(0,10),src:"National Bank of Georgia"};}
   function erMap(d,codes){var r=d.rates||d.conversion_rates;if(!r||!r.GEL)return null;var map={},ok=false;codes.forEach(function(c){if(c==="EUR"){map[c]=r.GEL;ok=true;}else if(r[c]){map[c]=r.GEL/r[c];ok=true;}});if(!ok)return null;return{map:map,date:d.time_last_update_utc?new Date(d.time_last_update_utc).toISOString().slice(0,10):"",src:"Market rate"};}
@@ -261,6 +314,8 @@ a.strip-item:hover .pair{color:var(--euro)}
   })(0);
 })();
 </script>
+
+
 
 
 

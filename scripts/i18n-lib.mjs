@@ -22,6 +22,7 @@ export const SELECTORS = [
   '.rev', '.rev a',
   '.faq summary', '.faq .ans', '.faq .ans a',
   '.rates th', '.rates td', '.rates td a',
+  '.rtable th',
   '.card-name', '.card-desc', '.card-fee .l', '.card-cta',
   '.strip-item .pair',
   '.conv-cell label',
@@ -110,6 +111,28 @@ export function textTemplate(raw) {
     return { tpl: s.replace(re, '{n}'), n: nums[0] };
   }
   return { tpl: s, n: null };
+}
+
+// Returns [{tpl, n}] for translatable JSON-LD schema strings (name/text/description).
+export function schemaEntries(root) {
+  const out = [];
+  for (const s of root.querySelectorAll('script[type="application/ld+json"]')) {
+    let json;
+    try { json = JSON.parse(s.textContent); } catch { continue; }
+    const walk = (o) => {
+      if (Array.isArray(o)) { o.forEach(walk); return; }
+      if (o && typeof o === 'object') {
+        for (const k of Object.keys(o)) {
+          if ((k === 'name' || k === 'text' || k === 'description') && typeof o[k] === 'string') {
+            const t = textTemplate(o[k]);
+            if (t) out.push({ tpl: t.tpl, n: t.n });
+          } else walk(o[k]);
+        }
+      }
+    };
+    walk(json);
+  }
+  return out;
 }
 
 // Returns [{el, attr, tpl, n}] for translatable head meta of a document.

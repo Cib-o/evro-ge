@@ -40,6 +40,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="evro.ge">
 <meta property="og:locale" content="az_AZ">
@@ -55,8 +71,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700&family=Noto+Serif+Georgian:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"მთავარი","item":"https://evro.ge/az/"},{"@type":"ListItem","position":2,"name":"ABŞ dollarının kursu","item":"https://evro.ge/az/dolari-lari/"}]},{"@type":"Organization","name":"evro.ge","url":"https://evro.ge","logo":"https://evro.ge/og.svg"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"az","mainEntity":[{"@type":"Question","name":"1 USD bu gün neçəyədir?","acceptedAnswer":{"@type":"Answer","text":"1 USD-nin GEL-də cari rəsmi məzənnəsi Gürcüstan Milli Bankının məlumatlarına əsasən səhifənin yuxarı hissəsində göstərilir. Məzənnə avtomatik yenilənir, ona görə də siz həmişə ən son göstəriciləri görürsünüz."}},{"@type":"Question","name":"100 USD neçə GEL edir?","acceptedAnswer":{"@type":"Answer","text":"100 დოლარის ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად გამოიყენე კონვერტერი ან გახსენი გვერდი „100 დოლარი ლარში“."}},{"@type":"Question","name":"USD-nin rəsmi məzənnəsini harada görə bilərəm?","acceptedAnswer":{"@type":"Answer","text":"USD-nin rəsmi məzənnəsi Gürcüstan Milli Bankı (nbg.gov.ge) tərəfindən hər iş günü müəyyən edilir. evro.ge bu məlumatlardan istifadə edərək sizə canlı məzənnəni göstərir."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Əsas səhifə","item":"https://evro.ge/az/"},{"@type":"ListItem","position":2,"name":"ABŞ dollarının kursu","item":"https://evro.ge/az/dolari-lari/"}]},{"@type":"Organization","name":"evro.ge","url":"https://evro.ge","logo":"https://evro.ge/og.svg"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"az","mainEntity":[{"@type":"Question","name":"1 USD bu gün neçəyədir?","acceptedAnswer":{"@type":"Answer","text":"1 USD-nin GEL-də cari rəsmi məzənnəsi Gürcüstan Milli Bankının məlumatlarına əsasən səhifənin yuxarı hissəsində göstərilir. Məzənnə avtomatik yenilənir, ona görə də siz həmişə ən son göstəriciləri görürsünüz."}},{"@type":"Question","name":"100 USD neçə GEL edir?","acceptedAnswer":{"@type":"Answer","text":"100 USD-nin GEL-də dəyəri bugünkü məzənnəyə vurmaqla hesablanır. Dəqiq məbləği görmək üçün konvertərdən istifadə edin və ya \"100 USD to GEL\" səhifəsini açın."}},{"@type":"Question","name":"USD-nin rəsmi məzənnəsini harada görə bilərəm?","acceptedAnswer":{"@type":"Answer","text":"USD-nin rəsmi məzənnəsi Gürcüstan Milli Bankı (nbg.gov.ge) tərəfindən hər iş günü müəyyən edilir. evro.ge bu məlumatlardan istifadə edərək sizə canlı məzənnəni göstərir."}},{"@type":"Question","name":"50 USD neçə GEL edir?","acceptedAnswer":{"@type":"Answer","text":"50 USD-nin GEL-də dəyəri bugünkü rəsmi məzənnəyə vurmaqla hesablanır. Dəqiq məbləği yuxarıdakı cədvəldə və ya konvertərdə görə bilərsiniz."}},{"@type":"Question","name":"1 USD neçə EUR edir?","acceptedAnswer":{"@type":"Answer","text":"1 USD-nin EUR-da dəyəri USD və EUR-un rəsmi məzənnələrinin nisbəti ilə hesablanır. Cari göstərici cədvəlin EUR sütunundadır."}}]}</script>
 <style>
 :root{--paper:#F1F4F7;--panel:#FFFFFF;--ink:#0B1530;--euro:#1B3A8F;--euro-2:#2E54B8;--gold:#B58A23;--muted:#5A6478;--line:rgba(11,21,48,.10);--radius:18px}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -135,7 +151,17 @@ a.strip-item:hover .pair{color:var(--euro)}
 .block h2{font-family:"Noto Serif Georgian",serif;font-size:22px;margin-bottom:12px;font-weight:700}
 .prose h2{font-family:"Noto Serif Georgian",serif;font-size:22px;margin:30px 0 10px;font-weight:700}
 .prose a{color:var(--euro);font-weight:600;text-decoration:none}
+.rtable{width:100%;border-collapse:collapse;margin-top:6px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.rtable th,.rtable td{padding:12px 16px;border-bottom:1px solid var(--line);font-size:15px;text-align:right}
+.rtable th{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.rtable th:first-child,.rtable td:first-child{text-align:left;font-weight:600}
+.rtable td:first-child a{color:var(--euro);text-decoration:none}
+.rtable td:first-child a:hover{text-decoration:underline}
+.rtable tr:last-child td{border-bottom:none}
+.rtable .num{font-family:"Space Grotesk",monospace;font-variant-numeric:tabular-nums}
 </style>
+
+
 
 
 
@@ -186,6 +212,25 @@ a.strip-item:hover .pair{color:var(--euro)}
       <div class="chips"><a class="chip" href="/az/50-dolari-lari/">50 USD GEL-ə</a><a class="chip" href="/az/100-dolari-lari/">100 USD GEL-ə</a><a class="chip" href="/az/200-dolari-lari/">200 USD GEL-ə</a><a class="chip" href="/az/500-dolari-lari/">500 USD GEL-ə</a><a class="chip" href="/az/1000-dolari-lari/">1000 USD GEL-ə</a><a class="chip" href="/az/">Avronun məzənnəsi →</a><a class="chip" href="/az/valutis-kursi/">Valyuta məzənnəsi →</a></div>
     </div>
 
+    <div class="block">
+      <h2>USD-dən GEL-ə — populyar məbləğlər</h2>
+      <p class="sub">Bugünkü rəsmi məzənnə ilə müəyyən məbləğin neçə GEL və EUR etdiyi.</p>
+      <table class="rtable">
+        <thead><tr><th>ABŞ dolları</th><th>GEL ₾</th><th>Avro €</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/az/1-dolari-lari/">1 USD</a></td><td class="num" data-ssr="1*USD" data-dp="2">—</td><td class="num" data-ssr="1*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/az/5-dolari-lari/">5 USD</a></td><td class="num" data-ssr="5*USD" data-dp="2">—</td><td class="num" data-ssr="5*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/az/10-dolari-lari/">10 USD</a></td><td class="num" data-ssr="10*USD" data-dp="2">—</td><td class="num" data-ssr="10*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/az/20-dolari-lari/">20 USD</a></td><td class="num" data-ssr="20*USD" data-dp="2">—</td><td class="num" data-ssr="20*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/az/50-dolari-lari/">50 USD</a></td><td class="num" data-ssr="50*USD" data-dp="2">—</td><td class="num" data-ssr="50*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/az/100-dolari-lari/">100 USD</a></td><td class="num" data-ssr="100*USD" data-dp="2">—</td><td class="num" data-ssr="100*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/az/200-dolari-lari/">200 USD</a></td><td class="num" data-ssr="200*USD" data-dp="2">—</td><td class="num" data-ssr="200*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/az/500-dolari-lari/">500 USD</a></td><td class="num" data-ssr="500*USD" data-dp="2">—</td><td class="num" data-ssr="500*USD/EUR" data-dp="2">—</td></tr>
+          <tr><td><a href="/az/1000-dolari-lari/">1000 USD</a></td><td class="num" data-ssr="1000*USD" data-dp="2">—</td><td class="num" data-ssr="1000*USD/EUR" data-dp="2">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="prose">
       <h2>Dolların lariyə qarşı məzənnəsi bu gün</h2>
       <p>Bu səhifədə ABŞ dollarının (USD) lariyə (GEL) qarşı bu günkü rəsmi məzənnəsini tapa bilərsiniz — yəni 1 dolların bu gün nə qədər olduğunu görəcəksiniz. Məlumatlar Gürcüstan Milli Bankından gəlir və avtomatik yenilənir, buna görə də dolların məzənnəsi (dolaris kursi) həmişə aktualdır. Yuxarıdakı konvertorla istənilən məbləği hesablaya bilərsiniz — dolları daxil edin və neçə lari olduğunu dərhal görün, və ya əksinə.</p>
@@ -213,6 +258,14 @@ a.strip-item:hover .pair{color:var(--euro)}
           <summary>USD-nin rəsmi məzənnəsini harada görə bilərəm?</summary>
           <div class="ans">USD-nin rəsmi məzənnəsi Gürcüstan Milli Bankı (nbg.gov.ge) tərəfindən hər iş günü müəyyən edilir. evro.ge bu məlumatlardan istifadə edərək sizə canlı məzənnəni göstərir.</div>
         </details>
+        <details>
+          <summary>50 USD neçə GEL edir?</summary>
+          <div class="ans">50 USD-nin GEL-də dəyəri bugünkü rəsmi məzənnəyə vurmaqla hesablanır. Dəqiq məbləği yuxarıdakı cədvəldə və ya konvertərdə görə bilərsiniz.</div>
+        </details>
+        <details>
+          <summary>1 USD neçə EUR edir?</summary>
+          <div class="ans">1 USD-nin EUR-da dəyəri USD və EUR-un rəsmi məzənnələrinin nisbəti ilə hesablanır. Cari göstərici cədvəlin "EUR" sütunundadır və ya <a href="/az/">Avro məzənnəsi</a>-a baxın.</div>
+        </details>
       </div>
     </div>
   </div>
@@ -237,7 +290,7 @@ a.strip-item:hover .pair{color:var(--euro)}
   var y=document.getElementById("yr"); if(y) y.textContent=new Date().getFullYear();
 
   function fmt(n,d){d=(d==null?4:d);return n.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});}
-  function evalSSR(spec,map){var x=/^(?:(\d+(?:\.\d+)?)([*\/]))?([A-Z]{3})$/.exec(spec);if(!x)return null;var r=map[x[3]];if(r==null||!isFinite(r))return null;if(!x[1])return r;var a=parseFloat(x[1]);return x[2]==="*"?a*r:a/r;}
+  function evalSSR(spec,map){var x=/^(?:(\d+(?:\.\d+)?)([*\/]))?([A-Z]{3})(?:\/([A-Z]{3}))?$/.exec(spec);if(!x)return null;var r=map[x[3]];if(r==null||!isFinite(r))return null;if(x[4]){var d=map[x[4]];if(d==null||!isFinite(d)||d===0)return null;r=r/d;}if(!x[1])return r;var a=parseFloat(x[1]);return x[2]==="*"?a*r:a/r;}
   function fillSSR(map){var ns=document.querySelectorAll("[data-ssr]");for(var i=0;i<ns.length;i++){var el=ns[i],spec=el.getAttribute("data-ssr");if(spec==="date")continue;var dp=parseInt(el.getAttribute("data-dp")||"4",10);var v=evalSSR(spec,map);if(v==null)continue;var s=fmt(v,dp);if(el.tagName==="INPUT")el.value=s;else el.textContent=s;}}
   function nbgMap(data,codes){var day=Array.isArray(data)?data[0]:data;if(!day||!day.currencies)return null;var m={};day.currencies.forEach(function(c){m[c.code]=c;});var map={},ok=false;codes.forEach(function(c){if(m[c]&&m[c].rate){map[c]=m[c].rate/m[c].quantity;ok=true;}});if(!ok)return null;var an=m[codes[0]];return{map:map,date:((an&&an.validFromDate)||day.date||"").slice(0,10),src:"Gürcüstan Milli Bankı"};}
   function erMap(d,codes){var r=d.rates||d.conversion_rates;if(!r||!r.GEL)return null;var map={},ok=false;codes.forEach(function(c){if(c==="EUR"){map[c]=r.GEL;ok=true;}else if(r[c]){map[c]=r.GEL/r[c];ok=true;}});if(!ok)return null;return{map:map,date:d.time_last_update_utc?new Date(d.time_last_update_utc).toISOString().slice(0,10):"",src:"Bazar məzənnəsi"};}
@@ -261,6 +314,8 @@ a.strip-item:hover .pair{color:var(--euro)}
   })(0);
 })();
 </script>
+
+
 
 
 

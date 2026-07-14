@@ -3,1314 +3,1680 @@
     "ka": "ევროს კურსი დღეს — {n} ევრო რამდენი ლარია | evro.ge",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k7c3255473f": {
     "ka": "{n} ევრო ლარში",
     "hasN": true,
     "ph": 0,
-    "count": 29
+    "count": 29,
+    "sample": "index.html"
   },
   "kdfadf5a7b8": {
     "ka": "{n} ლარი ევროში",
     "hasN": true,
     "ph": 0,
-    "count": 25
+    "count": 25,
+    "sample": "index.html"
   },
   "k3ec4d48f95": {
     "ka": "დოლარის კურსი",
     "hasN": false,
     "ph": 0,
-    "count": 6
+    "count": 7,
+    "sample": "index.html"
   },
   "k231069df49": {
     "ka": "ვალუტის კურსი",
     "hasN": false,
     "ph": 0,
-    "count": 8
+    "count": 9,
+    "sample": "index.html"
   },
   "k38dd4456e4": {
     "ka": "{n} დოლარი ლარში",
     "hasN": true,
     "ph": 0,
-    "count": 34
+    "count": 34,
+    "sample": "index.html"
   },
   "k8af7d1a445": {
     "ka": "კონვერტერი",
     "hasN": false,
     "ph": 0,
-    "count": 2
+    "count": 2,
+    "sample": "index.html"
   },
   "k63552d59fa": {
     "ka": "ევროს კურსი დღეს — {n} ევრო რამდენი ლარია",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "index.html"
   },
   "k4b9cb3ae6a": {
     "ka": "პოპულარული თანხები",
     "hasN": false,
     "ph": 0,
-    "count": 2
+    "count": 2,
+    "sample": "index.html"
   },
   "k226e706c2e": {
     "ka": "გადარიცხე ფული საქართველოში",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k7ab1d8cde2": {
     "ka": "სესხის შედარება",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k03cf188550": {
     "ka": "ევროს კურსი ლარში დღეს",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k872bff6d20": {
     "ka": "როგორ ითვლება EUR/GEL კურსი",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k27d0c527f5": {
     "ka": "ფულის გადარიცხვა ევროპიდან საქართველოში",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "kccb3ced8d4": {
     "ka": "ხშირად დასმული კითხვები",
     "hasN": false,
     "ph": 0,
-    "count": 6
+    "count": 6,
+    "sample": "index.html"
   },
-  "k998ceec772": {
-    "ka": "ხშირად ძებნადი თანხები — ნახე, რამდენი ლარია კონკრეტული ევრო დღევანდელი კურსით.",
+  "kda7e5fd7b3": {
+    "ka": "ხშირად ძებნადი თანხები — რამდენი ლარია და დოლარია კონკრეტული ევრო დღევანდელი ოფიციალური კურსით.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
+  },
+  "k6fa83330cf": {
+    "ka": "სწრაფი ბმულები:",
+    "hasN": false,
+    "ph": 0,
+    "count": 1,
+    "sample": "index.html"
   },
   "k784ffa470e": {
     "ka": "დოლარი და სხვა ვალუტა:",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k3536828daf": {
     "ka": "ევროპიდან ლარში გადარიცხვის სერვისები — საკომისიო და კურსი ერთ ცხრილში. აირჩიე საუკეთესო პირობა.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "kb7af42a40c": {
     "ka": "ონლაინ სესხი და განვადება — განაკვეთები ერთ სივრცეში. (აქ ჩაჯდება ფინანსური აფილიატ-სლოტები იმავე ფორმატით.)",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k8235dea29c": {
     "ka": "ევროს კურსსა და ლარში გადათვლაზე ყველაზე ხშირი კითხვები.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k7dc81b61f7": {
     "ka": "კურსები ინფორმაციული დანიშნულებისაა. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს. გადაამოწმე საბოლოო პირობები ტრანზაქციამდე.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "ka8235ec642": {
     "ka": "{0} — დღევანდელი ოფიციალური კურსით.",
     "hasN": false,
     "ph": 1,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k7e515b0e92": {
     "ka": "ამ გვერდზე ნახავ ევროს (EUR) დღევანდელ ოფიციალურ კურსს ლარში (GEL), საქართველოს ეროვნული ბანკის მონაცემებით. ევროს კურსი (evros kursi) ლართან მიმართებაში ავტომატურად ნახლდება და გიჩვენებს, რამდენი ლარი უდრის ერთ ევროს (evro lari, euro lari) საქართველოში. გადათვალე ნებისმიერი თანხა ზემოთ კონვერტერით — ჩაწერე ევრო და მაშინვე დაინახავ ლარს, ან პირიქით.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "ke8686e45ed": {
     "ka": "ეროვნული ბანკი ყოველდღე ადგენს ოფიციალურ კურსს, რომელიც მეორე დღეს მოქმედებს. ბანკსა და გადამცვლელ პუნქტებში კომერციული კურსი ხშირად ოდნავ განსხვავდება ოფიციალურისგან — სწორედ ამიტომ ღირს პირობების შედარება, სანამ ფულს გადაცვლი ან გადარიცხავ.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k56e8dcf550": {
     "ka": "თუ ევროპიდან ლარში აგზავნი ფულს, საბოლოო თანხაზე ორი რამ მოქმედებს: საკომისიო და გადაცვლის კურსი. ზემოთ მოცემული ცხრილი დაგეხმარება შეადარო პირობები და აირჩიო ის სერვისი, რომელიც ყველაზე მეტ ლარს მიგიტანს მიმღებამდე.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k6b2f548d26": {
     "ka": "{n} ევრო დღეს ≈ {0} ლარი",
     "hasN": true,
     "ph": 1,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "kbcf4183bf6": {
     "ka": "{n} ევრო დღეს უდრის",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "kd2b308c8ea": {
     "ka": "₾ ლარს",
     "hasN": false,
     "ph": 0,
-    "count": 5
+    "count": 5,
+    "sample": "index.html"
   },
   "k568f53edcf": {
     "ka": "ლოგო",
     "hasN": false,
     "ph": 0,
-    "count": 4
+    "count": 4,
+    "sample": "index.html"
   },
   "k80dd2fb53d": {
     "ka": "წყარო: {0}",
     "hasN": false,
     "ph": 1,
-    "count": 5
+    "count": 5,
+    "sample": "index.html"
   },
   "kd3fc41e976": {
     "ka": "რა ღირს {n} ევრო დღეს?",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "index.html"
   },
   "k5b07e609d3": {
     "ka": "რამდენი ლარია {n} ევრო?",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "index.html"
   },
   "ka79fdfd6d5": {
     "ka": "სად ვნახო ევროს ოფიციალური კურსი?",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "index.html"
   },
   "k47a489b44d": {
     "ka": "სად ვიყიდო ან გადავცვალო ევრო?",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "index.html"
+  },
+  "kf80e4db81d": {
+    "ka": "{n} ევრო რამდენი ლარია?",
+    "hasN": true,
+    "ph": 0,
+    "count": 2,
+    "sample": "index.html"
+  },
+  "k3fa1b9c048": {
+    "ka": "{n} ევრო რამდენი დოლარია?",
+    "hasN": true,
+    "ph": 0,
+    "count": 2,
+    "sample": "index.html"
   },
   "k52f80ab243": {
     "ka": "{n} ევროს დღევანდელი ოფიციალური კურსი ლარში ნაჩვენებია გვერდის თავში, საქართველოს ეროვნული ბანკის მონაცემებით. კურსი ავტომატურად ახლდება, ამიტომ ყოველთვის უახლეს მაჩვენებელს ხედავ.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "index.html"
   },
   "k715a303dc8": {
     "ka": "{n} ევროს ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად ჩაწერე {n} კონვერტერში ან გახსენი გვერდი {0}.",
     "hasN": true,
     "ph": 1,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "ka1fe228f6f": {
     "ka": "ევროს ოფიციალურ კურსს ადგენს საქართველოს ეროვნული ბანკი (nbg.gov.ge) ყოველ სამუშაო დღეს. evro.ge სწორედ ამ მონაცემებს იყენებს და გიჩვენებს ცოცხალ კურსს.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "index.html"
   },
   "k934bebeedd": {
     "ka": "ევროს ყიდვა-გადაცვლა შეგიძლია ბანკებსა და გადამცვლელ ჯიხურებში. გაითვალისწინე — მათი ყიდვა-გაყიდვის კურსი ოფიციალურ კურსს ოდნავ სცდება, ამიტომ სანამ გადაცვლი, შეადარე რამდენიმე ადგილის პირობა.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "index.html"
+  },
+  "kd2c4840ad9": {
+    "ka": "{n} ევროს ღირებულება ლარში გამოითვლება დღევანდელ ოფიციალურ კურსზე გამრავლებით. ზუსტ თანხას ნახავ ზემოთ მოცემულ ცხრილში ან კონვერტერში.",
+    "hasN": true,
+    "ph": 0,
+    "count": 2,
+    "sample": "index.html"
+  },
+  "k77d6fb7e56": {
+    "ka": "{n} ევრო დოლარში გამოითვლება ევროსა და დოლარის ოფიციალური კურსების შეფარდებით. მიმდინარე მაჩვენებელი ცხრილის „დოლარი“ სვეტშია.",
+    "hasN": true,
+    "ph": 0,
+    "count": 1,
+    "sample": "index.html"
   },
   "k0089c7c4a9": {
     "ka": "„{n} ევრო ლარში“",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
+  },
+  "k6a57813408": {
+    "ka": "ევრო",
+    "hasN": false,
+    "ph": 0,
+    "count": 7,
+    "sample": "index.html"
+  },
+  "kdb56745a44": {
+    "ka": "ლარი ₾",
+    "hasN": false,
+    "ph": 0,
+    "count": 14,
+    "sample": "index.html"
+  },
+  "k27db6169b2": {
+    "ka": "დოლარი $",
+    "hasN": false,
+    "ph": 0,
+    "count": 7,
+    "sample": "index.html"
   },
   "k7cd5697f23": {
     "ka": "[სერვისის სახელი]",
     "hasN": false,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "index.html"
   },
   "kb00f1fb992": {
     "ka": "[გამსესხებლის სახელი]",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "kd9d3ac8105": {
     "ka": "[მოკლე აღწერა]",
     "hasN": false,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "index.html"
   },
   "k559faa698f": {
     "ka": "[თანხა / ვადა]",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k4466b999b8": {
     "ka": "საკომისიო",
     "hasN": false,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "index.html"
   },
   "kf869fd67e3": {
     "ka": "განაკვეთი",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k2593712488": {
     "ka": "გადარიცხვა",
     "hasN": false,
     "ph": 0,
-    "count": 4
+    "count": 4,
+    "sample": "index.html"
   },
   "kbc5b35aa7f": {
     "ka": "სესხის აღება",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k65a960db57": {
     "ka": "ევრო (EUR)",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "k3b3dd52a59": {
     "ka": "ლარი (GEL)",
     "hasN": false,
     "ph": 0,
-    "count": 5
+    "count": 5,
+    "sample": "index.html"
   },
   "kb2575e6c27": {
     "ka": "კურსის შესახებ",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "kddfc8b3163": {
     "ka": "{0} ღია კოდი",
     "hasN": false,
     "ph": 1,
-    "count": 54
+    "count": 54,
+    "sample": "index.html"
   },
   "k0fff872d4c": {
     "ka": "© {0} evro.ge — ევრო ლარის კურსი",
     "hasN": false,
     "ph": 1,
-    "count": 49
+    "count": 49,
+    "sample": "index.html"
   },
   "k42fcd3cff7": {
     "ka": "იტვირთება…",
     "hasN": false,
     "ph": 0,
-    "count": 54
+    "count": 54,
+    "sample": "index.html"
   },
   "kd3425596f5": {
     "ka": "ევროს ოფიციალური კურსი ლარში დღეს საქართველოში — {n} ევრო რამდენი ლარია ეროვნული ბანკის კურსით. გადათვალე ნებისმიერი თანხა ცოცხალი EUR/GEL კონვერტერით.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "index.html"
   },
   "kac0789908b": {
     "ka": "ევროს ოფიციალური კურსი ლარში დღეს — {n} ევრო რამდენი ლარია ეროვნული ბანკის კურსით. გადათვალე ევრო ლარში ცოცხალი კონვერტერით.",
     "hasN": true,
     "ph": 0,
-    "count": 2
+    "count": 2,
+    "sample": "index.html"
+  },
+  "kbd28352755": {
+    "ka": "ევროს ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით.",
+    "hasN": false,
+    "ph": 0,
+    "count": 1,
+    "sample": "index.html"
+  },
+  "k0dbfe77228": {
+    "ka": "{n} ევროს ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად ჩაწერე {n} კონვერტერში ან გახსენი გვერდი „{n} ევრო ლარში“.",
+    "hasN": true,
+    "ph": 0,
+    "count": 1,
+    "sample": "index.html"
+  },
+  "k63ee7157c2": {
+    "ka": "{n} ევრო დოლარში გამოითვლება ევროსა და დოლარის ოფიციალური კურსების შეფარდებით. მიმდინარე მაჩვენებელი ცხრილის დოლარი სვეტშია.",
+    "hasN": true,
+    "ph": 0,
+    "count": 1,
+    "sample": "index.html"
   },
   "kcbd35bc1c8": {
     "ka": "ვალუტის კურსი დღეს — დოლარი, ევრო, ფუნტი | evro.ge",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "k1ee6507cd8": {
     "ka": "← მთავარი",
     "hasN": false,
     "ph": 0,
-    "count": 49
+    "count": 49,
+    "sample": "valutis-kursi/index.html"
   },
   "k4892b40046": {
     "ka": "ვალუტის კურსი დღეს",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "k754a6b75e4": {
     "ka": "ვალუტის კურსი ლარში დღეს",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "k5a9f6e2bfa": {
     "ka": "ოფიციალური და კომერციული კურსი",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "k3d132b0596": {
     "ka": "დოლარის, ევროს, ფუნტის, ლირის და რუბლის ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "k3a9ad660ef": {
     "ka": "კურსები ინფორმაციული დანიშნულებისაა და ეყრდნობა საქართველოს ეროვნული ბანკის ოფიციალურ მონაცემებს. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს.",
     "hasN": false,
     "ph": 0,
-    "count": 53
+    "count": 53,
+    "sample": "valutis-kursi/index.html"
   },
   "k78d169567d": {
     "ka": "ცხრილში ნაჩვენებია ძირითადი ვალუტების — დოლარის (USD), ევროს (EUR), ფუნტის (GBP), თურქული ლირისა (TRY) და რუბლის (RUB) — დღევანდელი ოფიციალური კურსი ლარში. მონაცემები საქართველოს ეროვნული ბანკიდან მოდის და ავტომატურად ახლდება, ამიტომ ვალუტის კურსი (valutis kursi) ყოველთვის უახლესია.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "kb2e42d2ca5": {
     "ka": "ეროვნული ბანკი ადგენს ოფიციალურ (ინდიკატიურ) კურსს, რომელიც საბაზისოა. ბანკებსა და გადამცვლელ პუნქტებში ყიდვა-გაყიდვის კურსი ამ მაჩვენებელს ოდნავ სცდება, ამიტომ სანამ ვალუტას გადაცვლი, ღირს პირობების შედარება. დეტალური კონვერტერისთვის ნახე {0} ან {1}.",
     "hasN": false,
     "ph": 2,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "kd4021f0c80": {
     "ka": "ევროს კურსი",
     "hasN": false,
     "ph": 0,
-    "count": 7
+    "count": 8,
+    "sample": "valutis-kursi/index.html"
   },
   "ka5b7a5a3f8": {
     "ka": "რა არის დღევანდელი ვალუტის კურსი?",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "valutis-kursi/index.html"
   },
   "k3bfb1d8c0b": {
     "ka": "სად ვნახო ოფიციალური ვალუტის კურსი?",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "valutis-kursi/index.html"
   },
   "k30b572bef7": {
     "ka": "რამდენ ხანში ნახლდება კურსი?",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "valutis-kursi/index.html"
   },
   "k19c02bc11a": {
     "ka": "დღევანდელი ოფიციალური ვალუტის კურსი ნაჩვენებია ზემოთ მოცემულ ცხრილში — დოლარი, ევრო, ფუნტი, ლირა და რუბლი ლარის მიმართ, საქართველოს ეროვნული ბანკის მონაცემებით.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "valutis-kursi/index.html"
   },
   "k5591683a70": {
     "ka": "ოფიციალურ ვალუტის კურსს ადგენს საქართველოს ეროვნული ბანკი (nbg.gov.ge) ყოველ სამუშაო დღეს. evro.ge სწორედ ამ მონაცემებს გიჩვენებს ცოცხლად.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "valutis-kursi/index.html"
   },
   "k775418e549": {
     "ka": "კურსი დღეში ერთხელ ნახლდება — ეროვნული ბანკი ახალ ოფიციალურ კურსს ყოველ სამუშაო დღეს აქვეყნებს, ეს გვერდი კი ავტომატურად იღებს უახლეს მაჩვენებელს.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "valutis-kursi/index.html"
   },
   "kb5b9beddc6": {
     "ka": "ვალუტა",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "k3d0d9a83ca": {
     "ka": "{n} ერთეული ₾",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "ked6a0c13d6": {
     "ka": "ამერიკული დოლარი {0}",
     "hasN": false,
     "ph": 1,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "k90a6b6d27c": {
     "ka": "ევრო {0}",
     "hasN": false,
     "ph": 1,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "k37f2a74f63": {
     "ka": "ბრიტანული ფუნტი {0}",
     "hasN": false,
     "ph": 1,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "k02cbed5fc0": {
     "ka": "თურქული ლირა {0}",
     "hasN": false,
     "ph": 1,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "k61c34806c9": {
     "ka": "რუსული რუბლი {0}",
     "hasN": false,
     "ph": 1,
-    "count": 1
+    "count": 1,
+    "sample": "valutis-kursi/index.html"
   },
   "k78f491c34a": {
     "ka": "დეტალურად →",
     "hasN": false,
     "ph": 0,
-    "count": 5
+    "count": 5,
+    "sample": "valutis-kursi/index.html"
   },
   "kaa578125a7": {
     "ka": "© {0} evro.ge — ვალუტის კურსი",
     "hasN": false,
     "ph": 1,
-    "count": 5
+    "count": 5,
+    "sample": "valutis-kursi/index.html"
   },
   "k6681cf9dee": {
     "ka": "ვალუტის კურსი ლარში დღეს — დოლარის, ევროს, ფუნტის, ლირის და რუბლის ოფიციალური კურსი ეროვნული ბანკის მონაცემებით (valutis kursi).",
     "hasN": false,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "valutis-kursi/index.html"
   },
   "kc864f50652": {
     "ka": "ვალუტის კურსი დღეს — დოლარი, ევრო, ფუნტი",
     "hasN": false,
     "ph": 0,
-    "count": 2
+    "count": 2,
+    "sample": "valutis-kursi/index.html"
+  },
+  "kdfcdf30b0a": {
+    "ka": "მთავარი",
+    "hasN": false,
+    "ph": 0,
+    "count": 53,
+    "sample": "valutis-kursi/index.html"
+  },
+  "kf06f70d32f": {
+    "ka": "დოლარი",
+    "hasN": false,
+    "ph": 0,
+    "count": 7,
+    "sample": "uk/dolari-lari/index.html"
+  },
+  "k21b7dc7c0f": {
+    "ka": "ევრო €",
+    "hasN": false,
+    "ph": 0,
+    "count": 7,
+    "sample": "uk/dolari-lari/index.html"
   },
   "k9156f03214": {
     "ka": "რუბლის კურსი დღეს — RUB/GEL ოფიციალური კურსი | evro.ge",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "rublis-kursi/index.html"
   },
   "kcf536509ca": {
     "ka": "← ვალუტის კურსი",
     "hasN": false,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "rublis-kursi/index.html"
   },
   "kcf52ab1cf8": {
     "ka": "რუბლის კურსი დღეს — რუსული რუბლი ლარი",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "rublis-kursi/index.html"
   },
   "ke7c44b41c6": {
     "ka": "სხვა ვალუტა",
     "hasN": false,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "rublis-kursi/index.html"
   },
   "k6a5c07f3ae": {
     "ka": "რუბლის კურსი ლარში დღეს",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "rublis-kursi/index.html"
   },
   "kcf91507ba2": {
     "ka": "რუსული რუბლი (RUB) ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "rublis-kursi/index.html"
   },
   "k68815d5d82": {
     "ka": "ამ გვერდზე ნახავ რუბლის (RUB) დღევანდელ ოფიციალურ კურსს ლარში — ანუ რა ღირს {n} რუბლი დღეს. მონაცემები საქართველოს ეროვნული ბანკიდან მოდის და ავტომატურად ახლდება, ამიტომ რუბლის კურსი (rublis kursi) ყოველთვის უახლესია. კონვერტერით ნებისმიერ თანხას გადათვლი ლარში ან პირიქით.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "rublis-kursi/index.html"
   },
   "kcc62d300e3": {
     "ka": "რუბლის კურსი ხშირად აქტუალურია ფულადი გზავნილების დროს. ეროვნული ბანკი რუბლის ოფიციალურ კურსს ყოველ სამუშაო დღეს ადგენს, ბანკებსა და გადამცვლელ პუნქტებში კი კურსი ოდნავ განსხვავდება. იხილე ასევე {0} და {1}.",
     "hasN": false,
     "ph": 2,
-    "count": 1
+    "count": 1,
+    "sample": "rublis-kursi/index.html"
   },
   "k2e3e2f6074": {
     "ka": "{n} რუბლი დღეს უდრის",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "rublis-kursi/index.html"
   },
   "k6adc25244d": {
     "ka": "ეროვნული ბანკი",
     "hasN": false,
     "ph": 0,
-    "count": 4
+    "count": 4,
+    "sample": "rublis-kursi/index.html"
   },
   "ka911259800": {
     "ka": "რა ღირს {n} რუბლი დღეს?",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "rublis-kursi/index.html"
   },
   "k91c64ca28a": {
     "ka": "{n} რუბლი რამდენი ლარია?",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "rublis-kursi/index.html"
   },
   "k13db18ad95": {
     "ka": "სად ვნახო რუბლის ოფიციალური კურსი?",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "rublis-kursi/index.html"
   },
   "kd3bb1110d9": {
     "ka": "{n} რუბლის დღევანდელი ოფიციალური კურსი ლარში ნაჩვენებია გვერდის თავში, საქართველოს ეროვნული ბანკის მონაცემებით. კურსი ავტომატურად ახლდება.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "rublis-kursi/index.html"
   },
   "kbe897843d8": {
     "ka": "{n} რუბლის ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად გამოიყენე ზემოთ მოცემული კონვერტერი.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "rublis-kursi/index.html"
   },
   "k519d6bb5c8": {
     "ka": "რუბლის ოფიციალურ კურსს ადგენს საქართველოს ეროვნული ბანკი (nbg.gov.ge) ყოველ სამუშაო დღეს. evro.ge სწორედ ამ მონაცემებს გიჩვენებს ცოცხლად.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "rublis-kursi/index.html"
   },
   "k214ca0d41f": {
     "ka": "რუსული რუბლი (RUB)",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "rublis-kursi/index.html"
   },
   "kf9e1ef63b0": {
     "ka": "რუბლის კურსი ლარში დღეს — {n} რუბლი რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე რუსული რუბლი ლარში (rublis kursi).",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "rublis-kursi/index.html"
   },
   "k6ae3455bdd": {
     "ka": "რუბლის კურსი დღეს — RUB/GEL ოფიციალური კურსი",
     "hasN": false,
     "ph": 0,
-    "count": 2
+    "count": 2,
+    "sample": "rublis-kursi/index.html"
   },
   "kb6999109a0": {
     "ka": "ლირის კურსი დღეს — TRY/GEL ოფიციალური კურსი | evro.ge",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "liris-kursi/index.html"
   },
   "k09f40c9dbd": {
     "ka": "ლირის კურსი დღეს — თურქული ლირა ლარი",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "liris-kursi/index.html"
   },
   "kcb24f6cce0": {
     "ka": "ლირის კურსი ლარში დღეს",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "liris-kursi/index.html"
   },
   "k4182ab5041": {
     "ka": "თურქული ლირა (TRY) ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "liris-kursi/index.html"
   },
   "kcae0796bfe": {
     "ka": "ამ გვერდზე ნახავ ლირის (TRY) დღევანდელ ოფიციალურ კურსს ლარში — ანუ რა ღირს {n} ლირა დღეს. მონაცემები საქართველოს ეროვნული ბანკიდან მოდის და ავტომატურად ახლდება, ამიტომ ლირის კურსი (liris kursi) ყოველთვის უახლესია. კონვერტერით ნებისმიერ თანხას გადათვლი ლარში ან პირიქით.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "liris-kursi/index.html"
   },
   "kcf8efbdde5": {
     "ka": "საქართველოსა და თურქეთს შორის ვაჭრობისა და მოგზაურობის გამო ლირის კურსი ბევრს აინტერესებს. ეროვნული ბანკი ლირის ოფიციალურ კურსს ყოველ სამუშაო დღეს ადგენს, კომერციული კურსი გადამცვლელებში კი ოდნავ განსხვავდება. იხილე ასევე {0} და {1}.",
     "hasN": false,
     "ph": 2,
-    "count": 1
+    "count": 1,
+    "sample": "liris-kursi/index.html"
   },
   "k9cbe755d25": {
     "ka": "{n} ლირა დღეს უდრის",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "liris-kursi/index.html"
   },
   "k9822988af2": {
     "ka": "რა ღირს {n} ლირა დღეს?",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "liris-kursi/index.html"
   },
   "k556d9f4f69": {
     "ka": "{n} ლირა რამდენი ლარია?",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "liris-kursi/index.html"
   },
   "k4e7ebbe313": {
     "ka": "სად ვნახო ლირის ოფიციალური კურსი?",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "liris-kursi/index.html"
   },
   "kfbff77368a": {
     "ka": "{n} ლირის დღევანდელი ოფიციალური კურსი ლარში ნაჩვენებია გვერდის თავში, საქართველოს ეროვნული ბანკის მონაცემებით. კურსი ავტომატურად ახლდება.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "liris-kursi/index.html"
   },
   "kcdb57ad4ef": {
     "ka": "{n} ლირის ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად გამოიყენე ზემოთ მოცემული კონვერტერი.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "liris-kursi/index.html"
   },
   "kac303675ab": {
     "ka": "ლირის ოფიციალურ კურსს ადგენს საქართველოს ეროვნული ბანკი (nbg.gov.ge) ყოველ სამუშაო დღეს. evro.ge სწორედ ამ მონაცემებს გიჩვენებს ცოცხლად.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "liris-kursi/index.html"
   },
   "k35ccaceecd": {
     "ka": "თურქული ლირა (TRY)",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "liris-kursi/index.html"
   },
   "k562303c38a": {
     "ka": "ლირის კურსი ლარში დღეს — {n} ლირა რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე თურქული ლირა ლარში (liris kursi).",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "liris-kursi/index.html"
   },
   "kc95a39dfbe": {
     "ka": "ლირის კურსი დღეს — TRY/GEL ოფიციალური კურსი",
     "hasN": false,
     "ph": 0,
-    "count": 2
+    "count": 2,
+    "sample": "liris-kursi/index.html"
   },
   "k1163d6f52d": {
     "ka": "ფუნტის კურსი დღეს — GBP/GEL ოფიციალური კურსი | evro.ge",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "funtis-kursi/index.html"
   },
   "k818e58de41": {
     "ka": "ფუნტის კურსი დღეს — ფუნტი ლარი",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "funtis-kursi/index.html"
   },
   "k1be300abb2": {
     "ka": "ფუნტის კურსი ლარში დღეს",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "funtis-kursi/index.html"
   },
   "k5bac056aad": {
     "ka": "ბრიტანული ფუნტი (GBP) ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "funtis-kursi/index.html"
   },
   "kb0168f1c4a": {
     "ka": "ამ გვერდზე ნახავ ფუნტის (GBP) დღევანდელ ოფიციალურ კურსს ლარში — ანუ რა ღირს {n} ფუნტი დღეს. მონაცემები საქართველოს ეროვნული ბანკიდან მოდის და ავტომატურად ახლდება, ამიტომ ფუნტის კურსი (funtis kursi) ყოველთვის უახლესია. კონვერტერით ნებისმიერ თანხას გადათვლი ლარში ან პირიქით.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "funtis-kursi/index.html"
   },
   "kc3d7ec794d": {
     "ka": "ფუნტი დიდი ბრიტანეთის ვალუტაა და მისი კურსი გლობალურ ბაზარზე იცვლება. ეროვნული ბანკი ადგენს ოფიციალურ კურსს, ბანკებსა და გადამცვლელ პუნქტებში კი ყიდვა-გაყიდვის კურსი ოდნავ განსხვავდება — ამიტომ სანამ ფუნტს გადაცვლი, შეადარე პირობები. იხილე ასევე {0} და {1}.",
     "hasN": false,
     "ph": 2,
-    "count": 1
+    "count": 1,
+    "sample": "funtis-kursi/index.html"
   },
   "k93f0482a19": {
     "ka": "{n} ფუნტი დღეს უდრის",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "funtis-kursi/index.html"
   },
   "k54b396fcf2": {
     "ka": "რა ღირს {n} ფუნტი დღეს?",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "funtis-kursi/index.html"
   },
   "k5f37d93c61": {
     "ka": "{n} ფუნტი რამდენი ლარია?",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "funtis-kursi/index.html"
   },
   "k6f6f168c2e": {
     "ka": "სად ვნახო ფუნტის ოფიციალური კურსი?",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "funtis-kursi/index.html"
   },
   "ke8dd754d22": {
     "ka": "{n} ფუნტის დღევანდელი ოფიციალური კურსი ლარში ნაჩვენებია გვერდის თავში, საქართველოს ეროვნული ბანკის მონაცემებით. კურსი ავტომატურად ახლდება.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "funtis-kursi/index.html"
   },
   "kcd1b94c52a": {
     "ka": "{n} ფუნტის ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად გამოიყენე ზემოთ მოცემული კონვერტერი.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "funtis-kursi/index.html"
   },
   "kd6c615daa9": {
     "ka": "ფუნტის ოფიციალურ კურსს ადგენს საქართველოს ეროვნული ბანკი (nbg.gov.ge) ყოველ სამუშაო დღეს. evro.ge სწორედ ამ მონაცემებს გიჩვენებს ცოცხლად.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "funtis-kursi/index.html"
   },
   "k14ea902c17": {
     "ka": "ბრიტანული ფუნტი (GBP)",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "funtis-kursi/index.html"
   },
   "kb5b86de2d2": {
     "ka": "ფუნტის კურსი ლარში დღეს — {n} ფუნტი რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე ბრიტანული ფუნტი ლარში (funtis kursi).",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "funtis-kursi/index.html"
   },
   "k9e5cabfebc": {
     "ka": "ფუნტის კურსი დღეს — GBP/GEL ოფიციალური კურსი",
     "hasN": false,
     "ph": 0,
-    "count": 2
+    "count": 2,
+    "sample": "funtis-kursi/index.html"
   },
   "k93369b1b65": {
     "ka": "დოლარის კურსი დღეს — USD/GEL ოფიციალური კურსი | evro.ge",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "k82b95da466": {
     "ka": "← ევროს კურსი",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "k4def4ead3b": {
     "ka": "ევროს კურსი →",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "kcaf29e475b": {
     "ka": "ვალუტის კურსი →",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "k7409c918e7": {
     "ka": "დოლარის კურსი დღეს — დოლარი ლარი",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
+  },
+  "k85cfb490e7": {
+    "ka": "დოლარი ლარში — პოპულარული თანხები",
+    "hasN": false,
+    "ph": 0,
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "kbaecead22c": {
     "ka": "დოლარის კურსი ლარში დღეს",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "kcd570d26a2": {
     "ka": "როგორ დგინდება დოლარის ოფიციალური კურსი",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "kf81bea90b1": {
     "ka": "{n} დოლარი რამდენი ლარია და სად გადავცვალო",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "k31bb4a270b": {
     "ka": "რა მოქმედებს დოლარის კურსზე",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "k7049e007f3": {
     "ka": "ამერიკული დოლარის (USD) ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
+  },
+  "k00ac0545c7": {
+    "ka": "რამდენი ლარია და ევროა კონკრეტული თანხა დღევანდელი ოფიციალური კურსით.",
+    "hasN": false,
+    "ph": 0,
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "kfb8634b457": {
     "ka": "ამ გვერდზე ნახავ ამერიკული დოლარის (USD) დღევანდელ ოფიციალურ კურსს ლარში (GEL) — ანუ რა ღირს {n} დოლარი დღეს. მონაცემები საქართველოს ეროვნული ბანკიდან მოდის და ავტომატურად ახლდება, ამიტომ დოლარის კურსი (dolaris kursi) ყოველთვის უახლესია. ზემოთ მოცემული კონვერტერით ნებისმიერ თანხას გადათვლი — ჩაწერ დოლარს და მაშინვე დაინახავ, რამდენი ლარია, ან პირიქით.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "k6c85e09dd7": {
     "ka": "ეროვნული ბანკი დოლარის ოფიციალურ (ინდიკატიურ) კურსს ყოველ სამუშაო დღეს ადგენს ბანკთაშორის ვაჭრობაზე დაყრდნობით, და ის მეორე დღეს ამოქმედდება. ეს არ არის ფასი, რომლითაც პირდაპირ ყიდულობ ან ყიდი დოლარს — კომერციული ბანკები და გადამცვლელი პუნქტები საკუთარ ყიდვა-გაყიდვის კურსს აწესებენ, რომელიც ოფიციალურს ოდნავ სცდება.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "kf76c353be5": {
     "ka": "თუ გაინტერესებს, 1 დოლარი რამდენი ლარია ან 100 დოლარი რამდენ ლარად დაჯდება, ჯერ ნახე ზემოთ ნაჩვენები ოფიციალური კურსი, შემდეგ კი — სანამ რეალურად გადაცვლი — შეადარე რამდენიმე ბანკისა და გადამცვლელის კურსი. სხვაობა მცირე ჩანს, მაგრამ დიდ თანხაზე შესამჩნევია. ხშირად ძებნად კონკრეტულ თანხებს ცალკე გვერდები აქვს, მაგალითად {0} ან {1}.",
     "hasN": false,
     "ph": 2,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "kc92be69181": {
     "ka": "დოლარი/ლარის კურსი იცვლება როგორც გლობალური ფაქტორებით (აშშ დოლარის სიძლიერე მსოფლიო ბაზარზე, ნავთობის ფასი), ისე ადგილობრივი მიზეზებით — ტურიზმის სეზონი, ფულადი გზავნილები, ექსპორტ-იმპორტის ბალანსი და ეროვნული ბანკის ინტერვენციები. სწორედ ამიტომ ღირს კურსზე თვალყურის დევნება, თუ რეგულარულად გადარიცხავ ან იღებ დოლარს.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "kbfad4c3071": {
     "ka": "თუ ევროს კურსიც გაინტერესებს, ნახე {0}.",
     "hasN": false,
     "ph": 1,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "k2a0d4396ec": {
     "ka": "ევრო ლარის კურსი მთავარ გვერდზე",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "k6d1632ad16": {
     "ka": "{n} დოლარი დღეს უდრის",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "k39da45b44b": {
     "ka": "რა ღირს {n} დოლარი დღეს?",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "dolari-lari/index.html"
   },
   "kee99a7306c": {
     "ka": "{n} დოლარი რამდენი ლარია?",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 4,
+    "sample": "dolari-lari/index.html"
   },
   "k458c944371": {
     "ka": "სად ვნახო დოლარის ოფიციალური კურსი?",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "dolari-lari/index.html"
+  },
+  "k1d93972d5d": {
+    "ka": "{n} დოლარი რამდენი ევროა?",
+    "hasN": true,
+    "ph": 0,
+    "count": 2,
+    "sample": "dolari-lari/index.html"
   },
   "k205c65e6c2": {
     "ka": "{n} დოლარის დღევანდელი ოფიციალური კურსი ლარში ნაჩვენებია გვერდის თავში, საქართველოს ეროვნული ბანკის მონაცემებით. კურსი ავტომატურად ახლდება, ამიტომ ყოველთვის უახლეს მაჩვენებელს ხედავ.",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "dolari-lari/index.html"
   },
   "ka8efd1dcf3": {
     "ka": "{n} დოლარის ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად გამოიყენე კონვერტერი ან გახსენი გვერდი {0}.",
     "hasN": true,
     "ph": 1,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "k4f6bc67bf8": {
     "ka": "დოლარის ოფიციალურ კურსს ადგენს საქართველოს ეროვნული ბანკი (nbg.gov.ge) ყოველ სამუშაო დღეს. evro.ge სწორედ ამ მონაცემებს იყენებს და გიჩვენებს ცოცხალ კურსს.",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 2,
+    "sample": "dolari-lari/index.html"
+  },
+  "k80b6cb1335": {
+    "ka": "{n} დოლარის ღირებულება ლარში გამოითვლება დღევანდელ ოფიციალურ კურსზე გამრავლებით. ზუსტ თანხას ნახავ ზემოთ მოცემულ ცხრილში ან კონვერტერში.",
+    "hasN": true,
+    "ph": 0,
+    "count": 2,
+    "sample": "dolari-lari/index.html"
+  },
+  "k7f2c53291f": {
+    "ka": "{n} დოლარი ევროში გამოითვლება დოლარისა და ევროს ოფიციალური კურსების შეფარდებით. მიმდინარე მაჩვენებელი ცხრილის „ევრო“ სვეტშია, ან ნახე {0}.",
+    "hasN": true,
+    "ph": 1,
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "ka50f6acdb2": {
     "ka": "„{n} დოლარი ლარში“",
     "hasN": true,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "k4a0c1fb722": {
     "ka": "დოლარი (USD)",
     "hasN": false,
     "ph": 0,
-    "count": 1
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "kfa7f05de75": {
     "ka": "დოლარის კურსი ლარში დღეს — {n} დოლარი რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე დოლარი ლარში ცოცხალი კონვერტერით (dolaris kursi).",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "dolari-lari/index.html"
   },
   "k3c48b7b02b": {
     "ka": "დოლარის კურსი დღეს — USD/GEL ოფიციალური კურსი",
     "hasN": false,
     "ph": 0,
-    "count": 2
+    "count": 2,
+    "sample": "dolari-lari/index.html"
+  },
+  "kb99c70760f": {
+    "ka": "{n} დოლარის ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად გამოიყენე კონვერტერი ან გახსენი გვერდი „{n} დოლარი ლარში“.",
+    "hasN": true,
+    "ph": 0,
+    "count": 1,
+    "sample": "dolari-lari/index.html"
+  },
+  "k841f4cbd90": {
+    "ka": "{n} დოლარი ევროში გამოითვლება დოლარისა და ევროს ოფიციალური კურსების შეფარდებით. მიმდინარე მაჩვენებელი ცხრილის ევრო სვეტშია.",
+    "hasN": true,
+    "ph": 0,
+    "count": 1,
+    "sample": "dolari-lari/index.html"
   },
   "k710f2c5a38": {
     "ka": "{n} ლარი რამდენი ევროა დღეს | evro.ge",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-evro/index.html"
   },
   "kef155eadb7": {
     "ka": "ყველა კურსი და კონვერტერი →",
     "hasN": false,
     "ph": 0,
-    "count": 48
+    "count": 48,
+    "sample": "88-lari-evro/index.html"
   },
   "k3a9c19a78f": {
     "ka": "{n} ლარი",
     "hasN": true,
     "ph": 0,
-    "count": 96
+    "count": 96,
+    "sample": "88-lari-evro/index.html"
   },
   "k16494283d0": {
     "ka": "{n} ლარი დოლარში",
     "hasN": true,
     "ph": 0,
-    "count": 24
+    "count": 24,
+    "sample": "88-lari-evro/index.html"
   },
   "k905117aa9d": {
     "ka": "{n} ლარი რამდენი ევროა — {n} GEL to EUR",
     "hasN": true,
     "ph": 0,
-    "count": 36
+    "count": 48,
+    "sample": "88-lari-evro/index.html"
   },
   "k2f65a5206b": {
     "ka": "{n} ლარი ევროში დღეს",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-evro/index.html"
   },
   "k2756f010cd": {
     "ka": "სხვა თანხები",
     "hasN": false,
     "ph": 0,
-    "count": 48
+    "count": 48,
+    "sample": "88-lari-evro/index.html"
   },
   "k662b78811a": {
     "ka": "{n} ლარის ღირებულება ევროში დღევანდელი ოფიციალური კურსით",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-evro/index.html"
   },
   "k5679293f67": {
     "ka": "{n} ლარი დღევანდელი ოფიციალური კურსით არის {0} ევრო ({n} lari evro, {n} GEL to EUR). მაჩვენებელი საქართველოს ეროვნული ბანკის კურსს ეყრდნობა და დღეში ერთხელ ახლდება. საპირისპიროდ, {n} ევრო დაახლოებით {1} ლარი.",
     "hasN": true,
     "ph": 2,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-evro/index.html"
   },
   "ke1a21db449": {
     "ka": "{n} ლარის ღირებულება ევროში დამოკიდებულია მიმდინარე გაცვლით კურსზე. აქ ნაჩვენები რიცხვი ოფიციალურ NBG კურსს ეყრდნობა და ავტომატურად ახლდება.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "88-lari-evro/index.html"
   },
   "k64ddc20d0c": {
     "ka": "€ ევრო",
     "hasN": false,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-evro/index.html"
   },
   "k78a5f7db1e": {
     "ka": "{n} ევრო = {0} ₾",
     "hasN": true,
     "ph": 1,
-    "count": 24
+    "count": 24,
+    "sample": "88-lari-evro/index.html"
   },
   "k58aefcb6f1": {
     "ka": "ან: {n} ევრო = {0} ლარი · {1}",
     "hasN": true,
     "ph": 2,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-evro/index.html"
   },
   "k171afd1445": {
     "ka": "{n} ევრო ლარში →",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-evro/index.html"
   },
   "kee07af593f": {
     "ka": "{n} ლარი (GEL) რამდენი ევროა (EUR) დღეს? ნახე {n} ლარის ღირებულება ევროში ეროვნული ბანკის ოფიციალური კურსით — ცოცხალი, ყოველდღიურად განახლებადი გადათვლა.",
     "hasN": true,
     "ph": 0,
-    "count": 36
+    "count": 36,
+    "sample": "88-lari-evro/index.html"
   },
   "kf463bc50cb": {
     "ka": "{n} ლარი რამდენი დოლარია დღეს | evro.ge",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-dolari/index.html"
   },
   "k6e04d0af5f": {
     "ka": "{n} ლარი რამდენი დოლარია — {n} GEL to USD",
     "hasN": true,
     "ph": 0,
-    "count": 36
+    "count": 48,
+    "sample": "88-lari-dolari/index.html"
   },
   "k227513bac2": {
     "ka": "{n} ლარი დოლარში დღეს",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-dolari/index.html"
   },
   "kf42b8bcd80": {
     "ka": "{n} ლარის ღირებულება დოლარში დღევანდელი ოფიციალური კურსით",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-dolari/index.html"
   },
   "k3add3bf8fb": {
     "ka": "{n} ლარი დღევანდელი ოფიციალური კურსით არის {0} დოლარი ({n} lari dolari, {n} GEL to USD). მაჩვენებელი საქართველოს ეროვნული ბანკის კურსს ეყრდნობა და დღეში ერთხელ ახლდება. საპირისპიროდ, {n} დოლარი დაახლოებით {1} ლარი.",
     "hasN": true,
     "ph": 2,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-dolari/index.html"
   },
   "k54f85048a4": {
     "ka": "{n} ლარი დოლარში გადაიყვანება ერთი დოლარის დღევანდელ კურსზე გაყოფით. კურსს ადგენს საქართველოს ეროვნული ბანკი და ის დღეში ერთხელ ახლდება, ამიტომ {n} ლარის ღირებულება დოლარში დროთა განმავლობაში იცვლება.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "88-lari-dolari/index.html"
   },
   "k3cf1dd89a0": {
     "ka": "$ დოლარი",
     "hasN": false,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-dolari/index.html"
   },
   "k46f369d254": {
     "ka": "{n} დოლარი = {0} ₾",
     "hasN": true,
     "ph": 1,
-    "count": 24
+    "count": 24,
+    "sample": "88-lari-dolari/index.html"
   },
   "k19f89e12cc": {
     "ka": "ან: {n} დოლარი = {0} ლარი · {1}",
     "hasN": true,
     "ph": 2,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-dolari/index.html"
   },
   "k55701308e4": {
     "ka": "{n} დოლარი ლარში →",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-lari-dolari/index.html"
   },
   "kc20c2c20e7": {
     "ka": "{n} ლარი (GEL) რამდენი დოლარია (USD) დღეს? ნახე {n} ლარის ღირებულება დოლარში ეროვნული ბანკის ოფიციალური კურსით — ცოცხალი, ყოველდღიურად განახლებადი გადათვლა.",
     "hasN": true,
     "ph": 0,
-    "count": 36
+    "count": 36,
+    "sample": "88-lari-dolari/index.html"
   },
   "kebf16c43b8": {
     "ka": "{n} ევრო რამდენი ლარია დღეს | evro.ge",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-evro-lari/index.html"
   },
   "k9654181113": {
     "ka": "{n} ევრო",
     "hasN": true,
     "ph": 0,
-    "count": 48
+    "count": 48,
+    "sample": "88-evro-lari/index.html"
   },
   "k9e3dfc1cd0": {
     "ka": "{n} ევრო რამდენი ლარია — {n} EUR to GEL",
     "hasN": true,
     "ph": 0,
-    "count": 36
+    "count": 48,
+    "sample": "88-evro-lari/index.html"
   },
   "kf656df1c7e": {
     "ka": "{n} ევრო ლარში დღეს",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-evro-lari/index.html"
   },
   "kfaef9ed93a": {
     "ka": "{n} ევროს ღირებულება ლარში დღევანდელი ოფიციალური კურსით",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-evro-lari/index.html"
   },
   "k6b6fd19f2e": {
     "ka": "{n} ევრო დღევანდელი ოფიციალური კურსით არის {0} ლარი ({n} evro lari, {n} EUR to GEL). მაჩვენებელი საქართველოს ეროვნული ბანკის კურსს ეყრდნობა და დღეში ერთხელ ახლდება. საპირისპიროდ, {n} ლარი დაახლოებით {1} ევრო.",
     "hasN": true,
     "ph": 2,
-    "count": 12
+    "count": 12,
+    "sample": "88-evro-lari/index.html"
   },
   "kea1cbb3f4c": {
     "ka": "რამდენი ლარია {n} ევრო? პასუხი დღევანდელ კურსზეა დამოკიდებული, რომელიც ავტომატურად ჩაიტვირთა გვერდის თავში. თუ {n} ევროს გადარიცხვას ან გადაცვლას აპირებ, ჯობია წინასწარ შეადარო ბანკებისა და გადარიცხვის სერვისების პირობები.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "88-evro-lari/index.html"
   },
   "k61b4f0098b": {
     "ka": "₾ ლარი",
     "hasN": false,
     "ph": 0,
-    "count": 24
+    "count": 24,
+    "sample": "88-evro-lari/index.html"
   },
   "kba4f2a3140": {
     "ka": "ან: {n} ლარი = {0} ევრო · {1}",
     "hasN": true,
     "ph": 2,
-    "count": 12
+    "count": 12,
+    "sample": "88-evro-lari/index.html"
   },
   "k56f4aa404e": {
     "ka": "{n} ლარი ევროში →",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-evro-lari/index.html"
   },
   "k0a1737e20f": {
     "ka": "{n} ევრო (EUR) რამდენი ლარია (GEL) დღეს? ნახე {n} ევროს ღირებულება ლარში ეროვნული ბანკის ოფიციალური კურსით — ცოცხალი, ყოველდღიურად განახლებადი გადათვლა.",
     "hasN": true,
     "ph": 0,
-    "count": 36
+    "count": 36,
+    "sample": "88-evro-lari/index.html"
   },
   "k44de1ccab7": {
     "ka": "{n} დოლარი რამდენი ლარია დღეს | evro.ge",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-dolari-lari/index.html"
   },
   "k15da8975c1": {
     "ka": "{n} დოლარი",
     "hasN": true,
     "ph": 0,
-    "count": 48
+    "count": 48,
+    "sample": "88-dolari-lari/index.html"
   },
   "kc0125cc501": {
     "ka": "{n} დოლარი რამდენი ლარია — {n} USD to GEL",
     "hasN": true,
     "ph": 0,
-    "count": 36
+    "count": 48,
+    "sample": "88-dolari-lari/index.html"
   },
   "kce129cf16c": {
     "ka": "{n} დოლარი ლარში დღეს",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-dolari-lari/index.html"
   },
   "k64fc490d3f": {
     "ka": "{n} დოლარის ღირებულება ლარში დღევანდელი ოფიციალური კურსით",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-dolari-lari/index.html"
   },
   "k5fc2dda3c2": {
     "ka": "{n} დოლარი დღევანდელი ოფიციალური კურსით არის {0} ლარი ({n} dolari lari, {n} USD to GEL). მაჩვენებელი საქართველოს ეროვნული ბანკის კურსს ეყრდნობა და დღეში ერთხელ ახლდება. საპირისპიროდ, {n} ლარი დაახლოებით {1} დოლარი.",
     "hasN": true,
     "ph": 2,
-    "count": 12
+    "count": 12,
+    "sample": "88-dolari-lari/index.html"
   },
   "kfa3b81a209": {
     "ka": "{n} დოლარი დღეს რამდენ ლარს უდრის? გამოთვლა მარტივია — {n} მრავლდება ერთი დოლარის მიმდინარე კურსზე. ქვემოთ ასევე ნახავ საპირისპირო გადათვლასაც, ანუ {n} ლარი რამდენი დოლარია.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "88-dolari-lari/index.html"
   },
   "k0258c23628": {
     "ka": "ან: {n} ლარი = {0} დოლარი · {1}",
     "hasN": true,
     "ph": 2,
-    "count": 12
+    "count": 12,
+    "sample": "88-dolari-lari/index.html"
   },
   "kd539ac498a": {
     "ka": "{n} ლარი დოლარში →",
     "hasN": true,
     "ph": 0,
-    "count": 12
+    "count": 12,
+    "sample": "88-dolari-lari/index.html"
   },
   "k2a1764e799": {
     "ka": "{n} დოლარი (USD) რამდენი ლარია (GEL) დღეს? ნახე {n} დოლარის ღირებულება ლარში ეროვნული ბანკის ოფიციალური კურსით — ცოცხალი, ყოველდღიურად განახლებადი გადათვლა.",
     "hasN": true,
     "ph": 0,
-    "count": 36
+    "count": 36,
+    "sample": "88-dolari-lari/index.html"
   },
   "ke467db0838": {
     "ka": "{n} ლარი დღეს რამდენი ევროა? გამოთვლა მარტივია — {n} ლარი იყოფა ერთი ევროს მიმდინარე კურსზე. ქვემოთ ნახავ საპირისპირო გადათვლასაც — {n} ევრო რამდენი ლარია.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "500-lari-evro/index.html"
   },
   "k6b54704c67": {
     "ka": "{n} ლარი რამდენი დოლარია? ზემოთ ნაჩვენები თანხა გამოითვალა ეროვნული ბანკის უახლესი USD/GEL კურსით. თუ დოლარში თანხის გადარიცხვა გჭირდება, შეადარე სხვადასხვა სერვისის საკომისიო და კურსი.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "500-lari-dolari/index.html"
   },
   "k6964a775b9": {
     "ka": "{n} ევროს ღირებულება ლარში მუდმივად მერყეობს ვალუტის ბაზრის მიხედვით. აქ ნაჩვენები რიცხვი ეროვნული ბანკის ოფიციალურ კურსს ეყრდნობა — იმავე კურსს, რომელსაც ბანკები საბაზისოდ იყენებენ.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "500-evro-lari/index.html"
   },
   "k8f65aa1a8b": {
     "ka": "{n} დოლარი ლარში გადაიყვანება დღევანდელ USD/GEL კურსზე გამრავლებით. კურსს ადგენს საქართველოს ეროვნული ბანკი და ის დღეში ერთხელ ახლდება, ამიტომ ზემოთ ნაჩვენები თანხა ყოველთვის უახლეს ოფიციალურ მაჩვენებელს ასახავს.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "500-dolari-lari/index.html"
   },
   "kfbe4597b8f": {
     "ka": "{n} ლარი რამდენი ევროა? ზემოთ ნაჩვენები თანხა გამოითვალა ეროვნული ბანკის უახლესი EUR/GEL კურსით. თუ ევროში თანხის გადარიცხვა გჭირდება, შეადარე სხვადასხვა სერვისის საკომისიო და კურსი.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "50-lari-evro/index.html"
   },
   "kb7abb359be": {
     "ka": "{n} ლარი დღეს რამდენი დოლარია? გამოთვლა მარტივია — {n} ლარი იყოფა ერთი დოლარის მიმდინარე კურსზე. ქვემოთ ნახავ საპირისპირო გადათვლასაც — {n} დოლარი რამდენი ლარია.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "50-lari-dolari/index.html"
   },
   "kd6a455d6a0": {
     "ka": "{n} ევრო ლარში გადაიყვანება დღევანდელ EUR/GEL კურსზე გამრავლებით. კურსს ადგენს საქართველოს ეროვნული ბანკი და ის დღეში ერთხელ ახლდება, ამიტომ ზემოთ ნაჩვენები თანხა ყოველთვის უახლეს ოფიციალურ მაჩვენებელს ასახავს.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "50-evro-lari/index.html"
   },
   "kc0c30b9357": {
     "ka": "{n} დოლარის ღირებულება ლარში მუდმივად მერყეობს ვალუტის ბაზრის მიხედვით. აქ ნაჩვენები რიცხვი ეროვნული ბანკის ოფიციალურ კურსს ეყრდნობა — იმავე კურსს, რომელსაც ბანკები საბაზისოდ იყენებენ.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "50-dolari-lari/index.html"
   },
   "k3cfceeb7f7": {
     "ka": "{n} ლარი ევროში გადაიყვანება ერთი ევროს დღევანდელ კურსზე გაყოფით. კურსს ადგენს საქართველოს ეროვნული ბანკი და ის დღეში ერთხელ ახლდება, ამიტომ {n} ლარის ღირებულება ევროში დროთა განმავლობაში იცვლება.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "20-lari-evro/index.html"
   },
   "k1bd540563b": {
     "ka": "{n} ლარის ღირებულება დოლარში დამოკიდებულია მიმდინარე გაცვლით კურსზე. აქ ნაჩვენები რიცხვი ოფიციალურ NBG კურსს ეყრდნობა და ავტომატურად ახლდება.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "20-lari-dolari/index.html"
   },
   "k4508e08a34": {
     "ka": "{n} ევრო დღეს რამდენ ლარს უდრის? გამოთვლა მარტივია — {n} მრავლდება ერთი ევროს მიმდინარე კურსზე. ქვემოთ ასევე ნახავ საპირისპირო გადათვლასაც, ანუ {n} ლარი რამდენი ევროა.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "20-evro-lari/index.html"
   },
   "kfdfae47b04": {
     "ka": "რამდენი ლარია {n} დოლარი? პასუხი დღევანდელ კურსზეა დამოკიდებული, რომელიც ავტომატურად ჩაიტვირთა გვერდის თავში. თუ {n} დოლარის გადარიცხვას ან გადაცვლას აპირებ, ჯობია წინასწარ შეადარო ბანკებისა და გადარიცხვის სერვისების პირობები.",
     "hasN": true,
     "ph": 0,
-    "count": 3
+    "count": 3,
+    "sample": "20-dolari-lari/index.html"
   }
 }

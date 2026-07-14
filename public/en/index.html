@@ -40,6 +40,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="evro.ge">
 <meta property="og:locale" content="en_US">
@@ -158,10 +174,21 @@
   .foot .gh svg{width:15px;height:15px}
   .disclaimer{margin-top:18px;font-size:12px;color:#5A6478;max-width:60ch}
 
+  .rtable{width:100%;border-collapse:collapse;margin-top:8px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .rtable th,.rtable td{padding:12px 16px;border-bottom:1px solid var(--line);font-size:15px;text-align:right}
+  .rtable th{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+  .rtable th:first-child,.rtable td:first-child{text-align:left;font-weight:600}
+  .rtable td:first-child a{color:var(--euro);text-decoration:none}
+  .rtable td:first-child a:hover{text-decoration:underline}
+  .rtable tr:last-child td{border-bottom:none}
+  .rtable .num{font-family:"Space Grotesk",monospace;font-variant-numeric:tabular-nums}
+
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"evro.ge","url":"https://evro.ge","inLanguage":"en","description":"ევროს ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით."},{"@type":"Organization","name":"evro.ge","url":"https://evro.ge","logo":"https://evro.ge/og.svg"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"How much does 1 euro cost today?","acceptedAnswer":{"@type":"Answer","text":"The official exchange rate of 1 euro in GEL for today is shown at the top of the page, according to the data from the National Bank of Georgia. The rate is updated automatically, so you always see the latest figure."}},{"@type":"Question","name":"How many GEL is 100 euro?","acceptedAnswer":{"@type":"Answer","text":"100 ევროს ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად ჩაწერე 100 კონვერტერში ან გახსენი გვერდი „100 ევრო ლარში“."}},{"@type":"Question","name":"Where can I find the official euro exchange rate?","acceptedAnswer":{"@type":"Answer","text":"The official euro exchange rate is set by the National Bank of Georgia (nbg.gov.ge) every business day. evro.ge uses this data to show you the live rate."}},{"@type":"Question","name":"Where can I buy or exchange euro?","acceptedAnswer":{"@type":"Answer","text":"You can buy and exchange euro at banks and exchange booths. Keep in mind that their buy/sell rates slightly deviate from the official rate, so compare conditions at several places before exchanging."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"evro.ge","url":"https://evro.ge","inLanguage":"en","description":"Official EUR rate in GEL today, according to the National Bank of Georgia data."},{"@type":"Organization","name":"evro.ge","url":"https://evro.ge","logo":"https://evro.ge/og.svg"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"How much does 1 euro cost today?","acceptedAnswer":{"@type":"Answer","text":"The official exchange rate of 1 euro in GEL for today is shown at the top of the page, according to the data from the National Bank of Georgia. The rate is updated automatically, so you always see the latest figure."}},{"@type":"Question","name":"How many GEL is 100 euro?","acceptedAnswer":{"@type":"Answer","text":"The value of 100 EUR in GEL is calculated by multiplying by today's rate. To see the exact amount, enter 100 in the converter or open the page '100 EUR in GEL'."}},{"@type":"Question","name":"Where can I find the official euro exchange rate?","acceptedAnswer":{"@type":"Answer","text":"The official euro exchange rate is set by the National Bank of Georgia (nbg.gov.ge) every business day. evro.ge uses this data to show you the live rate."}},{"@type":"Question","name":"Where can I buy or exchange euro?","acceptedAnswer":{"@type":"Answer","text":"You can buy and exchange euro at banks and exchange booths. Keep in mind that their buy/sell rates slightly deviate from the official rate, so compare conditions at several places before exchanging."}},{"@type":"Question","name":"How much is 50 EUR in GEL?","acceptedAnswer":{"@type":"Answer","text":"The value of 50 EUR in GEL is calculated by multiplying by today's official rate. You can see the exact amount in the table above or in the converter."}},{"@type":"Question","name":"How much is 100 EUR in USD?","acceptedAnswer":{"@type":"Answer","text":"100 EUR in USD is calculated by the ratio of the official EUR and USD rates. The current figure is in the USD column of the table."}}]}</script>
+
+
 
 
 
@@ -220,7 +247,22 @@
   <section class="sec" id="amounts" style="padding:36px 0">
     <div class="wrap">
       <div class="sec-head"><span class="sec-num">★</span><h2 class="sec-title">Popular amounts</h2></div>
-      <p class="sec-sub">Frequently searched amounts — See how many GEL a specific EUR amount is at today's rate.</p>
+      <p class="sec-sub">Frequently searched amounts — how many GEL and USD is a specific amount of EUR at today's official rate.</p>
+      <table class="rtable">
+        <thead><tr><th>Euro</th><th>GEL ₾</th><th>US dollar $</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/en/1-evro-lari/">1 EUR</a></td><td class="num" data-ssr="1*EUR" data-dp="2">—</td><td class="num" data-ssr="1*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/5-evro-lari/">5 EUR</a></td><td class="num" data-ssr="5*EUR" data-dp="2">—</td><td class="num" data-ssr="5*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/10-evro-lari/">10 EUR</a></td><td class="num" data-ssr="10*EUR" data-dp="2">—</td><td class="num" data-ssr="10*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/20-evro-lari/">20 EUR</a></td><td class="num" data-ssr="20*EUR" data-dp="2">—</td><td class="num" data-ssr="20*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/50-evro-lari/">50 EUR</a></td><td class="num" data-ssr="50*EUR" data-dp="2">—</td><td class="num" data-ssr="50*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/100-evro-lari/">100 EUR</a></td><td class="num" data-ssr="100*EUR" data-dp="2">—</td><td class="num" data-ssr="100*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/200-evro-lari/">200 EUR</a></td><td class="num" data-ssr="200*EUR" data-dp="2">—</td><td class="num" data-ssr="200*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/500-evro-lari/">500 EUR</a></td><td class="num" data-ssr="500*EUR" data-dp="2">—</td><td class="num" data-ssr="500*EUR/USD" data-dp="2">—</td></tr>
+          <tr><td><a href="/en/1000-evro-lari/">1000 EUR</a></td><td class="num" data-ssr="1000*EUR" data-dp="2">—</td><td class="num" data-ssr="1000*EUR/USD" data-dp="2">—</td></tr>
+        </tbody>
+      </table>
+      <p class="sec-sub" style="margin:22px 0 12px">Quick links:</p>
       <div class="chips">
         <a class="chip" href="/en/50-evro-lari/">50 EUR to GEL</a>
         <a class="chip" href="/en/100-evro-lari/">100 EUR to GEL</a>
@@ -319,6 +361,14 @@
           <summary>Where can I buy or exchange euro?</summary>
           <div class="ans">You can buy and exchange euro at banks and exchange booths. Keep in mind that their buy/sell rates slightly deviate from the official rate, so compare conditions at several places before exchanging.</div>
         </details>
+        <details>
+          <summary>How much is 50 EUR in GEL?</summary>
+          <div class="ans">The value of 50 EUR in GEL is calculated by multiplying by today's official rate. You can see the exact amount in the table above or in the converter.</div>
+        </details>
+        <details>
+          <summary>How much is 100 EUR in USD?</summary>
+          <div class="ans">100 EUR in USD is calculated by the ratio of the official EUR and USD rates. The current figure is in the 'USD' column of the table.</div>
+        </details>
       </div>
     </div>
   </section>
@@ -413,6 +463,9 @@
     else{var g=parseNum(gelIn.value);eurIn.value=isFinite(g)?fmt(g/rateEURGEL,2):"";}
   }
 
+  // extended spec eval for the popular-amounts table
+  function evalSSRx(spec,map){var x=/^(?:(\d+(?:\.\d+)?)([*\/]))?([A-Z]{3})(?:\/([A-Z]{3}))?$/.exec(spec);if(!x)return null;var r=map[x[3]];if(r==null||!isFinite(r))return null;if(x[4]){var d=map[x[4]];if(d==null||!isFinite(d)||d===0)return null;r=r/d;}if(!x[1])return r;var a=parseFloat(x[1]);return x[2]==="*"?a*r:a/r;}
+
   function paint(m){
     rateEURGEL=m.eurgel;
     heroRate.style.fontSize="";
@@ -429,6 +482,11 @@
     document.querySelectorAll("#strip .val").forEach(function(el){
       var c=el.getAttribute("data-pair");
       if(m.pairs[c]!=null) el.textContent=fmt(m.pairs[c],4);
+    });
+    var rmap={EUR:m.eurgel,USD:m.pairs.USD,GBP:m.pairs.GBP,TRY:m.pairs.TRY,RUB:m.pairs.RUB};
+    document.querySelectorAll(".rtable [data-ssr]").forEach(function(el){
+      var v=evalSSRx(el.getAttribute("data-ssr"),rmap);
+      if(v!=null) el.textContent=fmt(v,parseInt(el.getAttribute("data-dp")||"2",10));
     });
     recalc("eur");
   }
@@ -460,6 +518,8 @@
   setInterval(load,60*60*1000); // საათში ერთხელ (NBG Rate on დღეში ერთხელ იცვლება)
 })();
 </script>
+
+
 
 
 
