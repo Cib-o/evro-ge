@@ -2,3 +2,9 @@
 node_modules/
 .wrangler/
 *.log
+
+# local i18n build tooling deps (scripts/*.mjs are committed for reference;
+# run `npm i node-html-parser jsdom` to execute them). Kept out of the repo so
+# the Cloudflare deploy stays identical (the Worker itself has no npm deps).
+package.json
+package-lock.json

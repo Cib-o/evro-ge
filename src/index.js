@@ -8,6 +8,53 @@
 const NBG = "https://nbg.gov.ge/gw/api/ct/monetarypolicy/currencies/ka/json";
 const SSR_CODES = ["EUR", "USD", "GBP", "TRY", "RUB"];
 
+// Multilingual: Georgian at root, other languages under /{lang}/ (static, pre-rendered).
+const LANGS = ["en", "ru", "uk", "az", "tr", "hy"];
+// "date" SSR prefix per language (matches @rate_on in the translation dictionary).
+const RATE_ON = { ka: "კურსი", en: "Rate on", ru: "Курс на", uk: "Курс на", az: "Məzənnə", tr: "Kur", hy: "Փոխարժեք" };
+// Don't language-redirect crawlers — they must reach each URL as requested (hreflang guides them).
+const BOT_RE = /bot|crawl|spider|slurp|bing|yandex|baidu|duckduckbot|facebookexternalhit|embedly|quora|pinterest|slackbot|telegrambot|whatsapp|googlebot|google-inspectiontool|petalbot|semrush|ahrefs|mj12/i;
+
+function langFromPath(pathname) {
+  const m = /^\/(en|ru|uk|az|tr|hy)(?:\/|$)/.exec(pathname);
+  return m ? m[1] : "ka";
+}
+
+function pickAcceptLang(header) {
+  if (!header) return null;
+  const prefs = header.split(",").map((part) => {
+    const [tag, q] = part.trim().split(";q=");
+    return { code: tag.slice(0, 2).toLowerCase(), q: q ? parseFloat(q) : 1 };
+  }).sort((a, b) => b.q - a.q);
+  for (const { code } of prefs) {
+    if (code === "ka") return "ka";
+    if (LANGS.includes(code)) return code;
+  }
+  return null;
+}
+
+// First-visit language redirect: humans only, no lang cookie, HTML navigation on a ka path.
+function maybeRedirect(request, url) {
+  if (request.method !== "GET") return null;
+  const p = url.pathname;
+  if (langFromPath(p) !== "ka") return null;                 // already a language page
+  if (p.startsWith("/api") || /\.[a-z0-9]+$/i.test(p)) return null; // assets/files
+  const accept = request.headers.get("accept") || "";
+  if (!accept.includes("text/html")) return null;
+  if (BOT_RE.test(request.headers.get("user-agent") || "")) return null;
+
+  const cookie = request.headers.get("cookie") || "";
+  const cm = /(?:^|;\s*)lang=([a-z]{2})/.exec(cookie);
+  let lang;
+  if (cm) lang = cm[1];                                       // returning visitor: last choice wins
+  else lang = pickAcceptLang(request.headers.get("accept-language"));
+  if (!lang || lang === "ka" || !LANGS.includes(lang)) return null;
+
+  const headers = new Headers({ location: "/" + lang + p, "cache-control": "no-store", vary: "Cookie, Accept-Language" });
+  if (!cm) headers.append("set-cookie", `lang=${lang}; Path=/; Max-Age=31536000; SameSite=Lax`);
+  return new Response(null, { status: 302, headers });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -15,6 +62,9 @@ export default {
     if (url.pathname === "/api/rates") {
       return handleRates();
     }
+
+    const redirect = maybeRedirect(request, url);
+    if (redirect) return redirect;
 
     // Yandex Webmaster verification — Worker-იდან პირდაპირ ვაბრუნებთ, რადგან Cloudflare
     // assets-ი ".html" მისამართს clean-URL-ზე 307-ით ამისამართებს (verification იშლება).
@@ -41,8 +91,9 @@ export default {
     }
     if (!computed || !computed.rates) return res;
 
+    const lang = langFromPath(url.pathname);
     const out = new HTMLRewriter()
-      .on("[data-ssr]", new SsrHandler(computed.rates, computed.date))
+      .on("[data-ssr]", new SsrHandler(computed.rates, computed.date, RATE_ON[lang] || RATE_ON.ka))
       .transform(res);
 
     // HTML მცირე ხნით იქეშება ედჯზე (სისწრაფისთვის), მაგრამ სწრაფად ნახლდება:
@@ -117,16 +168,17 @@ function fmtNum(n, dp) {
 }
 
 class SsrHandler {
-  constructor(rates, date) {
+  constructor(rates, date, rateOn) {
     this.rates = rates;
     this.date = date;
+    this.rateOn = rateOn || "კურსი";
   }
   element(el) {
     const spec = el.getAttribute("data-ssr");
     if (!spec) return;
     let out = null;
     if (spec === "date") {
-      out = this.date ? "კურსი " + this.date : null;
+      out = this.date ? this.rateOn + " " + this.date : null;
     } else {
       const dp = parseInt(el.getAttribute("data-dp") || "4", 10);
       const v = evalSSR(spec, this.rates);
@@ -139,4 +191,4 @@ class SsrHandler {
 }
 
 // ტესტირებისთვის ხელმისაწვდომი (Worker-ისთვის default export-ს იყენებს).
-export { evalSSR, fmtNum, computeRates };
+export { evalSSR, fmtNum, computeRates, langFromPath, pickAcceptLang, maybeRedirect };
