@@ -162,7 +162,8 @@ function switcherHTML(lang, P) {
   return `<div class="langsel" data-cur="${lang}"><button class="langsel-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language">${GLOBE}<span class="langsel-cur">${NAMES[lang]}</span></button><div class="langsel-menu">${items}</div></div>`;
 }
 
-const LANG_SCRIPT = (lang) => `<script>(function(){try{document.cookie="lang=${lang}; path=/; max-age=31536000; SameSite=Lax";var w=document.querySelector(".langsel");if(w){var b=w.querySelector(".langsel-btn");b.addEventListener("click",function(e){e.stopPropagation();var o=w.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});document.addEventListener("click",function(){w.classList.remove("open");b.setAttribute("aria-expanded","false");});}}catch(e){}})();</script>`;
+const setCookieJS = 'function(l){document.cookie="lang="+l+"; path=/; max-age=31536000; SameSite=Lax";}';
+const LANG_SCRIPT = (lang) => `<script>(function(){try{var sc=${setCookieJS};sc("${lang}");var w=document.querySelector(".langsel");if(w){var b=w.querySelector(".langsel-btn");b.addEventListener("click",function(e){e.stopPropagation();var o=w.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});document.addEventListener("click",function(){w.classList.remove("open");b.setAttribute("aria-expanded","false");});w.querySelectorAll(".langsel-menu a").forEach(function(a){a.addEventListener("click",function(){sc(a.getAttribute("hreflang"));});});}}catch(e){}})();</script>`;
 
 function injectChrome(root, lang, P) {
   const head = root.querySelector('head');

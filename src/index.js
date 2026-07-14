@@ -46,8 +46,13 @@ function maybeRedirect(request, url) {
   const cookie = request.headers.get("cookie") || "";
   const cm = /(?:^|;\s*)lang=([a-z]{2})/.exec(cookie);
   let lang;
-  if (cm) lang = cm[1];                                       // returning visitor: last choice wins
-  else lang = pickAcceptLang(request.headers.get("accept-language"));
+  if (cm) {
+    lang = cm[1];                                             // explicit choice (either direction) wins
+  } else {
+    // no cookie: visitors in Georgia default to Georgian — don't auto-send them away
+    if ((request.cf && request.cf.country) === "GE") return null;
+    lang = pickAcceptLang(request.headers.get("accept-language"));
+  }
   if (!lang || lang === "ka" || !LANGS.includes(lang)) return null;
 
   const headers = new Headers({ location: "/" + lang + p, "cache-control": "no-store", vary: "Cookie, Accept-Language" });
