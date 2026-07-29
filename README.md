@@ -11,8 +11,11 @@ public/<N>-evro-lari/    # amount გვერდები (EUR↔GEL, USD↔GEL
 public/sitemap.xml       # გენერირებული (homepage + ყველა amount გვერდი + /dolari-lari/)
 public/robots.txt        # გენერირებული (Allow: / + Sitemap)
 public/<key>.txt         # IndexNow key ფაილი (გენერირებული)
+public/<lang>/           # /en/ /ru/ /uk/ /az/ /tr/ /hy/ — თარგმნილი გვერდები (build output)
 src/index.js             # Worker: /api/rates → NBG proxy; HTML-ში ცოცხალი კურსის edge-SSR
-scripts/build-pages.js   # გენერატორი — amount გვერდები + sitemap + robots + IndexNow key
+scripts/build-pages.js   # KA გვერდების გენერატორი — amount + landing + sitemap + robots + IndexNow key
+scripts/build-i18n.mjs   # i18n გენერატორი — KA-დან თარგმნის ყველა /<lang>/ გვერდს
+scripts/strings.i18n.json # თარგმანების ბაზა (hash-key → 7 ენა) — თარგმანის source of truth
 scripts/indexnow-submit.js # IndexNow ping (Bing/Yandex/Yahoo/DuckDuckGo)
 wrangler.jsonc           # კონფიგი (assets → ./public, run_worker_first → SSR-ისთვის)
 ```
@@ -23,6 +26,45 @@ amount გვერდები, sitemap, robots და IndexNow key გენ�
 node scripts/build-pages.js   # შემდეგ git add -A && commit && push
 ```
 თანხების ნაკრები: `scripts/build-pages.js`-ში `AMOUNTS`. ვალუტები: `CUR` (EUR, USD).
+
+## მრავალენოვანი სისტემა (i18n) — 7 ენა
+საიტი 7 ენაზეა, თითო **ცალკე ინდექსირებად URL-ზე** (SEO-ისთვის):
+- `ka` = root (`/`, `/100-evro-lari/`, …) — კანონიკური ქართული, **წყარო**.
+- `en ru uk az tr hy` = ქვე-დირექტორიები (`/ru/…`, `/az/…`) — **build output, ხელით არ ასწორო**.
+
+თითო `/<lang>/` გვერდი სრულად თარგმნილი სტატიკური HTML-ია (ტექსტი + `<title>` + meta description
++ og/twitter + JSON-LD schema), შიდა ბმულებით `/<lang>`-პრეფიქსით და hreflang-ალტერნატივებით
+(7 ენა + x-default). **თარგმანის source of truth:** `scripts/strings.i18n.json` — დაკლავიშებულია
+KA-ტექსტის ჰეშით (`keyFor`, `scripts/i18n-lib.mjs`). `build-i18n.mjs` კითხულობს სუფთა KA გვერდებს,
+ამოიღებს სათარგმნ სტრიქონებს (ტექსტი + meta + schema), ჰეშავს და ცვლის თარგმანით.
+
+### გადაგენერაცია — სწორი თანმიმდევრობა
+```bash
+git checkout public/**/*.html          # ⚠️ სავალდებულო — build-i18n სუფთა KA-ს საჭიროებს
+node scripts/build-i18n.mjs            # წერს ka root-ს + ყველა /<lang>/ გვერდს
+node scripts/build-sitemap.mjs         # sitemap ყველა ენით
+node scripts/verify-langs.mjs          # 0 structural issue / 0 KA leak
+```
+**⚠️ Gotcha:** `build-i18n.mjs` **არ არის idempotentური** whitespace-ზე — უკვე build-ებულ გვერდზე
+(git checkout-ის გარეშე) გაშვება ცარიელ ხაზებს აგროვებს, სრული rebuild კი **378-ვე გვერდის** diff-ს
+გამოიღებს. ამიტომ ყოველთვის `git checkout public/` ჯერ.
+
+### პატარა title/description ცვლილება (რამდენიმე გვერდზე, სუფთა diff)
+სრული rebuild-ის churn-ის ასარიდებლად:
+1. შეასწორე შესაბამისი **ენის** მნიშვნელობა `strings.i18n.json`-ში (**KA არ შეეხო** — ჰეშ-key სტაბილურია).
+2. targeted-patch-ით ჩაასწორე მხოლოდ დაზარალებული built HTML ფაილები (regex-replace head-tag-ები:
+   `<title>`, `og:title`, `twitter:title`, `description`, `og:description`, `twitter:description`).
+3. deploy-ის მერე: `node scripts/indexnow-submit.js`.
+
+`keywords` meta **არ ითარგმნება** pipeline-ით (ყველა ენაზე KA რჩება) — რანჟირებაზე გავლენა უმნიშვნელოა.
+
+### SEO/CTR კონვენცია (non-KA landing-ები)
+Yandex-ისთვის title-ები იწყება **კონკრეტული ინტენტით + geo**-თი: „<ვალუტა> к лари … в Грузии"
+(არა გენერიკული „Курс рубля"). ლათინური transliteration-artifact „(rublis kursi)" **მოცილებულია
+არა-ქართული ენებიდან** (KA-ზე რჩება — ქართველები ლათინურად ეძებენ). იხ. `ARCHITECTURE.md`.
+
+### ენის დამატება
+`LANGS/NAMES/LOCALE` → `build-i18n.mjs` + `i18n-translate.mjs` + Worker `LANGS/RATE_ON`; hreflang; მერე rebuild.
 
 ## ცოცხალი კურსი HTML-ში (edge SSR)
 რიცხვი არსად არ არის hardcode. გვერდებზე `data-ssr` ატრიბუტებია (მაგ. `data-ssr="100*EUR"`),
