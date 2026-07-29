@@ -1,14 +1,14 @@
 {
   "k1d288b64c1": {
     "ka": "ევროს კურსი დღეს — {n} ევრო რამდენი ლარია | evro.ge",
-    "en": "Euro exchange rate today — How many GEL is {n} EUR | evro.ge",
-    "ru": "Курс евро сегодня — Сколько GEL составляет {n} EUR | evro.ge",
-    "uk": "Курс євро сьогодні — Скільки GEL становить {n} EUR | evro.ge",
+    "en": "Euro to lari today — EUR/GEL rate in Georgia | evro.ge",
+    "ru": "Евро к лари сегодня — курс EUR/GEL в Грузии | evro.ge",
+    "uk": "Євро до ларі сьогодні — курс EUR/GEL у Грузії | evro.ge",
     "hasN": true,
     "ph": 0,
-    "az": "Avro kursu bu gün — {n} EUR neçə GEL-dir | evro.ge",
-    "tr": "Bugünün Euro kuru — {n} EUR kaç GEL eder | evro.ge",
-    "hy": "Եվրոյի փոխարժեքն այսօր — Ինչքան GEL է {n} EUR-ը | evro.ge"
+    "az": "Avronun lari məzənnəsi bu gün — Gürcüstanda EUR/GEL | evro.ge",
+    "tr": "Euro lari kuru bugün — Gürcistan'da EUR/GEL | evro.ge",
+    "hy": "Եվրոն լարիով այսօր՝ EUR/GEL Վրաստանում | evro.ge"
   },
   "k7c3255473f": {
     "ka": "{n} ევრო ლარში",
@@ -78,14 +78,14 @@
   },
   "k63552d59fa": {
     "ka": "ევროს კურსი დღეს — {n} ევრო რამდენი ლარია",
-    "en": "Euro exchange rate today — How many GEL is {n} EUR",
-    "ru": "Курс евро сегодня — Сколько GEL составляет {n} EUR",
-    "uk": "Курс євро сьогодні — Скільки GEL становить {n} EUR",
+    "en": "Euro to lari today — EUR/GEL rate in Georgia",
+    "ru": "Евро к лари сегодня — курс EUR/GEL в Грузии",
+    "uk": "Євро до ларі сьогодні — курс EUR/GEL у Грузії",
     "hasN": true,
     "ph": 0,
-    "az": "Avro kursu bu gün — {n} EUR neçə GEL-dir",
-    "tr": "Bugünün Euro kuru — {n} EUR kaç GEL eder",
-    "hy": "Եվրոյի փոխարժեքն այսօր — Ինչքան GEL է {n} EUR-ը"
+    "az": "Avronun lari məzənnəsi bu gün — Gürcüstanda EUR/GEL",
+    "tr": "Euro lari kuru bugün — Gürcistan'da EUR/GEL",
+    "hy": "Եվրոն լարիով այսօր՝ EUR/GEL Վրաստանում"
   },
   "k4b9cb3ae6a": {
     "ka": "პოპულარული თანხები",
