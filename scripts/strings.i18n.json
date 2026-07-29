@@ -947,14 +947,14 @@
   },
   "kb6999109a0": {
     "ka": "ლირის კურსი დღეს — TRY/GEL ოფიციალური კურსი | evro.ge",
-    "en": "TRY exchange rate today — TRY/GEL official rate | evro.ge",
-    "ru": "Курс лиры сегодня — официальный курс TRY/GEL | evro.ge",
-    "uk": "Курс ліри сьогодні — офіційний курс TRY/GEL | evro.ge",
+    "en": "Lira to lari today — TRY/GEL rate in Georgia | evro.ge",
+    "ru": "Лира к лари сегодня — курс TRY/GEL в Грузии | evro.ge",
+    "uk": "Ліра до ларі сьогодні — курс TRY/GEL у Грузії | evro.ge",
     "hasN": false,
     "ph": 0,
-    "az": "Lirə məzənnəsi bu gün — rəsmi TRY/GEL məzənnəsi | evro.ge",
-    "tr": "Bugün lira kuru — resmi TRY/GEL kuru | evro.ge",
-    "hy": "Լիրայի փոխարժեքն այսօր՝ TRY/GEL պաշտոնական փոխարժեք | evro.ge"
+    "az": "Lirənin lari məzənnəsi bu gün — Gürcüstanda TRY/GEL | evro.ge",
+    "tr": "Lira lari kuru bugün — Gürcistan'da TRY/GEL | evro.ge",
+    "hy": "Լիրան լարիով այսօր՝ TRY/GEL Վրաստանում | evro.ge"
   },
   "k09f40c9dbd": {
     "ka": "ლირის კურსი დღეს — თურქული ლირა ლარი",
@@ -1101,14 +1101,14 @@
   },
   "k1163d6f52d": {
     "ka": "ფუნტის კურსი დღეს — GBP/GEL ოფიციალური კურსი | evro.ge",
-    "en": "Pound rate today — GBP/GEL official rate | evro.ge",
-    "ru": "Курс фунта сегодня — официальный курс GBP/GEL | evro.ge",
-    "uk": "Курс фунта сьогодні — офіційний курс GBP/GEL | evro.ge",
+    "en": "Pound to lari today — GBP/GEL rate in Georgia | evro.ge",
+    "ru": "Фунт к лари сегодня — курс GBP/GEL в Грузии | evro.ge",
+    "uk": "Фунт до ларі сьогодні — курс GBP/GEL у Грузії | evro.ge",
     "hasN": false,
     "ph": 0,
-    "az": "Funtun bugünkü məzənnəsi — GBP/GEL rəsmi məzənnəsi | evro.ge",
-    "tr": "Bugün Sterlin kuru — GBP/GEL resmi kuru | evro.ge",
-    "hy": "Ֆունտի փոխարժեքն այսօր — GBP/GEL պաշտոնական փոխարժեք | evro.ge"
+    "az": "Funtun lari məzənnəsi bu gün — Gürcüstanda GBP/GEL | evro.ge",
+    "tr": "Sterlin lari kuru bugün — Gürcistan'da GBP/GEL | evro.ge",
+    "hy": "Ֆունտը լարիով այսօր՝ GBP/GEL Վրաստանում | evro.ge"
   },
   "k818e58de41": {
     "ka": "ფუნტის კურსი დღეს — ფუნტი ლარი",
@@ -2368,12 +2368,12 @@
     "ka": "ვალუტის კურსი ლარში დღეს — დოლარის, ევროს, ფუნტის, ლირის და რუბლის ოფიციალური კურსი ეროვნული ბანკის მონაცემებით (valutis kursi).",
     "hasN": false,
     "ph": 0,
-    "en": "Currency rates in GEL today — official rates for US dollar, euro, pound, lira, and ruble according to the National Bank of Georgia (valutis kursi).",
-    "ru": "Курсы валют в лари на сегодня — официальные курсы доллара, евро, фунта, лиры и рубля по данным Национального банка Грузии (valutis kursi).",
-    "uk": "Курси валют у ларі на сьогодні — офіційні курси долара, євро, фунта, ліри та рубля за даними Національного банку Грузії (valutis kursi).",
-    "az": "Bu gün lari ilə valyuta məzənnələri — Gürcüstan Milli Bankının məlumatlarına əsasən ABŞ dolları, avro, funt, lirə və rublun rəsmi məzənnələri (valutis kursi).",
-    "tr": "Bugün lari cinsinden döviz kurları — Gürcistan Merkez Bankası verilerine göre ABD doları, euro, sterlin, lira ve rublenin resmi kurları (valutis kursi).",
-    "hy": "Արժույթի փոխարժեքները լարիով այսօր՝ ԱՄՆ դոլարի, եվրոյի, ֆունտի, լիրայի և ռուբլու պաշտոնական փոխարժեքները Վրաստանի ազգային բանկի տվյալներով (valutis kursi)."
+    "en": "Currency rates in GEL today — official rates for US dollar, euro, pound, lira, and ruble according to the National Bank of Georgia.",
+    "ru": "Курсы валют в лари на сегодня — официальные курсы доллара, евро, фунта, лиры и рубля по данным Национального банка Грузии.",
+    "uk": "Курси валют у ларі на сьогодні — офіційні курси долара, євро, фунта, ліри та рубля за даними Національного банку Грузії.",
+    "az": "Bu gün lari ilə valyuta məzənnələri — Gürcüstan Milli Bankının məlumatlarına əsasən ABŞ dolları, avro, funt, lirə və rublun rəsmi məzənnələri.",
+    "tr": "Bugün lari cinsinden döviz kurları — Gürcistan Merkez Bankası verilerine göre ABD doları, euro, sterlin, lira ve rublenin resmi kurları.",
+    "hy": "Արժույթի փոխարժեքները լարիով այսօր՝ ԱՄՆ դոլարի, եվրոյի, ֆունտի, լիրայի և ռուբլու պաշտոնական փոխարժեքները Վրաստանի ազգային բանկի տվյալներով."
   },
   "kc864f50652": {
     "ka": "ვალუტის კურსი დღეს — დოლარი, ევრო, ფუნტი",
@@ -2412,45 +2412,45 @@
     "ka": "ლირის კურსი ლარში დღეს — {n} ლირა რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე თურქული ლირა ლარში (liris kursi).",
     "hasN": true,
     "ph": 0,
-    "en": "Lira rate in GEL today — how much is {n} TRY in GEL according to the official rate of the National Bank. Convert Turkish Lira to GEL (liris kursi).",
-    "ru": "Курс лиры к лари сегодня — сколько {n} TRY в GEL по официальному курсу Национального банка. Конвертируйте турецкую лиру в лари (liris kursi).",
-    "uk": "Курс ліри до ларі сьогодні — скільки {n} TRY у GEL за офіційним курсом Національного банку. Конвертуйте турецьку ліру в ларі (liris kursi).",
-    "az": "Liranın GEL-ə qarşı bugünkü məzənnəsi — Milli Bankın rəsmi məzənnəsinə əsasən {n} TRY neçə GEL edir. Türk lirəsini GEL-ə çevirin (liris kursi).",
-    "tr": "Bugün Lira kuru — Merkez Bankası'nın resmi kuruna göre {n} TRY kaç GEL eder. Türk Lirasını GEL'e çevirin (liris kursi).",
-    "hy": "Լիրայի փոխարժեքը GEL-ով այսօր — որքա՞ն է {n} TRY-ն GEL-ով ըստ Ազգային բանկի պաշտոնական փոխարժեքի: Փոխարկեք թուրքական լիրան GEL-ի (liris kursi):"
+    "en": "How much is {n} lira in lari today in Georgia — TRY/GEL by the official National Bank rate. Online lira to lari converter, both ways.",
+    "ru": "Сколько лари стоит {n} лира сегодня в Грузии — курс TRY/GEL по официальному курсу Нацбанка. Онлайн-конвертер лиры в лари и обратно.",
+    "uk": "Скільки ларі коштує {n} ліра сьогодні у Грузії — курс TRY/GEL за офіційним курсом Нацбанку. Онлайн-конвертер ліри в ларі та назад.",
+    "az": "{n} lirə bu gün Gürcüstanda neçə laridir — Milli Bankın rəsmi məzənnəsi ilə TRY/GEL. Onlayn lirə–lari çevirici, hər iki istiqamətdə.",
+    "tr": "{n} lira bugün Gürcistan'da kaç lari — Merkez Bankası resmi kuruna göre TRY/GEL. Çevrimiçi lira–lari çevirici, çift yönlü.",
+    "hy": "Քանի՞ լարի է {n} լիրան այսօր Վրաստանում — TRY/GEL՝ ըստ Ազգային բանկի պաշտոնական փոխարժեքի։ Լիրա–լարի առցանց փոխարկիչ։"
   },
   "kc95a39dfbe": {
     "ka": "ლირის კურსი დღეს — TRY/GEL ოფიციალური კურსი",
     "hasN": false,
     "ph": 0,
-    "en": "Lira rate today — TRY/GEL official rate",
-    "ru": "Курс лиры сегодня — официальный курс TRY/GEL",
-    "uk": "Курс ліри сьогодні — офіційний курс TRY/GEL",
-    "az": "Liranın bugünkü məzənnəsi — TRY/GEL rəsmi məzənnəsi",
-    "tr": "Bugün Lira kuru — TRY/GEL resmi kuru",
-    "hy": "Լիրայի փոխարժեքն այսօր — TRY/GEL պաշտոնական փոխարժեքը"
+    "en": "Lira to lari today — TRY/GEL rate in Georgia",
+    "ru": "Лира к лари сегодня — курс TRY/GEL в Грузии",
+    "uk": "Ліра до ларі сьогодні — курс TRY/GEL у Грузії",
+    "az": "Lirənin lari məzənnəsi bu gün — Gürcüstanda TRY/GEL",
+    "tr": "Lira lari kuru bugün — Gürcistan'da TRY/GEL",
+    "hy": "Լիրան լարիով այսօր՝ TRY/GEL Վրաստանում"
   },
   "kb5b86de2d2": {
     "ka": "ფუნტის კურსი ლარში დღეს — {n} ფუნტი რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე ბრიტანული ფუნტი ლარში (funtis kursi).",
     "hasN": true,
     "ph": 0,
-    "en": "Pound rate in GEL today — how much is {n} GBP in GEL according to the National Bank of Georgia official rate. Convert British Pound to GEL (funtis kursi).",
-    "ru": "Курс фунта к лари сегодня — сколько {n} фунтов в лари по официальному курсу Национального банка Грузии. Конвертируйте британский фунт в лари (funtis kursi).",
-    "uk": "Курс фунта до ларі сьогодні — скільки {n} фунтів у ларі за офіційним курсом Національного банку Грузії. Конвертуйте британський фунт у ларі (funtis kursi).",
-    "az": "Funtun lariyə qarşı məzənnəsi bu gün — {n} funt Gürcüstan Milli Bankının rəsmi məzənnəsi ilə neçə lari edir. Britaniya funtunu lariyə çevirin (funtis kursi).",
-    "tr": "Bugün sterlin kuru — Gürcistan Merkez Bankası'nın resmi kuruna göre {n} sterlin kaç lari eder. İngiliz sterlinini lariye çevirin (funtis kursi).",
-    "hy": "Ֆունտի փոխարժեքը լարիով այսօր՝ քանի՞ լարի է {n} ֆունտը Վրաստանի ազգային բանկի պաշտոնական փոխարժեքով։ Փոխարկեք բրիտանական ֆունտը լարիի (funtis kursi)."
+    "en": "How much is {n} pound in lari today in Georgia — GBP/GEL by the official National Bank rate. Online pound to lari converter, both ways.",
+    "ru": "Сколько лари стоит {n} фунт сегодня в Грузии — курс GBP/GEL по официальному курсу Нацбанка. Онлайн-конвертер фунта в лари и обратно.",
+    "uk": "Скільки ларі коштує {n} фунт сьогодні у Грузії — курс GBP/GEL за офіційним курсом Нацбанку. Онлайн-конвертер фунта в ларі та назад.",
+    "az": "{n} funt bu gün Gürcüstanda neçə laridir — Milli Bankın rəsmi məzənnəsi ilə GBP/GEL. Onlayn funt–lari çevirici, hər iki istiqamətdə.",
+    "tr": "{n} sterlin bugün Gürcistan'da kaç lari — Merkez Bankası resmi kuruna göre GBP/GEL. Çevrimiçi sterlin–lari çevirici, çift yönlü.",
+    "hy": "Քանի՞ լարի է {n} ֆունտն այսօր Վրաստանում — GBP/GEL՝ ըստ Ազգային բանկի պաշտոնական փոխարժեքի։ Ֆունտ–լարի առցանց փոխարկիչ։"
   },
   "k9e5cabfebc": {
     "ka": "ფუნტის კურსი დღეს — GBP/GEL ოფიციალური კურსი",
     "hasN": false,
     "ph": 0,
-    "en": "Pound rate today — GBP/GEL official rate",
-    "ru": "Курс фунта сегодня — официальный курс GBP/GEL",
-    "uk": "Курс фунта сьогодні — офіційний курс GBP/GEL",
-    "az": "Funtun məzənnəsi bu gün — GBP/GEL rəsmi məzənnəsi",
-    "tr": "Bugün sterlin kuru — GBP/GEL resmi kuru",
-    "hy": "Ֆունտի փոխարժեքն այսօր՝ GBP/GEL պաշտոնական փոխարժեքը"
+    "en": "Pound to lari today — GBP/GEL rate in Georgia",
+    "ru": "Фунт к лари сегодня — курс GBP/GEL в Грузии",
+    "uk": "Фунт до ларі сьогодні — курс GBP/GEL у Грузії",
+    "az": "Funtun lari məzənnəsi bu gün — Gürcüstanda GBP/GEL",
+    "tr": "Sterlin lari kuru bugün — Gürcistan'da GBP/GEL",
+    "hy": "Ֆունտը լարիով այսօր՝ GBP/GEL Վրաստանում"
   },
   "kfa7f05de75": {
     "ka": "დოლარის კურსი ლარში დღეს — {n} დოლარი რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე დოლარი ლარში ცოცხალი კონვერტერით (dolaris kursi).",
