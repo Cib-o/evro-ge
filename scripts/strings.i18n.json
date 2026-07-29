@@ -771,14 +771,14 @@
   },
   "k9156f03214": {
     "ka": "რუბლის კურსი დღეს — RUB/GEL ოფიციალური კურსი | evro.ge",
-    "en": "Ruble rate today — RUB/GEL official rate | evro.ge",
-    "ru": "Курс рубля на сегодня — официальный курс RUB/GEL | evro.ge",
-    "uk": "Курс рубля на сьогодні — офіційний курс RUB/GEL | evro.ge",
+    "en": "Ruble to lari today — RUB/GEL rate in Georgia | evro.ge",
+    "ru": "Рубль к лари сегодня — курс RUB/GEL в Грузии | evro.ge",
+    "uk": "Рубль до ларі сьогодні — курс RUB/GEL у Грузії | evro.ge",
     "hasN": false,
     "ph": 0,
-    "az": "Rublun məzənnəsi bu gün — RUB/GEL rəsmi məzənnəsi | evro.ge",
-    "tr": "Bugünkü ruble kuru — RUB/GEL resmi kuru | evro.ge",
-    "hy": "Ռուբլու փոխարժեքն այսօր՝ RUB/GEL պաշտոնական փոխարժեք | evro.ge"
+    "az": "Rublun lari məzənnəsi bu gün — Gürcüstanda RUB/GEL | evro.ge",
+    "tr": "Ruble lari kuru bugün — Gürcistan'da RUB/GEL | evro.ge",
+    "hy": "Ռուբլու փոխարժեքը լարիով այսօր՝ RUB/GEL Վրաստանում | evro.ge"
   },
   "kcf536509ca": {
     "ka": "← ვალუტის კურსი",
@@ -1255,14 +1255,14 @@
   },
   "k93369b1b65": {
     "ka": "დოლარის კურსი დღეს — USD/GEL ოფიციალური კურსი | evro.ge",
-    "en": "Dollar rate today — USD/GEL official rate | evro.ge",
-    "ru": "Курс доллара сегодня — официальный курс USD/GEL | evro.ge",
-    "uk": "Курс долара сьогодні — офіційний курс USD/GEL | evro.ge",
+    "en": "Dollar to lari today — USD/GEL rate in Georgia | evro.ge",
+    "ru": "Доллар к лари сегодня — курс USD/GEL в Грузии | evro.ge",
+    "uk": "Долар до ларі сьогодні — курс USD/GEL у Грузії | evro.ge",
     "hasN": false,
     "ph": 0,
-    "az": "Dolların məzənnəsi bu gün — USD/GEL rəsmi məzənnəsi | evro.ge",
-    "tr": "Bugün dolar kuru — USD/GEL resmi kuru | evro.ge",
-    "hy": "Դոլարի փոխարժեքն այսօր՝ USD/GEL պաշտոնական փոխարժեքը | evro.ge"
+    "az": "Dolların lari məzənnəsi bu gün — Gürcüstanda USD/GEL | evro.ge",
+    "tr": "Dolar lari kuru bugün — Gürcistan'da USD/GEL | evro.ge",
+    "hy": "Դոլարը լարիով այսօր՝ USD/GEL Վրաստանում | evro.ge"
   },
   "k82b95da466": {
     "ka": "← ევროს კურსი",
@@ -2390,23 +2390,23 @@
     "ka": "რუბლის კურსი ლარში დღეს — {n} რუბლი რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე რუსული რუბლი ლარში (rublis kursi).",
     "hasN": true,
     "ph": 0,
-    "en": "RUB rate in GEL today — {n} RUB to GEL according to the official rate of the National Bank. Convert Russian Ruble to GEL (rublis kursi).",
-    "ru": "Курс рубля к лари сегодня — {n} рубль в лари по официальному курсу Национального банка. Конвертируйте российский рубль в лари (rublis kursi).",
-    "uk": "Курс рубля до ларі сьогодні — {n} рубль у ларі за офіційним курсом Національного банку. Конвертуйте російський рубль у ларі (rublis kursi).",
-    "az": "Bu gün rublun lari məzənnəsi — Milli Bankın rəsmi məzənnəsinə əsasən {n} rubl neçə lari edir. Rusiya rublunu lariyə çevirin (rublis kursi).",
-    "tr": "Bugün ruble lari kuru — Merkez Bankası'nın resmi kuruna göre {n} ruble kaç lari eder. Rus rublesini lariye çevirin (rublis kursi).",
-    "hy": "Ռուբլու փոխարժեքը լարիով այսօր — {n} ռուբլին լարիով՝ ըստ Ազգային բանկի պաշտոնական փոխարժեքի։ Փոխարկեք ռուսական ռուբլին լարիի (rublis kursi)։"
+    "en": "How much is {n} ruble in lari today in Georgia — RUB/GEL by the official National Bank rate. Online ruble to lari converter, both ways.",
+    "ru": "Сколько лари стоит {n} рубль сегодня в Грузии — курс RUB/GEL по официальному курсу Нацбанка. Онлайн-конвертер рубля в лари и обратно.",
+    "uk": "Скільки ларі коштує {n} рубль сьогодні у Грузії — курс RUB/GEL за офіційним курсом Нацбанку. Онлайн-конвертер рубля в ларі та назад.",
+    "az": "{n} rubl bu gün Gürcüstanda neçə laridir — Milli Bankın rəsmi məzənnəsi ilə RUB/GEL. Onlayn rubl–lari çevirici, hər iki istiqamətdə.",
+    "tr": "{n} ruble bugün Gürcistan'da kaç lari — Merkez Bankası resmi kuruna göre RUB/GEL. Çevrimiçi ruble–lari çevirici, çift yönlü.",
+    "hy": "Քանի՞ լարի է {n} ռուբլին այսօր Վրաստանում — RUB/GEL՝ ըստ Ազգային բանկի պաշտոնական փոխարժեքի։ Ռուբլի–լարի առցանց փոխարկիչ։"
   },
   "k6ae3455bdd": {
     "ka": "რუბლის კურსი დღეს — RUB/GEL ოფიციალური კურსი",
     "hasN": false,
     "ph": 0,
-    "en": "RUB exchange rate today — RUB/GEL official rate",
-    "ru": "Курс рубля сегодня — официальный курс RUB/GEL",
-    "uk": "Курс рубля сьогодні — офіційний курс RUB/GEL",
-    "az": "Ruble məzənnəsi bu gün — rəsmi RUB/GEL məzənnəsi",
-    "tr": "Bugün ruble kuru — resmi RUB/GEL kuru",
-    "hy": "Ռուբլու փոխարժեքն այսօր՝ RUB/GEL պաշտոնական փոխարժեք"
+    "en": "Ruble to lari today — RUB/GEL rate in Georgia",
+    "ru": "Рубль к лари сегодня — курс RUB/GEL в Грузии",
+    "uk": "Рубль до ларі сьогодні — курс RUB/GEL у Грузії",
+    "az": "Rublun lari məzənnəsi bu gün — Gürcüstanda RUB/GEL",
+    "tr": "Ruble lari kuru bugün — Gürcistan'da RUB/GEL",
+    "hy": "Ռուբլու փոխարժեքը լարիով այսօր՝ RUB/GEL Վրաստանում"
   },
   "k562303c38a": {
     "ka": "ლირის კურსი ლარში დღეს — {n} ლირა რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე თურქული ლირა ლარში (liris kursi).",
@@ -2456,23 +2456,23 @@
     "ka": "დოლარის კურსი ლარში დღეს — {n} დოლარი რამდენი ლარია ეროვნული ბანკის ოფიციალური კურსით. გადათვალე დოლარი ლარში ცოცხალი კონვერტერით (dolaris kursi).",
     "hasN": true,
     "ph": 0,
-    "en": "USD exchange rate in GEL today — how many GEL is {n} USD at the official rate of the National Bank. Convert USD to GEL with the live converter (dolaris kursi).",
-    "ru": "Курс USD к GEL сегодня — сколько GEL в {n} USD по официальному курсу Национального банка. Конвертируйте USD в GEL с помощью живого конвертера (dolaris kursi).",
-    "uk": "Курс USD до GEL сьогодні — скільки GEL у {n} USD за офіційним курсом Національного банку. Конвертуйте USD у GEL за допомогою живого конвертера (dolaris kursi).",
-    "az": "Bu gün USD-nin GEL-ə məzənnəsi — Milli Bankın rəsmi məzənnəsi ilə {n} USD neçə GEL edir. Canlı konvertorla USD-ni GEL-ə çevirin (dolaris kursi).",
-    "tr": "Bugün USD/GEL kuru — Milli Bank'ın resmi kuruna göre {n} USD kaç GEL eder. Canlı dönüştürücü ile USD'yi GEL'e çevirin (dolaris kursi).",
-    "hy": "USD-ի փոխարժեքը GEL-ով այսօր՝ քանի՞ GEL է {n} USD-ն Ազգային բանկի պաշտոնական փոխարժեքով։ Փոխարկեք USD-ն GEL-ի կենդանի փոխարկիչով (dolaris kursi)։"
+    "en": "How much is {n} dollar in lari today in Georgia — USD/GEL by the official National Bank rate. Online dollar to lari converter, both ways.",
+    "ru": "Сколько лари стоит {n} доллар сегодня в Грузии — курс USD/GEL по официальному курсу Нацбанка. Онлайн-конвертер долларов в лари и обратно.",
+    "uk": "Скільки ларі коштує {n} долар сьогодні у Грузії — курс USD/GEL за офіційним курсом Нацбанку. Онлайн-конвертер доларів у ларі та назад.",
+    "az": "{n} dollar bu gün Gürcüstanda neçə laridir — Milli Bankın rəsmi məzənnəsi ilə USD/GEL. Onlayn dollar–lari çevirici, hər iki istiqamətdə.",
+    "tr": "{n} dolar bugün Gürcistan'da kaç lari — Merkez Bankası resmi kuruna göre USD/GEL. Çevrimiçi dolar–lari çevirici, çift yönlü.",
+    "hy": "Քանի՞ լարի է {n} դոլարն այսօր Վրաստանում — USD/GEL՝ ըստ Ազգային բանկի պաշտոնական փոխարժեքի։ Դոլար–լարի առցանց փոխարկիչ։"
   },
   "k3c48b7b02b": {
     "ka": "დოლარის კურსი დღეს — USD/GEL ოფიციალური კურსი",
     "hasN": false,
     "ph": 0,
-    "en": "USD exchange rate today — official USD/GEL rate",
-    "ru": "Курс USD сегодня — официальный курс USD/GEL",
-    "uk": "Курс USD сьогодні — офіційний курс USD/GEL",
-    "az": "Bu gün USD məzənnəsi — rəsmi USD/GEL məzənnəsi",
-    "tr": "Bugün USD kuru — resmi USD/GEL kuru",
-    "hy": "USD-ի փոխարժեքն այսօր՝ պաշտոնական USD/GEL փոխարժեքը"
+    "en": "Dollar to lari today — USD/GEL rate in Georgia",
+    "ru": "Доллар к лари сегодня — курс USD/GEL в Грузии",
+    "uk": "Долар до ларі сьогодні — курс USD/GEL у Грузії",
+    "az": "Dolların lari məzənnəsi bu gün — Gürcüstanda USD/GEL",
+    "tr": "Dolar lari kuru bugün — Gürcistan'da USD/GEL",
+    "hy": "Դոլարը լարիով այսօր՝ USD/GEL Վրաստանում"
   },
   "kee07af593f": {
     "ka": "{n} ლარი (GEL) რამდენი ევროა (EUR) დღეს? ნახე {n} ლარის ღირებულება ევროში ეროვნული ბანკის ოფიციალური კურსით — ცოცხალი, ყოველდღიურად განახლებადი გადათვლა.",
