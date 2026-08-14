@@ -72,11 +72,27 @@ Yandex-ისთვის title-ები იწყება **კონკრ�
 ხოლო client JS იმავეს არეფრეშებს. ამისთვის `wrangler.jsonc`-ში `run_worker_first: true`.
 
 ## IndexNow (Bing/Yandex/Yahoo/DuckDuckGo სწრაფი ინდექსაცია)
-დიფლოის **შემდეგ** (key ფაილი ლაივზე უნდა იყოს):
+**ავტომატურია.** Worker-ის cron (`wrangler.jsonc` → `triggers.crons`, 06:00 UTC = 10:00 თბილისი)
+ყოველდღე პინგავს: ყველა landing (42 URL) + amount-გვერდების 1/7 როტაციით (48 URL) = 90/დღე,
+ანუ თითოეული გვერდი კვირაში ერთხელ. სრული სია ყოველდღე რომ იგზავნებოდეს → 429.
+
+ხელით (მაგ. დიდი კონტენტ-ცვლილების მერე; key ფაილი ლაივზე უნდა იყოს):
 ```bash
-node scripts/indexnow-submit.js   # მხოლოდ შეცვლილ URL-ებზე გაუშვი (სპამი → 429)
+node scripts/indexnow-submit.js   # აგზავნის sitemap-ის სრულ სიას
 ```
 Google IndexNow-ს არ იყენებს — ის sitemap-ით/crawl-ით ინდექსავს.
+
+## ანალიტიკა (GA4)
+`public/ev.js` — ინტერაქციის ივენთები. **გენერირებულ HTML-ში არ წერია**: Worker-ი ედჯზე ურთავს
+`</body>`-მდე, რომ ერთი `<script>`-ისთვის 378 გვერდის rebuild (და i18n whitespace churn) არ დაგვჭირდეს.
+ივენთები: `converter_used`, `amount_link_click`, `lang_switch`, `outbound_click`, `engaged_90`,
+`rate_missing`. GA4-ში ხელით მოსანიშნია key event-ებად: **`converter_used`, `amount_link_click`**
+(Admin → Events → „Mark as key event").
+
+## sitemap-ის lastmod
+`public/sitemap.xml` სტატიკურია, მაგრამ `lastmod`-ს **Worker ცვლის ედჯზე** NBG-ის რეალური
+`validFromDate`-ით — თორემ ყოველდღიური კურსის საიტს ბილდის თარიღი რჩებოდა და საძიებოებს
+„აქ ახალი არაფერია" ეუბნებოდა.
 
 ## რატომ public/ საქაღალდე
 `wrangler.jsonc`-ში `assets.directory = "./public"` — ანუ საჯაროდ **მხოლოდ** public/-ის შიგთავსი იტვირთება.

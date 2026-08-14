@@ -5,6 +5,8 @@
   "compatibility_date": "2026-06-23",
   "compatibility_flags": ["nodejs_compat"],
   "observability": { "enabled": true },
+  // 06:00 UTC = 10:00 თბილისი — NBG დილით აქვეყნებს დღის კურსს, მერე ვპინგავთ IndexNow-ს.
+  "triggers": { "crons": ["0 6 * * *"] },
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",

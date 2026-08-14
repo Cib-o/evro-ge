@@ -17,7 +17,8 @@ Worker-ზე, სადაც **ცოცხალი კურსი edge-SSR-
 | `scripts/build-i18n.mjs` | KA-დან 6 ენას თარგმნის (ტექსტი+meta+schema), შიდა ბმულებს `/<lang>`-ით ცვლის, hreflang/canonical/og აწყობს, ენის სვიჩერს ამატებს. |
 | `scripts/strings.i18n.json` | **თარგმანის source of truth** — hash-key → 7 ენა. |
 | `scripts/i18n-lib.mjs` | `keyFor` (ჰეშირება), `textTemplate`/`elementTemplate` (რიცხვი→`{n}`), SELECTORS/META_SELECTORS. |
-| `src/index.js` (Worker) | (1) `/api/rates` → NBG proxy (CORS-ის გარეშე); (2) edge-SSR `data-ssr`; (3) `maybeRedirect` Accept-Language-ით. |
+| `src/index.js` (Worker) | (1) `/api/rates` → NBG proxy (CORS-ის გარეშე); (2) edge-SSR `data-ssr`; (3) `maybeRedirect` Accept-Language-ით; (4) `/sitemap.xml`-ის `lastmod` ცოცხალი; (5) `public/ev.js`-ის ჩართვა; (6) `scheduled()` → ყოველდღიური IndexNow. |
+| `public/ev.js` | GA4 ინტერაქციის ივენთები. **HTML-ში არ წერია** — Worker-ი ედჯზე ურთავს. |
 
 ## მონაცემთა ნაკადი (ცოცხალი კურსი, self-healing ჯაჭვი)
 ```
@@ -41,6 +42,15 @@ NBG API ──→ Worker /api/rates ──→ edge-SSR (data-ssr) ──→ HTML
   არა-ქართული snippet-იდან მოცილებულია.
 - **description question-form:** „Сколько лари стоит 1 X…" — Yandex query-match + snippet-ში bold.
 - **IndexNow** deploy-ის შემდეგ (Bing/Yandex/Yahoo/DuckDuckGo; Google — sitemap/crawl).
+- **სიახლის სიგნალი (freshness):** კურსი ყოველ სამუშაო დღეს იცვლება, ანუ გვერდების შიგთავსი
+  მართლა ახლდება — ამიტომ `lastmod` ედჯზე NBG-ის `validFromDate`-ს უტოლდება (სტატიკურ
+  sitemap-ში ბილდის თარიღი იყინებოდა), ხოლო cron ყოველდღე პინგავს IndexNow-ს.
+
+## გაზომვა (GA4)
+`public/ev.js` აგზავნის: `converter_used`, `amount_link_click`, `lang_switch`, `outbound_click`,
+`engaged_90`, `rate_missing`. GA4-ის ინტერფეისში **key event-ებად მოსანიშნია `converter_used` და
+`amount_link_click`** — ეს ორი განასხვავებს „კურსს დახედა და წავიდა"-ს რეალური გამოყენებისგან.
+`rate_missing` = ედჯზე კურსი ვერ ჩაისვა (SSR-ის ჯანმრთელობის საზომი).
 
 ## უცვლელი წესები (INVARIANTS — არ დაარღვიო)
 1. **KA არის წყარო.** `/<lang>/` build output-ია — არასდროს ასწორო ხელით; შეასწორე KA + rebuild,

@@ -82,24 +82,27 @@ export default {
 
     const res = await env.ASSETS.fetch(request);
 
+    // sitemap-ის lastmod ედჯზე ისმება — იხ. freshSitemap().
+    if (url.pathname === "/sitemap.xml") return freshSitemap(res);
+
     // SSR მხოლოდ ჩვენს HTML გვერდებზე (trailing-slash directory). ".html" პირდაპირი
     // მისამართები (მაგ. Yandex/Google verification ფაილები) უცვლელად გადის.
     const ct = res.headers.get("content-type") || "";
     if (!ct.includes("text/html") || request.method !== "GET" || url.pathname.endsWith(".html")) return res;
 
-    let computed = null;
+    // ანალიტიკის სკრიპტი ყოველთვის ეკვრის; კურსის SSR — მხოლოდ თუ NBG მოგვცა.
+    let rewriter = new HTMLRewriter().on("body", new TailScriptHandler());
     try {
-      computed = computeRates(await fetchNBG());
+      const computed = computeRates(await fetchNBG());
+      if (computed && computed.rates) {
+        const lang = langFromPath(url.pathname);
+        rewriter = rewriter.on("[data-ssr]", new SsrHandler(computed.rates, computed.date, RATE_ON[lang] || RATE_ON.ka));
+      }
     } catch (e) {
-      // კურსი ვერ მოვიდა — გვერდს უცვლელად ვაბრუნებთ (client JS მაინც შეავსებს).
-      return res;
+      // კურსი ვერ მოვიდა — გვერდი მაინც გადის (client JS შეავსებს რიცხვს).
     }
-    if (!computed || !computed.rates) return res;
 
-    const lang = langFromPath(url.pathname);
-    const out = new HTMLRewriter()
-      .on("[data-ssr]", new SsrHandler(computed.rates, computed.date, RATE_ON[lang] || RATE_ON.ka))
-      .transform(res);
+    const out = rewriter.transform(res);
 
     // HTML მცირე ხნით იქეშება ედჯზე (სისწრაფისთვის), მაგრამ სწრაფად ნახლდება:
     // 5 წთ "ახალი", შემდეგ stale-while-revalidate — ანუ კურსის/დიფლოის ცვლილება
@@ -108,7 +111,74 @@ export default {
     headers.set("cache-control", "public, max-age=300, stale-while-revalidate=3600");
     return new Response(out.body, { status: out.status, statusText: out.statusText, headers });
   },
+
+  // ყოველდღიური cron (wrangler.jsonc → triggers.crons): IndexNow-ს ვატყობინებთ,
+  // რომ დღევანდელი კურსი განახლდა.
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(submitIndexNow(env));
+  },
 };
+
+// ── sitemap: ცოცხალი lastmod ─────────────────────────────────────────────────
+// public/sitemap.xml სტატიკურია და მისი lastmod ბილდის დღეს იყინება — ყოველდღიური
+// კურსის საიტისთვის ეს მცდარი "აქ ახალი არაფერია" სიგნალია. lastmod-ს ედჯზე
+// ვცვლით NBG-ის რეალური validFromDate-ით (ანუ იმ დღით, როცა რიცხვი მართლა შეიცვალა).
+async function freshSitemap(res) {
+  if (!res.ok) return res;
+  let date = null;
+  try {
+    const computed = computeRates(await fetchNBG());
+    date = computed && computed.date;
+  } catch (e) {
+    /* fallback ქვემოთ */
+  }
+  if (!date) date = new Date().toISOString().slice(0, 10);
+
+  const xml = (await res.text()).replace(/<lastmod>[^<]*<\/lastmod>/g, `<lastmod>${date}</lastmod>`);
+  const headers = new Headers(res.headers);
+  headers.set("cache-control", "public, max-age=3600");
+  return new Response(xml, { status: res.status, headers });
+}
+
+// ── IndexNow (cron) ──────────────────────────────────────────────────────────
+// ping აღწევს Bing-ს, Yandex-ს, Yahoo-სა და DuckDuckGo-ს (Google IndexNow-ს არ იყენებს).
+// კურსი ყოველ სამუშაო დღეს იცვლება, ანუ გვერდების შიგთავსი მართლა ახლდება — მაგრამ
+// სრულ სიას მაინც არ ვაგზავნით ყოველდღე (429): landing-ები ყოველდღე, amount-გვერდები
+// 1/7-იანი როტაციით, ანუ თითოეული კვირაში ერთხელ.
+const INDEXNOW_KEY = "d940979fa17f0e6139b34758501289e7"; // = public/<key>.txt
+const INDEXNOW_HOST = "evro.ge";
+const AMOUNT_PATH = /\/\d+-[a-z]+-[a-z]+\/$/;
+const ROTATION = 7;
+
+async function submitIndexNow(env) {
+  const res = await env.ASSETS.fetch(new Request(`https://${INDEXNOW_HOST}/sitemap.xml`));
+  if (!res.ok) throw new Error("sitemap " + res.status);
+  const xml = await res.text();
+  const all = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+
+  const slot = Math.floor(Date.now() / 86400000) % ROTATION;
+  const urlList = [];
+  let seen = 0;
+  for (const u of all) {
+    if (AMOUNT_PATH.test(new URL(u).pathname) && seen++ % ROTATION !== slot) continue;
+    urlList.push(u);
+  }
+  if (!urlList.length) throw new Error("sitemap-ში URL ვერ მოიძებნა");
+
+  const ping = await fetch("https://api.indexnow.org/indexnow", {
+    method: "POST",
+    headers: { "content-type": "application/json; charset=utf-8" },
+    body: JSON.stringify({
+      host: INDEXNOW_HOST,
+      key: INDEXNOW_KEY,
+      keyLocation: `https://${INDEXNOW_HOST}/${INDEXNOW_KEY}.txt`,
+      urlList,
+    }),
+  });
+  // 200 = OK, 202 = მიღებულია (key-ს ვალიდაცია მიმდინარეობს) — ორივე წესრიგშია.
+  console.log(`IndexNow → HTTP ${ping.status} (${urlList.length}/${all.length} URL, slot ${slot})`);
+  return ping.status;
+}
 
 // ── /api/rates ───────────────────────────────────────────────────────────────
 async function handleRates() {
@@ -197,5 +267,16 @@ class SsrHandler {
   }
 }
 
+// ── ანალიტიკის სკრიპტის ჩართვა ────────────────────────────────────────────────
+// public/ev.js არ წერია გენერირებულ HTML-ში: ედჯზე ეკვრის, რომ 378 გვერდის
+// ხელახლა აგება (და i18n-ის whitespace churn) არ დაგვჭირდეს ერთი <script>-ისთვის.
+const TAIL_SCRIPT = '<script src="/ev.js" defer></script>';
+
+class TailScriptHandler {
+  element(el) {
+    el.append(TAIL_SCRIPT, { html: true });
+  }
+}
+
 // ტესტირებისთვის ხელმისაწვდომი (Worker-ისთვის default export-ს იყენებს).
-export { evalSSR, fmtNum, computeRates, langFromPath, pickAcceptLang, maybeRedirect };
+export { evalSSR, fmtNum, computeRates, langFromPath, pickAcceptLang, maybeRedirect, submitIndexNow };
