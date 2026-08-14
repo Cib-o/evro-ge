@@ -3,7 +3,11 @@
 import { writeFileSync } from 'node:fs';
 import { listPages, loadDoc, translatableEls, elementTemplate, metaEntries, schemaEntries, keyFor, ROOT } from './i18n-lib.mjs';
 
-const pages = listPages();
+// მხოლოდ KA წყაროდან ვკრეფთ. `/public/{lang}/` build output-ია — იქიდან ამოღება
+// რუსულ/ინგლისურ ტექსტს KA-შაბლონად დააკატალოგებდა და Gemini-ის დღიურ ლიმიტს
+// ტყუილად დახარჯავდა. build-i18n.mjs იმავე ფილტრს იყენებს.
+const NON_KA = ['en', 'ru', 'uk', 'az', 'tr', 'hy'];
+const pages = listPages().filter((f) => !new RegExp(`/public/(${NON_KA.join('|')})/`).test(f));
 const catalog = new Map(); // key -> { ka, hasN, count, sample }
 let elCount = 0;
 

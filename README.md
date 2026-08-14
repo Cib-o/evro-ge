@@ -7,7 +7,7 @@
 ```
 public/index.html        # მთავარი გვერდი — ევროს კურსი (HTML + CSS + JS)
 public/dolari-lari/      # დოლარის სადესანტო გვერდი — დოლარის კურსი
-public/<N>-evro-lari/    # amount გვერდები (EUR↔GEL, USD↔GEL) — გენერირებული
+public/<N>-evro-lari/    # amount გვერდები (EUR/USD/RUB/TRY ↔ GEL) — გენერირებული
 public/sitemap.xml       # გენერირებული (homepage + ყველა amount გვერდი + /dolari-lari/)
 public/robots.txt        # გენერირებული (Allow: / + Sitemap)
 public/<key>.txt         # IndexNow key ფაილი (გენერირებული)
@@ -25,7 +25,11 @@ amount გვერდები, sitemap, robots და IndexNow key გენ�
 ```bash
 node scripts/build-pages.js   # შემდეგ git add -A && commit && push
 ```
-თანხების ნაკრები: `scripts/build-pages.js`-ში `AMOUNTS`. ვალუტები: `CUR` (EUR, USD).
+ვალუტები: `scripts/build-pages.js`-ში `CUR` (EUR, USD, RUB, TRY) + `ORDER`.
+თანხების ნაკრები **ვალუტაზეა მიბმული** — ლარის მხარეს ყოველთვის `AMOUNTS` (1…1000), ხოლო
+უცხოური ვალუტის მხარეს მისი მასშტაბი: `RUB_AMOUNTS` (100…100000), `TRY_AMOUNTS` (50…50000).
+მიზეზი: 1 რუბლი ≈ 0.03 ლარი, ანუ „1 რუბლი ლარში" უაზრო გვერდია — რეალურად 1000/5000/10000
+рублей იძებნება. სულ 96 amount გვერდი × 7 ენა.
 
 ## მრავალენოვანი სისტემა (i18n) — 7 ენა
 საიტი 7 ენაზეა, თითო **ცალკე ინდექსირებად URL-ზე** (SEO-ისთვის):
@@ -73,8 +77,8 @@ Yandex-ისთვის title-ები იწყება **კონკრ�
 
 ## IndexNow (Bing/Yandex/Yahoo/DuckDuckGo სწრაფი ინდექსაცია)
 **ავტომატურია.** Worker-ის cron (`wrangler.jsonc` → `triggers.crons`, 06:00 UTC = 10:00 თბილისი)
-ყოველდღე პინგავს: ყველა landing (42 URL) + amount-გვერდების 1/7 როტაციით (48 URL) = 90/დღე,
-ანუ თითოეული გვერდი კვირაში ერთხელ. სრული სია ყოველდღე რომ იგზავნებოდეს → 429.
+ყოველდღე პინგავს: ყველა landing (42 URL) + amount-გვერდების 1/7 როტაციით (~96 URL) ≈ 140/დღე,
+ანუ თითოეული გვერდი კვირაში ერთხელ. სრული სია (714) ყოველდღე რომ იგზავნებოდეს → 429.
 
 ხელით (მაგ. დიდი კონტენტ-ცვლილების მერე; key ფაილი ლაივზე უნდა იყოს):
 ```bash

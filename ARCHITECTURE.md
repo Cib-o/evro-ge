@@ -6,14 +6,14 @@ Worker-ზე, სადაც **ცოცხალი კურსი edge-SSR-
 
 ## რენდერის მოდელი (ორ ფაზად)
 1. **build-time (ლოკალურად, იკომიტება):** `build-pages.js` → KA HTML; `build-i18n.mjs` → 6 ენის
-   თარგმანი. სულ ~379 სტატიკური ფაილი `public/`-ში. რიცხვები **არსად hardcode არ არის**.
+   თარგმანი. სულ ~715 სტატიკური ფაილი `public/`-ში. რიცხვები **არსად hardcode არ არის**.
 2. **request-time (Worker):** `data-ssr` ატრიბუტებს ცოცხალი NBG კურსით ავსებს ედჯზე (crawler-იც
    ხედავს რიცხვს), client JS არეფრეშებს. `wrangler.jsonc: run_worker_first` — SSR ასეტამდე გაეშვას.
 
 ## კომპონენტები და პასუხისმგებლობა
 | კომპონენტი | პასუხისმგებლობა |
 |---|---|
-| `scripts/build-pages.js` | **KA-გვერდების ერთადერთი წყარო.** amount გვერდები (EUR/USD↔GEL), landing-ები (`dolari-lari`, `funtis/liris/rublis-kursi`), hub (`valutis-kursi`), sitemap, robots, IndexNow key. |
+| `scripts/build-pages.js` | **KA-გვერდების ერთადერთი წყარო.** amount გვერდები (EUR/USD/RUB/TRY↔GEL), landing-ები (`dolari-lari`, `funtis/liris/rublis-kursi`), hub (`valutis-kursi`), sitemap, robots, IndexNow key. |
 | `scripts/build-i18n.mjs` | KA-დან 6 ენას თარგმნის (ტექსტი+meta+schema), შიდა ბმულებს `/<lang>`-ით ცვლის, hreflang/canonical/og აწყობს, ენის სვიჩერს ამატებს. |
 | `scripts/strings.i18n.json` | **თარგმანის source of truth** — hash-key → 7 ენა. |
 | `scripts/i18n-lib.mjs` | `keyFor` (ჰეშირება), `textTemplate`/`elementTemplate` (რიცხვი→`{n}`), SELECTORS/META_SELECTORS. |
@@ -60,3 +60,6 @@ NBG API ──→ Worker /api/rates ──→ edge-SSR (data-ssr) ──→ HTML
 3. **რიცხვები არ hardcode-დება HTML-ში** — მხოლოდ `data-ssr`; Worker ავსებს.
 4. **KA-ს title/description ცვლილება = ჰეშ-key იცვლება** ⇒ ყველა ენის თარგმანი უნდა გადამოწმდეს/
    ხელახლა-დაებას იმ key-ს.
+5. **`verify-langs.mjs` ყოველი თარგმანის მერე.** Gemini ხანდახან ერთ სიტყვაში ერევა დამწერლობებს —
+   ქართული lookalike-ასოები სომხურ ტექსტში (`լ` + `არის` = „լարис"). თვალით არ ჩანს, verify კი
+   იჭერს (`/[Ⴀ-ჿ]/`). გასწორება: `strings.i18n.json`-ის **non-KA value**-ში ა→ա, რ→ր, ი→ի, ს→ս.

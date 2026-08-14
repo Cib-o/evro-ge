@@ -25,24 +25,47 @@ const PUBLIC = path.join(__dirname, "..", "public");
 
 const AMOUNTS = [1, 5, 10, 20, 50, 88, 100, 150, 200, 300, 500, 1000];
 
+// ლარის მხარეს ყოველთვის "ნორმალური" თანხებია (1 ლარი რამდენი რუბლია — რეალური query).
+// უცხოური ვალუტის მხარეს კი მასშტაბი ვალუტაზეა დამოკიდებული: 1 რუბლი = ~0.03 ლარი,
+// ანუ "1 რუბლი ლარში" უაზრო გვერდია — რუსულად 1000/5000/10000 рублей იძებნება.
+const RUB_AMOUNTS = [100, 500, 1000, 2000, 3000, 5000, 10000, 15000, 20000, 30000, 50000, 100000];
+const TRY_AMOUNTS = [50, 100, 200, 500, 1000, 1500, 2000, 3000, 5000, 10000, 20000, 50000];
+
 // IndexNow key (Bing/Yandex/Yahoo/DuckDuckGo). key ფაილი public/-ში ცხოვრობს.
 const INDEXNOW_KEY = "d940979fa17f0e6139b34758501289e7";
 
 const TODAY = new Date().toISOString().slice(0, 10);
 
 // ვალუტის ფორმები (ქართული ბრუნვები ხელით).
+//   amounts  — უცხოური ვალუტის თანხები (X → ლარი მიმართულებისთვის)
+//   landing  — ამ ვალუტის სადესანტო გვერდი (cta/ჯვარედინი ბმულებისთვის)
 const CUR = {
-  EUR: { code: "EUR", sym: "€", slug: "evro", latin: "evro", nom: "ევრო", gen: "ევროს", loc: "ევროში", a: "ევროა" },
-  USD: { code: "USD", sym: "$", slug: "dolari", latin: "dolari", nom: "დოლარი", gen: "დოლარის", loc: "დოლარში", a: "დოლარია" },
+  EUR: { code: "EUR", sym: "€", slug: "evro", latin: "evro", nom: "ევრო", gen: "ევროს", loc: "ევროში", a: "ევროა", amounts: AMOUNTS, landing: "/" },
+  USD: { code: "USD", sym: "$", slug: "dolari", latin: "dolari", nom: "დოლარი", gen: "დოლარის", loc: "დოლარში", a: "დოლარია", amounts: AMOUNTS, landing: "/dolari-lari/" },
+  RUB: { code: "RUB", sym: "₽", slug: "rubli", latin: "rubli", nom: "რუბლი", gen: "რუბლის", loc: "რუბლში", a: "რუბლია", amounts: RUB_AMOUNTS, landing: "/rublis-kursi/" },
+  TRY: { code: "TRY", sym: "₺", slug: "lira", latin: "lira", nom: "ლირა", gen: "ლირის", loc: "ლირაში", a: "ლირაა", amounts: TRY_AMOUNTS, landing: "/liris-kursi/" },
 };
+
+// amount-გვერდების რიგი — ჯვარედინი ბმულებისა და ტექსტის ვარიანტების გასანაწილებლად.
+const ORDER = ["EUR", "USD", "RUB", "TRY"];
+
+// რომელი თანხების სია ეკუთვნის მიმართულებას: ლარიდან — ყოველთვის AMOUNTS.
+function amountsFor(c, toGel) {
+  return toGel ? c.amounts : AMOUNTS;
+}
+
+function nearestIn(list, a) {
+  return list.reduce((best, x) => (Math.abs(x - a) < Math.abs(best - a) ? x : best), list[0]);
+}
 
 // ── დამხმარეები ──────────────────────────────────────────────────────────────
 function esc(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
-function relatedAmounts(a) {
-  return AMOUNTS.filter((x) => x !== a)
+function relatedAmounts(a, list) {
+  return list
+    .filter((x) => x !== a)
     .sort((p, q) => Math.abs(p - a) - Math.abs(q - a))
     .slice(0, 4)
     .sort((p, q) => p - q);
@@ -51,7 +74,8 @@ function relatedAmounts(a) {
 // ვარიანტის ინდექსი — დამოკიდებულია თანხაზე, მიმართულებასა და ვალუტაზე,
 // რომ მეზობელი/პარალელური გვერდები ერთსა და იმავე ტექსტს არ იმეორებდნენ.
 function variantIndex(a, c, toGel) {
-  return (AMOUNTS.indexOf(a) + (toGel ? 0 : 1) + (c.code === "USD" ? 2 : 0)) % 4;
+  const i = amountsFor(c, toGel).indexOf(a);
+  return (i + (toGel ? 0 : 1) + ORDER.indexOf(c.code)) % 4;
 }
 
 function paragraph(a, c, toGel) {
@@ -192,7 +216,7 @@ function buildAmountPage(a, curKey, toGel) {
     ? `ან: ${a} ლარი = <span class="num" data-ssr="${revExpr}" data-dp="2">—</span> ${c.nom} · <a href="/${revSlug}/">${revLabel} →</a>`
     : `ან: ${a} ${c.nom} = <span class="num" data-ssr="${revExpr}" data-dp="2">—</span> ლარი · <a href="/${revSlug}/">${revLabel} →</a>`;
 
-  const rel = relatedAmounts(a)
+  const rel = relatedAmounts(a, amountsFor(c, toGel))
     .map((x) => {
       const rslug = toGel ? `${x}-${c.slug}-lari` : `${x}-lari-${c.slug}`;
       const label = toGel ? `${x} ${c.nom}` : `${x} ლარი`;
@@ -200,10 +224,13 @@ function buildAmountPage(a, curKey, toGel) {
     })
     .join("");
 
-  // ჯვარედინი ბმული მეორე ვალუტის კლასტერზე (link-equity ორ კლასტერს შორის).
-  const oc = CUR[curKey === "EUR" ? "USD" : "EUR"];
-  const crossSlug = toGel ? `${a}-${oc.slug}-lari` : `${a}-lari-${oc.slug}`;
-  const crossLabel = toGel ? `${a} ${oc.nom} ლარში` : `${a} ლარი ${oc.loc}`;
+  // ჯვარედინი ბმული მომდევნო ვალუტის კლასტერზე (link-equity კლასტერებს შორის).
+  // თანხა უახლოესზე ჯდება, რადგან სიები ვალუტების მიხედვით განსხვავდება
+  // (100000 რუბლს ევროში ანალოგი არ აქვს).
+  const oc = CUR[ORDER[(ORDER.indexOf(curKey) + 1) % ORDER.length]];
+  const ox = nearestIn(amountsFor(oc, toGel), a);
+  const crossSlug = toGel ? `${ox}-${oc.slug}-lari` : `${ox}-lari-${oc.slug}`;
+  const crossLabel = toGel ? `${ox} ${oc.nom} ლარში` : `${ox} ლარი ${oc.loc}`;
   const crossChip = `<a class="chip" href="/${crossSlug}/">${crossLabel}</a>`;
 
   const proseH2 = toGel ? `${a} ${c.nom} ლარში დღეს` : `${a} ლარი ${c.loc} დღეს`;
@@ -277,7 +304,7 @@ ${BASE_CSS}
       <div class="chips">${rel}<a class="chip" href="/${revSlug}/">${revLabel}</a>${crossChip}</div>
     </div>
 
-    <a class="cta" href="/">ყველა კურსი და კონვერტერი →</a>
+    <a class="cta" href="${c.landing}">${c.gen} კურსი და კონვერტერი →</a>
   </div>
 </main>
 
@@ -584,6 +611,20 @@ function buildCurrencyLanding(cfg) {
   });
   const faqHtml = faq.map((f) => `        <details>\n          <summary>${f.q}</summary>\n          <div class="ans">${f.a}</div>\n        </details>`).join("\n");
 
+  // თუ ამ ვალუტას amount-კლასტერი აქვს, სადესანტო გვერდიდან მასზე ვლინკავთ —
+  // ეს landing ყველაზე ძლიერი გვერდია, ანუ crawl-equity-საც და ტრაფიკსაც გადასცემს.
+  const ac = CUR[cfg.code];
+  const popularBlock = ac
+    ? `\n    <div class="block">
+      <h2>პოპულარული თანხები</h2>
+      <div class="chips">${ac.amounts
+        .filter((x) => x >= 100)
+        .slice(0, 6)
+        .map((x) => `<a class="chip" href="/${x}-${ac.slug}-lari/">${x} ${ac.nom} ლარში</a>`)
+        .join("")}<a class="chip" href="/100-lari-${ac.slug}/">100 ლარი ${ac.loc}</a></div>
+    </div>\n`
+    : "";
+
   return `<!DOCTYPE html>
 <html lang="ka">
 <head>
@@ -673,6 +714,7 @@ ${BASE_CSS}
       </div>
     </div>
 
+${popularBlock}
     <div class="block">
       <h2>სხვა ვალუტა</h2>
       <div class="chips">
@@ -934,10 +976,10 @@ function main() {
   ];
   let count = 0;
 
-  ["EUR", "USD"].forEach((cur) => {
-    AMOUNTS.forEach((a) => {
-      [true, false].forEach((toGel) => {
-        const c = CUR[cur];
+  ORDER.forEach((cur) => {
+    const c = CUR[cur];
+    [true, false].forEach((toGel) => {
+      amountsFor(c, toGel).forEach((a) => {
         const slug = toGel ? `${a}-${c.slug}-lari` : `${a}-lari-${c.slug}`;
         writePage(slug, buildAmountPage(a, cur, toGel));
         urls.push({ loc: `${SITE}/${slug}/`, priority: "0.8" });
@@ -957,7 +999,7 @@ function main() {
   fs.writeFileSync(path.join(PUBLIC, "sitemap.xml"), buildSitemap(urls), "utf8");
   fs.writeFileSync(path.join(PUBLIC, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY, "utf8");
 
-  console.log(`✓ ${count} amount pages (EUR + USD)`);
+  console.log(`✓ ${count} amount pages (${ORDER.join(" + ")})`);
   console.log(`✓ landings: /dolari-lari/ /valutis-kursi/ /funtis-kursi/ /liris-kursi/ /rublis-kursi/`);
   console.log(`✓ robots.txt + sitemap.xml (${urls.length} URLs) + IndexNow key file`);
 }
