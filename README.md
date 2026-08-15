@@ -104,6 +104,15 @@ cron-ს ეს ვერ გააკეთებდა (რეპოში ვ
 **ბოლო ცნობილ კურსს გულწრფელი თარიღით** ასმევს — `/api/rates`-იც იმავეს აბრუნებს NBG-ის
 ფორმატში, ანუ client-ის parser-ს ცვლილება არ სჭირდება.
 
+### 12-თვიანი გრაფიკი
+იმავე ისტორიას ხატავს **5 landing** (`/`, `/dolari-lari/`, `/rublis-kursi/`, `/liris-kursi/`,
+`/funtis-kursi/`) კურსის ქვემოთ. HTML-ში `<path d="">` ცარიელია — Worker ავსებს `data-chart`-ით
+(`path`/`area`/`min`/`max`/`chg`), ისევე როგორც `data-ssr`-ს. **build-time-ზე არ იხატება**:
+JSON ყოველდღე ახლდება, HTML კი არა — ხაზი ბოლო ბილდზე გაიყინებოდა. იხ. `ARCHITECTURE.md`.
+
+ახალი ვალუტის დამატება: `CURRENCIES` (`rates-history-lib.mjs`) + `CHART_CUR` (`src/index.js`)
++ `chartBlock(gen)`-ის გამოძახება ბილდერში.
+
 ## IndexNow (Bing/Yandex/Yahoo/DuckDuckGo სწრაფი ინდექსაცია)
 **ავტომატურია.** Worker-ის cron (`wrangler.jsonc` → `triggers.crons`, 06:00 UTC = 10:00 თბილისი)
 ყოველდღე პინგავს: ყველა landing (42 URL) + amount-გვერდების 1/7 როტაციით (~96 URL) ≈ 140/დღე,
