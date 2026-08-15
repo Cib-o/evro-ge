@@ -75,6 +75,35 @@ Yandex-ისთვის title-ები იწყება **კონკრ�
 რომელსაც **Worker ედჯზე ავსებს** ყოველ მოთხოვნაზე NBG-დან (crawler-ებიც ხედავენ რიცხვს),
 ხოლო client JS იმავეს არეფრეშებს. ამისთვის `wrangler.jsonc`-ში `run_worker_first: true`.
 
+## ისტორიული კურსები (`public/data/rates/`)
+NBG-ს **ნებისმიერი თარიღი** შეუძლია (`?date=YYYY-MM-DD`), მაგრამ range-endpoint არ აქვს —
+დღეზე ერთი მოთხოვნაა. მონაცემები 2003-მდე მიდის; ჩვენ **2015-დან** გვაქვს ჩამოტვირთული.
+
+```
+public/data/rates/EUR-2025.json   # {"c","y","start","fetched","v":[3.0186,null,…]}
+public/data/rates/latest.json     # {"date","rates":{EUR,USD,RUB,TRY,GBP}} — Worker-ის fallback
+```
+`v[i]` = კურსი `start + i` დღეზე, **უკვე გაყოფილი `quantity`-ზე** (RUB-ს NBG-ში `quantity=100` აქვს).
+`null` = იმ დღეს პუბლიკაცია არ იყო (2021 წლის ბოლომდე NBG ყოველდღე აქვეყნებდა, მერე მხოლოდ
+სამშ–შაბ). მკითხველი წინა მნიშვნელობას ატარებს წინ.
+
+```bash
+node scripts/fetch-rates-history.mjs --from 2015-01-01   # backfill, resumable
+node scripts/fetch-rates-day.mjs                          # ერთი დღე (cron-ისთვის)
+```
+⚠️ **NBG throttle-ს აკეთებს:** ~4000 მოთხოვნის შემდეგ API 307-ლუპში ვარდება ~5 წუთით.
+`--conc` 5-ზე მეტი არ ღირს.
+
+კუდს **GitHub Action** ავსებს (`.github/workflows/rates-tail.yml`, 06:20 UTC): ერთი მოთხოვნა,
+და მხოლოდ თუ რამე შეიცვალა — commit `public/data/`-ზე → ავტომატური დიფლოი. Cloudflare-ის
+cron-ს ეს ვერ გააკეთებდა (რეპოში ვერ წერს), KV კი მეორე source of truth გახდებოდა.
+
+### რატომ არის ეს fallback-იც
+2026-08-15-ს NBG-ის API ~10 წუთით redirect-ლუპში ჩავარდა და გვერდები crawler-ს `—.————`-ს
+აჩვენებდნენ. ახლა Worker-ი ასეთ დროს `latest.json`-ს კითხულობს (ერთი ASSETS subrequest) და
+**ბოლო ცნობილ კურსს გულწრფელი თარიღით** ასმევს — `/api/rates`-იც იმავეს აბრუნებს NBG-ის
+ფორმატში, ანუ client-ის parser-ს ცვლილება არ სჭირდება.
+
 ## IndexNow (Bing/Yandex/Yahoo/DuckDuckGo სწრაფი ინდექსაცია)
 **ავტომატურია.** Worker-ის cron (`wrangler.jsonc` → `triggers.crons`, 06:00 UTC = 10:00 თბილისი)
 ყოველდღე პინგავს: ყველა landing (42 URL) + amount-გვერდების 1/7 როტაციით (~96 URL) ≈ 140/დღე,

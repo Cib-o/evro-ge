@@ -65,7 +65,7 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/api/rates") {
-      return handleRates();
+      return handleRates(env);
     }
 
     const redirect = maybeRedirect(request, url);
@@ -85,21 +85,22 @@ export default {
     // sitemap-ის lastmod ედჯზე ისმება — იხ. freshSitemap().
     if (url.pathname === "/sitemap.xml") return freshSitemap(res);
 
+    // ისტორიული სერიები: დასრულებული წელი უცვლელია — immutable. მიმდინარე წელს
+    // ყოველდღიური job ავსებს, ამიტომ მოკლე TTL.
+    if (url.pathname.startsWith("/data/rates/")) return cachedSeries(res, url.pathname);
+
     // SSR მხოლოდ ჩვენს HTML გვერდებზე (trailing-slash directory). ".html" პირდაპირი
     // მისამართები (მაგ. Yandex/Google verification ფაილები) უცვლელად გადის.
     const ct = res.headers.get("content-type") || "";
     if (!ct.includes("text/html") || request.method !== "GET" || url.pathname.endsWith(".html")) return res;
 
-    // ანალიტიკის სკრიპტი ყოველთვის ეკვრის; კურსის SSR — მხოლოდ თუ NBG მოგვცა.
+    // ანალიტიკის სკრიპტი ყოველთვის ეკვრის; კურსის SSR — თუ NBG მოგვცა, თუ არადა
+    // ბოლო ცნობილი კურსით (იხ. lastKnownRates).
     let rewriter = new HTMLRewriter().on("body", new TailScriptHandler());
-    try {
-      const computed = computeRates(await fetchNBG());
-      if (computed && computed.rates) {
-        const lang = langFromPath(url.pathname);
-        rewriter = rewriter.on("[data-ssr]", new SsrHandler(computed.rates, computed.date, RATE_ON[lang] || RATE_ON.ka));
-      }
-    } catch (e) {
-      // კურსი ვერ მოვიდა — გვერდი მაინც გადის (client JS შეავსებს რიცხვს).
+    const computed = (await liveRates()) || (await lastKnownRates(env));
+    if (computed && computed.rates) {
+      const lang = langFromPath(url.pathname);
+      rewriter = rewriter.on("[data-ssr]", new SsrHandler(computed.rates, computed.date, RATE_ON[lang] || RATE_ON.ka));
     }
 
     const out = rewriter.transform(res);
@@ -138,6 +139,20 @@ async function freshSitemap(res) {
   const headers = new Headers(res.headers);
   headers.set("cache-control", "public, max-age=3600");
   return new Response(xml, { status: res.status, headers });
+}
+
+// ── ისტორიული სერიები: /data/rates/<CUR>-<YYYY>.json ─────────────────────────
+// დასრულებული წლის ფაილს არასდროს შევეხებით — ერთი წელი immutable. მიმდინარე წელს
+// ყოველდღიური GitHub Action ერთ რიცხვს ამატებს, ანუ 1 საათი + stale-while-revalidate
+// საკმარისია (გრაფიკის მარჯვენა კიდეს client-ი ისედაც ცოცხალი კურსით ავსებს).
+function cachedSeries(res, pathname) {
+  if (!res.ok) return res;
+  const m = /-(\d{4})\.json$/.exec(pathname);
+  const sealed = m && +m[1] < new Date().getUTCFullYear();
+  const headers = new Headers(res.headers);
+  headers.set("cache-control", sealed ? "public, max-age=31536000, immutable" : "public, max-age=3600, stale-while-revalidate=86400");
+  headers.set("access-control-allow-origin", "*");
+  return new Response(res.body, { status: res.status, headers });
 }
 
 // ── IndexNow (cron) ──────────────────────────────────────────────────────────
@@ -181,23 +196,38 @@ async function submitIndexNow(env) {
 }
 
 // ── /api/rates ───────────────────────────────────────────────────────────────
-async function handleRates() {
-  try {
-    const upstream = await fetch(NBG, { cf: { cacheTtl: 1800, cacheEverything: true } });
-    if (!upstream.ok) throw new Error("upstream " + upstream.status);
-    const body = await upstream.text();
-    return new Response(body, {
+async function handleRates(env) {
+  const json = (body, status, maxAge) =>
+    new Response(body, {
+      status,
       headers: {
         "content-type": "application/json; charset=utf-8",
         "access-control-allow-origin": "*",
-        "cache-control": "public, max-age=1800",
+        "cache-control": `public, max-age=${maxAge}`,
       },
     });
+
+  try {
+    const upstream = await fetch(NBG, { cf: { cacheTtl: 1800, cacheEverything: true } });
+    if (!upstream.ok) throw new Error("upstream " + upstream.status);
+    return json(await upstream.text(), 200, 1800);
   } catch (e) {
-    return new Response(JSON.stringify({ error: String(e) }), {
-      status: 502,
-      headers: { "content-type": "application/json; charset=utf-8", "access-control-allow-origin": "*" },
-    });
+    // NBG მიუწვდომელია — ბოლო ცნობილ კურსს ვაბრუნებთ NBG-ის ფორმატში, რომ client-ის
+    // parser-ს (nbgMap) ცვლილება არ დასჭირდეს. მოკლე ქეში — რომ აღდგენისთანავე გადავიდეს.
+    const last = await lastKnownRates(env);
+    if (!last) return json(JSON.stringify({ error: String(e) }), 502, 0);
+    return json(
+      JSON.stringify([
+        {
+          date: last.date + "T00:00:00.000Z",
+          currencies: Object.entries(last.rates).map(([code, rate]) => ({
+            code, quantity: 1, rate, validFromDate: last.date + "T00:00:00.000Z", stale: true,
+          })),
+        },
+      ]),
+      200,
+      300
+    );
   }
 }
 
@@ -206,6 +236,36 @@ async function fetchNBG() {
   const upstream = await fetch(NBG, { cf: { cacheTtl: 1800, cacheEverything: true } });
   if (!upstream.ok) throw new Error("upstream " + upstream.status);
   return upstream.json();
+}
+
+/** ცოცხალი კურსი NBG-დან; null — თუ ვერ მივიღეთ (ბლოკი, redirect-ლუპი, downtime). */
+async function liveRates() {
+  try {
+    return computeRates(await fetchNBG());
+  } catch (e) {
+    console.log("NBG fetch failed → fallback:", String(e).slice(0, 120));
+    return null;
+  }
+}
+
+/**
+ * Fallback: public/data/rates/latest.json — ბოლო ცნობილი კურსი, რომელსაც
+ * ყოველდღიური GitHub Action აახლებს. NBG-ის API 2026-08-15-ს redirect-ლუპში
+ * ჩავარდა და გვერდები crawler-ს „—.————"-ს აჩვენებდნენ; ერთი დღით ძველი, სწორი
+ * თარიღით მონიშნული რიცხვი ამაზე გაცილებით ჯობია. ერთი ASSETS subrequest.
+ */
+async function lastKnownRates(env) {
+  try {
+    const res = await env.ASSETS.fetch(new Request("https://evro.ge/data/rates/latest.json"));
+    if (!res.ok) return null;
+    const j = await res.json();
+    if (!j || !j.rates || !j.date) return null;
+    const rates = {};
+    for (const code of SSR_CODES) if (typeof j.rates[code] === "number") rates[code] = j.rates[code];
+    return Object.keys(rates).length ? { rates, date: j.date } : null;
+  } catch (e) {
+    return null;
+  }
 }
 
 function computeRates(data) {

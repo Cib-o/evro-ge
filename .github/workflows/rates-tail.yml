@@ -1,0 +1,47 @@
+# ყოველდღიური ისტორიული კურსის ჩაწერა.
+#
+# რატომ GitHub Actions და არა Cloudflare cron: მონაცემები რეპოშია (public/data/rates/),
+# რომ build-ის დროსაც წავიკითხოთ და runtime-შიც. Worker-ს რეპოში ჩაწერა არ შეუძლია —
+# ის KV-ს მოითხოვდა, ანუ მეორე source of truth-ს. აქ ერთი commit/დღე ყველაფერს ხსნის.
+#
+# push → Cloudflare-ის ავტომატური დიფლოი (იგივე, რაც ხელით push-ზე).
+
+name: rates tail
+
+on:
+  schedule:
+    # 06:20 UTC = 10:20 თბილისი. Worker-ის IndexNow cron 06:00-ზეა, ანუ NBG-ს
+    # დღის კურსი უკვე გამოქვეყნებული აქვს. 20 წუთი ბუფერია.
+    - cron: "20 6 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rates-tail
+  cancel-in-progress: false
+
+jobs:
+  tail:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: NBG-ის დღევანდელი კურსი
+        run: node scripts/fetch-rates-day.mjs
+
+      - name: commit (მხოლოდ თუ რამე შეიცვალა)
+        run: |
+          if [ -z "$(git status --porcelain public/data)" ]; then
+            echo "ცვლილება არ არის — უპუბლიკაციო დღე."
+            exit 0
+          fi
+          git config user.name  "evro-bot"
+          git config user.email "bot@evro.ge"
+          git add public/data
+          git commit -m "data: NBG კურსი $(date -u +%Y-%m-%d)"
+          git push

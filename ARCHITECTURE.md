@@ -19,12 +19,19 @@ Worker-ზე, სადაც **ცოცხალი კურსი edge-SSR-
 | `scripts/i18n-lib.mjs` | `keyFor` (ჰეშირება), `textTemplate`/`elementTemplate` (რიცხვი→`{n}`), SELECTORS/META_SELECTORS. |
 | `src/index.js` (Worker) | (1) `/api/rates` → NBG proxy (CORS-ის გარეშე); (2) edge-SSR `data-ssr`; (3) `maybeRedirect` Accept-Language-ით; (4) `/sitemap.xml`-ის `lastmod` ცოცხალი; (5) `public/ev.js`-ის ჩართვა; (6) `scheduled()` → ყოველდღიური IndexNow. |
 | `public/ev.js` | GA4 ინტერაქციის ივენთები. **HTML-ში არ წერია** — Worker-ი ედჯზე ურთავს. |
+| `public/data/rates/` | ისტორიული სერიები 2015-დან (`<CUR>-<YYYY>.json`) + `latest.json`. build-time-ზეც იკითხება და runtime-შიც. |
+| `scripts/rates-history-lib.mjs` | NBG-ის ისტორიის კითხვა/ჩაწერა, `quantity`-ნორმალიზაცია, `latest.json`. |
+| `.github/workflows/rates-tail.yml` | ყოველდღიური კუდი — 1 მოთხოვნა → commit `public/data/`-ზე → დიფლოი. |
 
 ## მონაცემთა ნაკადი (ცოცხალი კურსი, self-healing ჯაჭვი)
 ```
 NBG API ──→ Worker /api/rates ──→ edge-SSR (data-ssr) ──→ HTML
-   └ fallback: NBG პირდაპირ ──→ open.er-api.com (საბაზრო)
+   └ ედჯის fallback:  public/data/rates/latest.json  (ბოლო ცნობილი, გულწრფელი თარიღით)
+   └ client-ის ჯაჭვი: NBG პირდაპირ ──→ open.er-api.com (საბაზრო)
 ```
+**რატომ სჭირდება ედჯს fallback:** 2026-08-15-ს NBG-ის API ~10 წუთით redirect-ლუპში ჩავარდა.
+client-ის ჯაჭვი მომხმარებელს იხსნის, crawler-ს კი არა — ის `—.————`-ს ხედავდა. ისტორიის
+რეპოში ყოფნა ამას ერთი ASSETS subrequest-ით ხურავს.
 
 ## i18n დიზაინი — რატომ ასე
 - **URL-subdirs (არა client-side switcher):** თითო ენა ცალკე ინდექსირებადი URL-ია → უკრაინულად/
