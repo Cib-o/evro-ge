@@ -26,6 +26,7 @@ export const SELECTORS = [
   '.card-name', '.card-desc', '.card-fee .l', '.card-cta',
   '.strip-item .pair',
   '.conv-cell label',
+  '.chart-cap',          // რიცხვები child-<span>-ებშია → ერთი {0}/{1}/{2} შაბლონი ყველა ვალუტაზე
   '.foot a',
   '.foot-row > div', '.foot > .wrap > div',
   '[data-ssr="date"]',   // "იტვირთება…" loading placeholder

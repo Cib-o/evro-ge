@@ -83,6 +83,14 @@ h1{font-family:"Noto Serif Georgian",serif;font-size:clamp(23px,5.2vw,33px);font
 .prose .num{color:var(--ink);font-weight:600}
 .related{margin-top:30px}
 .related h2{font-family:"Noto Serif Georgian",serif;font-size:18px;margin-bottom:12px;font-weight:700}
+/* ისტორიული გრაფიკი — path-ს Worker ავსებს ედჯზე (data-chart), იხ. src/index.js */
+.chartbox{margin-top:34px}
+.chartbox h2{font-family:"Noto Serif Georgian",serif;font-size:22px;margin-bottom:12px;font-weight:700}
+.chart{display:block;width:100%;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+.chart-area{fill:rgba(46,84,184,.10);stroke:none}
+.chart-line{fill:none;stroke:var(--euro);stroke-width:2;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.chart-cap{margin-top:10px;font-size:13.5px;color:var(--muted)}
+.chart-cap .num{color:var(--ink);font-weight:500}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
 .chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;text-decoration:none;font-weight:500;transition:border-color .15s,color .15s}
 .chip:hover{border-color:var(--euro);color:var(--euro)}
@@ -160,6 +168,15 @@ h1{font-family:"Noto Serif Georgian",serif;font-size:clamp(23px,5.2vw,33px);font
       </div>
     </div>
 
+    <div class="chartbox">
+      <h2>Son 12 ayda lira kuru</h2>
+      <svg class="chart" viewBox="0 0 680 180" width="680" height="180" aria-hidden="true" focusable="false">
+        <path class="chart-area" data-chart="area" d=""/>
+        <path class="chart-line" data-chart="path" d=""/>
+      </svg>
+      <p class="chart-cap">Minimum <span class="num" data-chart="min">—</span> ₾, maksimum <span class="num" data-chart="max">—</span> ₾, yıllık değişim <span class="num" data-chart="chg">—</span></p>
+    </div>
+
 
     <div class="block">
       <h2>Popüler tutarlar</h2>
@@ -219,7 +236,7 @@ h1{font-family:"Noto Serif Georgian",serif;font-size:clamp(23px,5.2vw,33px);font
       curIn=document.getElementById("curIn"), gelIn=document.getElementById("gelIn");
 
   function fmt(n,d){d=(d==null?4:d);return n.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});}
-  function evalSSR(spec,map){var x=/^(?:(\d+(?:\.\d+)?)([*\/]))?([A-Z]{3})$/.exec(spec);if(!x)return null;var r=map[x[3]];if(r==null||!isFinite(r))return null;if(!x[1])return r;var a=parseFloat(x[1]);return x[2]==="*"?a*r:a/r;}
+  function evalSSR(spec,map){var x=/^(?:(\d+(?:\.\d+)?)([*\/]))?([A-Z]{3})(?:\/([A-Z]{3}))?$/.exec(spec);if(!x)return null;var r=map[x[3]];if(r==null||!isFinite(r))return null;if(x[4]){var d=map[x[4]];if(d==null||!isFinite(d)||d===0)return null;r=r/d;}if(!x[1])return r;var a=parseFloat(x[1]);return x[2]==="*"?a*r:a/r;}
   function fillSSR(map){var ns=document.querySelectorAll("[data-ssr]");for(var i=0;i<ns.length;i++){var el=ns[i],spec=el.getAttribute("data-ssr");if(spec==="date")continue;var dp=parseInt(el.getAttribute("data-dp")||"4",10);var v=evalSSR(spec,map);if(v==null)continue;var s=fmt(v,dp);if(el.tagName==="INPUT")el.value=s;else el.textContent=s;}}
   function nbgMap(data,codes){var day=Array.isArray(data)?data[0]:data;if(!day||!day.currencies)return null;var m={};day.currencies.forEach(function(c){m[c.code]=c;});var map={},ok=false;codes.forEach(function(c){if(m[c]&&m[c].rate){map[c]=m[c].rate/m[c].quantity;ok=true;}});if(!ok)return null;var an=m[codes[0]];return{map:map,date:((an&&an.validFromDate)||day.date||"").slice(0,10),src:"Gürcistan Merkez Bankası"};}
   function erMap(d,codes){var r=d.rates||d.conversion_rates;if(!r||!r.GEL)return null;var map={},ok=false;codes.forEach(function(c){if(c==="EUR"){map[c]=r.GEL;ok=true;}else if(r[c]){map[c]=r.GEL/r[c];ok=true;}});if(!ok)return null;return{map:map,date:d.time_last_update_utc?new Date(d.time_last_update_utc).toISOString().slice(0,10):"",src:"Piyasa kuru"};}

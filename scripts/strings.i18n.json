@@ -3441,5 +3441,71 @@
     "az": "{n} lirə günümüzün TRY/GEL məzənnəsinə vurularaq lariyə çevrilir. Məzənnə Gürcüstan Milli Bankı tərəfindən müəyyən edilir və gündə bir dəfə yenilənir, buna görə də yuxarıda göstərilən məbləğ həmişə ən son rəsmi rəqəmi əks etdirir.",
     "tr": "{n} lira, bugünkü TRY/GEL kuru ile çarpılarak lariye çevrilir. Kur, Gürcistan Millî Bankası tarafından belirlenir ve günde bir kez güncellenir, bu nedenle yukarıda gösterilen tutar her zaman en son resmi rakamı yansıtır.",
     "hy": "{n} լիրան լարիի է փոխարկվում՝ բազմապատկելով այսօրվա TRY/GEL փոխարժեքով: Փոխարժեքը սահմանվում է Վրաստանի Ազգային բանկի կողմից և թարմացվում է օրը մեկ անգամ, ուստի վերևում նշված գումարը միշտ արտացոլում է վերջին պաշտոնական ցուցանիշը:"
+  },
+  "k1e6d407112": {
+    "ka": "ევროს კურსი ბოლო {n} თვეში",
+    "hasN": true,
+    "ph": 0,
+    "en": "Euro rate over the last {n} months",
+    "ru": "Курс евро за последние {n} месяцев",
+    "uk": "Курс євро за останні {n} місяців",
+    "az": "Son {n} ayda avro məzənnəsi",
+    "tr": "Son {n} ayda euro kuru",
+    "hy": "Եվրոյի փոխարժեքը վերջին {n} ամսում"
+  },
+  "ked684c0a03": {
+    "ka": "მინიმუმი {0} ₾, მაქსიმუმი {1} ₾, ცვლილება წელიწადში {2}",
+    "hasN": false,
+    "ph": 3,
+    "en": "Minimum {0} ₾, maximum {1} ₾, annual change {2}",
+    "ru": "Минимум {0} ₾, максимум {1} ₾, изменение за год {2}",
+    "uk": "Мінімум {0} ₾, максимум {1} ₾, зміна за рік {2}",
+    "az": "Minimum {0} ₾, maksimum {1} ₾, illik dəyişiklik {2}",
+    "tr": "Minimum {0} ₾, maksimum {1} ₾, yıllık değişim {2}",
+    "hy": "Նվազագույնը՝ {0} ₾, առավելագույնը՝ {1} ₾, փոփոխությունը տարեկան կտրվածքով՝ {2}"
+  },
+  "k03deb4d2a1": {
+    "ka": "რუბლის კურსი ბოლო {n} თვეში",
+    "hasN": true,
+    "ph": 0,
+    "en": "Ruble rate over the last {n} months",
+    "ru": "Курс рубля за последние {n} месяцев",
+    "uk": "Курс рубля за останні {n} місяців",
+    "az": "Son {n} ayda rubl məzənnəsi",
+    "tr": "Son {n} ayda ruble kuru",
+    "hy": "Ռուբլու փոխարժեքը վերջին {n} ամսում"
+  },
+  "kd9d4351df2": {
+    "ka": "ლირის კურსი ბოლო {n} თვეში",
+    "hasN": true,
+    "ph": 0,
+    "en": "Lira rate over the last {n} months",
+    "ru": "Курс лиры за последние {n} месяцев",
+    "uk": "Курс ліри за останні {n} місяців",
+    "az": "Son {n} ayda lirə məzənnəsi",
+    "tr": "Son {n} ayda lira kuru",
+    "hy": "Լիրայի փոխարժեքը վերջին {n} ամսում"
+  },
+  "k7ceee79290": {
+    "ka": "ფუნტის კურსი ბოლო {n} თვეში",
+    "hasN": true,
+    "ph": 0,
+    "en": "Pound rate over the last {n} months",
+    "ru": "Курс фунта за последние {n} месяцев",
+    "uk": "Курс фунта за останні {n} місяців",
+    "az": "Son {n} ayda funt məzənnəsi",
+    "tr": "Son {n} ayda sterlin kuru",
+    "hy": "Ֆունտի փոխարժեքը վերջին {n} ամսում"
+  },
+  "k8671610cfe": {
+    "ka": "დოლარის კურსი ბოლო {n} თვეში",
+    "hasN": true,
+    "ph": 0,
+    "en": "Dollar rate over the last {n} months",
+    "ru": "Курс доллара за последние {n} месяцев",
+    "uk": "Курс долара за останні {n} місяців",
+    "az": "Son {n} ayda dollar məzənnəsi",
+    "tr": "Son {n} ayda dolar kuru",
+    "hy": "Դոլարի փոխարժեքը վերջին {n} ամսում"
   }
 }

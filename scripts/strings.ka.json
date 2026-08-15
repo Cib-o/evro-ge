@@ -55,6 +55,13 @@
     "count": 3,
     "sample": "index.html"
   },
+  "k1e6d407112": {
+    "ka": "ევროს კურსი ბოლო {n} თვეში",
+    "hasN": true,
+    "ph": 0,
+    "count": 1,
+    "sample": "index.html"
+  },
   "k4b9cb3ae6a": {
     "ka": "პოპულარული თანხები",
     "hasN": false,
@@ -398,6 +405,13 @@
     "count": 5,
     "sample": "index.html"
   },
+  "ked684c0a03": {
+    "ka": "მინიმუმი {0} ₾, მაქსიმუმი {1} ₾, ცვლილება წელიწადში {2}",
+    "hasN": false,
+    "ph": 3,
+    "count": 5,
+    "sample": "index.html"
+  },
   "kb2575e6c27": {
     "ka": "კურსის შესახებ",
     "hasN": false,
@@ -692,6 +706,13 @@
     "count": 2,
     "sample": "rublis-kursi/index.html"
   },
+  "k03deb4d2a1": {
+    "ka": "რუბლის კურსი ბოლო {n} თვეში",
+    "hasN": true,
+    "ph": 0,
+    "count": 1,
+    "sample": "rublis-kursi/index.html"
+  },
   "ke7c44b41c6": {
     "ka": "სხვა ვალუტა",
     "hasN": false,
@@ -832,6 +853,13 @@
     "count": 2,
     "sample": "liris-kursi/index.html"
   },
+  "kd9d4351df2": {
+    "ka": "ლირის კურსი ბოლო {n} თვეში",
+    "hasN": true,
+    "ph": 0,
+    "count": 1,
+    "sample": "liris-kursi/index.html"
+  },
   "kcb24f6cce0": {
     "ka": "ლირის კურსი ლარში დღეს",
     "hasN": false,
@@ -942,6 +970,13 @@
     "hasN": false,
     "ph": 0,
     "count": 2,
+    "sample": "funtis-kursi/index.html"
+  },
+  "k7ceee79290": {
+    "ka": "ფუნტის კურსი ბოლო {n} თვეში",
+    "hasN": true,
+    "ph": 0,
+    "count": 1,
     "sample": "funtis-kursi/index.html"
   },
   "k1be300abb2": {
@@ -1073,6 +1108,13 @@
   "k7409c918e7": {
     "ka": "დოლარის კურსი დღეს — დოლარი ლარი",
     "hasN": false,
+    "ph": 0,
+    "count": 1,
+    "sample": "dolari-lari/index.html"
+  },
+  "k8671610cfe": {
+    "ka": "დოლარის კურსი ბოლო {n} თვეში",
+    "hasN": true,
     "ph": 0,
     "count": 1,
     "sample": "dolari-lari/index.html"

@@ -64,6 +64,14 @@
 
 
 
+
+
+
+
+
+
+
+
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="evro.ge">
 <meta property="og:locale" content="ru_RU">
@@ -135,6 +143,15 @@
   .strip-item .val{font-size:19px;font-weight:600}
   @media(max-width:480px){.strip{grid-template-columns:repeat(2,1fr);gap:18px 8px}}
 
+  /* ისტორიული გრაფიკი — path-ს Worker ავსებს ედჯზე (data-chart), იხ. src/index.js */
+  .chartbox{margin-top:34px}
+  .chartbox h2{font-family:"Noto Serif Georgian",serif;font-size:20px;margin-bottom:12px;font-weight:700}
+  .chart{display:block;width:100%;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+  .chart-area{fill:rgba(46,84,184,.10);stroke:none}
+  .chart-line{fill:none;stroke:var(--euro);stroke-width:2;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+  .chart-cap{margin-top:10px;font-size:13.5px;color:var(--muted)}
+  .chart-cap .num{color:var(--ink);font-weight:500}
+
   .sec{padding:48px 0}
   .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
   .sec-num{font-family:"Space Grotesk",monospace;font-size:13px;color:#8A6A12;font-weight:600}
@@ -201,6 +218,7 @@
 
 
 
+
 <style id="langsel-css">.langsel{position:relative;font-family:inherit;margin-left:auto}.top-in .langsel,.top-in>.langsel{margin-left:14px}.langsel-btn{display:inline-flex;align-items:center;gap:6px;background:var(--panel,#fff);border:1px solid var(--line,rgba(11,21,48,.14));color:var(--muted,#5A6478);border-radius:999px;padding:6px 12px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;line-height:1}.langsel-btn:hover{border-color:var(--euro,#1B3A8F);color:var(--ink,#0B1530)}.langsel-btn svg{opacity:.8}.langsel-menu{position:absolute;top:calc(100% + 8px);right:0;background:var(--panel,#fff);border:1px solid var(--line,rgba(11,21,48,.12));border-radius:12px;box-shadow:0 10px 30px rgba(11,21,48,.14);padding:6px;min-width:160px;display:none;z-index:60}.langsel.open .langsel-menu{display:block}.langsel-menu a{display:block;text-decoration:none;font-size:14.5px;color:var(--ink,#0B1530);padding:9px 12px;border-radius:8px}.langsel-menu a:hover{background:var(--paper,#F1F4F7)}.langsel-menu a[aria-current=true]{color:var(--euro,#1B3A8F);font-weight:700}@media(max-width:560px){.langsel-btn .langsel-cur{display:none}}</style></head>
 <body>
 
@@ -249,6 +267,15 @@
         <div class="strip-item"><div class="pair">GBP / GEL</div><div class="val num" data-pair="GBP" data-ssr="GBP" data-dp="4">—</div></div>
         <div class="strip-item"><div class="pair">TRY / GEL</div><div class="val num" data-pair="TRY" data-ssr="TRY" data-dp="4">—</div></div>
         <div class="strip-item"><div class="pair">RUB / GEL</div><div class="val num" data-pair="RUB" data-ssr="RUB" data-dp="4">—</div></div>
+      </div>
+
+      <div class="chartbox">
+        <h2>Курс евро за последние 12 месяцев</h2>
+        <svg class="chart" viewBox="0 0 680 180" width="680" height="180" aria-hidden="true" focusable="false">
+          <path class="chart-area" data-chart="area" d=""/>
+          <path class="chart-line" data-chart="path" d=""/>
+        </svg>
+        <p class="chart-cap">Минимум <span class="num" data-chart="min">—</span> ₾, максимум <span class="num" data-chart="max">—</span> ₾, изменение за год <span class="num" data-chart="chg">—</span></p>
       </div>
     </div>
   </section>
@@ -527,6 +554,7 @@
   setInterval(load,60*60*1000); // საათში ერთხელ (NBG Курс на დღეში ერთხელ იცვლება)
 })();
 </script>
+
 
 
 

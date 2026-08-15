@@ -103,6 +103,13 @@ export default {
       rewriter = rewriter.on("[data-ssr]", new SsrHandler(computed.rates, computed.date, RATE_ON[lang] || RATE_ON.ka));
     }
 
+    // 12-თვიანი გრაფიკი — მხოლოდ landing-ებზე.
+    const chartCur = chartCurrencyFor(url.pathname);
+    if (chartCur) {
+      const chart = chartFrom(await loadSeries(env, chartCur, 365), computed && computed.rates && computed.rates[chartCur]);
+      if (chart) rewriter = rewriter.on("[data-chart]", new ChartHandler(chart, 4));
+    }
+
     const out = rewriter.transform(res);
 
     // HTML მცირე ხნით იქეშება ედჯზე (სისწრაფისთვის), მაგრამ სწრაფად ნახლდება:
@@ -284,7 +291,6 @@ function computeRates(data) {
 }
 
 // ── data-ssr → რიცხვი ──────────────────────────────────────────────────────────
-//  spec: "EUR" | "100*EUR" | "100/EUR" | "date"
 //  spec: "EUR" | "100*EUR" | "100/EUR" | "EUR/USD" | "100*EUR/USD" | "date"
 function evalSSR(spec, rates) {
   const x = /^(?:(\d+(?:\.\d+)?)([*/]))?([A-Z]{3})(?:\/([A-Z]{3}))?$/.exec(spec);
@@ -324,6 +330,68 @@ class SsrHandler {
     if (out == null) return;
     if (el.tagName === "input") el.setAttribute("value", out);
     else el.setInnerContent(out);
+  }
+}
+
+// ── ისტორიული გრაფიკი (edge-SSR) ─────────────────────────────────────────────
+// გრაფიკიც ედჯზე ივსება, ისევე როგორც კურსი. ალტერნატივა — SVG build-time-ზე
+// ჩაბეჭდვა — ნიშნავდა, რომ ხაზი ბოლო ბილდზე გაიყინებოდა (მონაცემი ყოველდღე
+// ახლდება, HTML კი არა), ან ყოველდღე 42 გვერდის კომიტს მოითხოვდა.
+//
+// მხოლოდ landing-ებზე: 2 ASSETS subrequest (მიმდინარე + წინა წელი), ლოკალური.
+const CHART_CUR = { "/": "EUR", "/dolari-lari/": "USD", "/rublis-kursi/": "RUB", "/liris-kursi/": "TRY", "/funtis-kursi/": "GBP" };
+const CHART_W = 680, CHART_H = 180, CHART_PAD = 8;
+
+function chartCurrencyFor(pathname) {
+  const p = pathname.replace(/^\/(en|ru|uk|az|tr|hy)(?=\/)/, "") || "/";
+  return CHART_CUR[p] || null;
+}
+
+/** ბოლო `days` დღის კურსები (ძველიდან ახლისკენ), null-ები ამოღებული. */
+async function loadSeries(env, cur, days) {
+  const now = new Date();
+  const y = now.getUTCFullYear();
+  const need = days > 300 ? [y - 1, y] : [y];
+  const chunks = [];
+  for (const yr of need) {
+    try {
+      const res = await env.ASSETS.fetch(new Request(`https://evro.ge/data/rates/${cur}-${yr}.json`));
+      if (!res.ok) continue;
+      const doc = await res.json();
+      const start = Date.UTC(yr, 0, 1);
+      doc.v.forEach((val, i) => { if (val != null) chunks.push([start + i * 86400000, val]); });
+    } catch (e) { /* ერთი წელი რომ დააკლდეს, დანარჩენით მაინც ვხატავთ */ }
+  }
+  chunks.sort((a, b) => a[0] - b[0]);
+  const cutoff = now.getTime() - days * 86400000;
+  return chunks.filter(([t]) => t >= cutoff);
+}
+
+/** სერიიდან SVG path + სტატისტიკა. */
+function chartFrom(series, live) {
+  const pts = series.map(([, v]) => v);
+  // მარჯვენა კიდე — ცოცხალი კურსი (JSON გუშინდელით მთავრდება).
+  if (live != null && isFinite(live)) pts.push(live);
+  if (pts.length < 2) return null;
+  const lo = Math.min(...pts), hi = Math.max(...pts);
+  const span = hi - lo || 1;
+  const x = (i) => CHART_PAD + (i * (CHART_W - 2 * CHART_PAD)) / (pts.length - 1);
+  const yy = (r) => CHART_PAD + ((hi - r) * (CHART_H - 2 * CHART_PAD)) / span;
+  const d = pts.map((r, i) => `${i ? "L" : "M"}${x(i).toFixed(1)} ${yy(r).toFixed(1)}`).join("");
+  const first = pts[0], last = pts[pts.length - 1];
+  return { d, lo, hi, chg: first ? ((last - first) / first) * 100 : 0 };
+}
+
+class ChartHandler {
+  constructor(chart, dp) { this.chart = chart; this.dp = dp; }
+  element(el) {
+    const spec = el.getAttribute("data-chart");
+    if (!spec || !this.chart) return;
+    if (spec === "path") { el.setAttribute("d", this.chart.d); return; }
+    if (spec === "area") { el.setAttribute("d", `${this.chart.d}L${CHART_W - CHART_PAD} ${CHART_H}L${CHART_PAD} ${CHART_H}Z`); return; }
+    if (spec === "min") return el.setInnerContent(fmtNum(this.chart.lo, this.dp));
+    if (spec === "max") return el.setInnerContent(fmtNum(this.chart.hi, this.dp));
+    if (spec === "chg") return el.setInnerContent((this.chart.chg >= 0 ? "+" : "−") + Math.abs(this.chart.chg).toFixed(1) + "%");
   }
 }
 
