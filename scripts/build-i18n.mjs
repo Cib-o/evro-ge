@@ -92,7 +92,7 @@ function setHead(root, lang, P) {
   const alts = LANGS.map((l) => `<link rel="alternate" hreflang="${l}" href="${urlFor(l, P)}">`).join('\n');
   const xdef = `<link rel="alternate" hreflang="x-default" href="${urlFor('ka', P)}">`;
   const canon = head.querySelector('link[rel="canonical"]');
-  const block = '\n' + alts + '\n' + xdef;
+  const block = '\n' + alts + '\n' + xdef + '\n'; // ბოლო "\n" — რომ build-pages-ის ახალ გვერდზეც მეორე გაშვება იგივე იყოს
   if (canon) canon.insertAdjacentHTML('afterend', block);
   else head.insertAdjacentHTML('beforeend', block);
 }
@@ -190,11 +190,28 @@ function buildPage(file, lang) {
   fixSchema(root, lang, P);
   injectChrome(root, lang, P);
 
-  let out = root.toString().replace(/(<path\b[^>]*?)><\/path>/g, '$1/>');
+  // Re-injection removes the old hreflang/switcher/script nodes but leaves their "\n"
+  // text siblings behind — without collapsing blank-line runs every rebuild grew each
+  // page by ~10 empty lines (whitespace churn on all 714 files).
+  let out = root.toString()
+    .replace(/(<path\b[^>]*?)><\/path>/g, '$1/>')
+    .replace(/\r\n/g, '\n')
+    .replace(/\n(?:[ \t]*\n){2,}/g, '\n\n');
   const dest = lang === 'ka' ? file : `${pubDir}/${lang}${P}index.html`;
   mkdirSync(dirname(dest), { recursive: true });
-  writeFileSync(dest, out);
+  writeRetry(dest, out);
   return dest;
+}
+
+// Windows: right after a full rebuild the Search indexer / Defender briefly hold the
+// just-written files, and the next rewrite fails with "UNKNOWN: open". Back off and retry.
+function writeRetry(dest, data) {
+  for (let i = 0; ; i++) {
+    try { return writeFileSync(dest, data); } catch (e) {
+      if (i >= 8 || !['UNKNOWN', 'EBUSY', 'EPERM'].includes(e.code)) throw e;
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 150 * (i + 1));
+    }
+  }
 }
 
 const sources = listPages().filter((f) => !new RegExp(`/public/(${NON_KA.join('|')})/`).test(f));
