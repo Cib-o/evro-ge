@@ -44,14 +44,18 @@ KA-ტექსტის ჰეშით (`keyFor`, `scripts/i18n-lib.mjs`). `bu
 
 ### გადაგენერაცია — სწორი თანმიმდევრობა
 ```bash
-git checkout public/**/*.html          # ⚠️ სავალდებულო — build-i18n სუფთა KA-ს საჭიროებს
+node scripts/build-pages.js            # KA გენერირებული გვერდები (თუ შაბლონი/CSS შეიცვალა)
 node scripts/build-i18n.mjs            # წერს ka root-ს + ყველა /<lang>/ გვერდს
-node scripts/build-sitemap.mjs         # sitemap ყველა ენით
+node scripts/build-sitemap.mjs         # ⚠️ build-pages-ის მერე სავალდებულო: ის sitemap-ს მხოლოდ KA-თი (102 URL) წერს
 node scripts/verify-langs.mjs          # 0 structural issue / 0 KA leak
 ```
-**⚠️ Gotcha:** `build-i18n.mjs` **არ არის idempotentური** whitespace-ზე — უკვე build-ებულ გვერდზე
-(git checkout-ის გარეშე) გაშვება ცარიელ ხაზებს აგროვებს, სრული rebuild კი **378-ვე გვერდის** diff-ს
-გამოიღებს. ამიტომ ყოველთვის `git checkout public/` ჯერ.
+`build-i18n.mjs` **idempotentურია** (2026-10-09-დან): ცარიელი ხაზების სერიებს ერთზე ჰკუმშავს, ანუ
+განმეორებითი გაშვება diff-ს აღარ აჩენს და `git checkout public/` წინასწარ **აღარ სჭირდება** — პირიქით,
+ის `public/index.html`-ის შეუნახავ ცვლილებას წაშლიდა. Windows-ზე ჩაწერა retry-ით ხდება (Search
+indexer/Defender ახლად ჩაწერილ ფაილს წამით კეტავს → `UNKNOWN: open`).
+
+⚠️ ბილდის/push-ის წინ: `git pull --ff-only` — GitHub Action ყოველდღე აკომიტებს `public/data/`-ს,
+ანუ ლოკალური `main` ხშირად ჩამორჩება.
 
 ### პატარა title/description ცვლილება (რამდენიმე გვერდზე, სუფთა diff)
 სრული rebuild-ის churn-ის ასარიდებლად:
@@ -161,5 +165,17 @@ git push
 ## ცვლილების ისარი ▲/▼
 NBG-ის diff-ის ნიშანზეა. თუ შებრუნებულია — public/index.html-ში `DIFF_SIGN = 1` → `-1`.
 
-## შესავსები
-public/index.html-ში `[სერვისის სახელი]`, `[საკომისიო]`, `[აფილიატ-ლინკი]` — შეავსე რეალური აფილიატ-დილების შემდეგ.
+## შრიფტები (self-hosted)
+`public/fonts/` — Noto Sans Georgian, Noto Serif Georgian, Space Grotesk (OFL, variable woff2;
+subset-ები: georgian / latin / latin-ext, Space Grotesk — latin). `@font-face` inline-ადაა:
+`FONT_FACES` (`scripts/build-pages.js`) და იგივე ბლოკი `public/index.html`-ის `<style id="fonts">`-ში.
+- **preload:** Space Grotesk ყველგან; ქართული ფაილები მხოლოდ KA-ზე (`data-ka-only` — build-i18n სხვა
+  ენებზე შლის).
+- **serif fallback:** `"Noto Serif Georgian",Georgia,"Noto Serif",serif` — კირილიცა/სომხური ამ შრიფტში
+  არ არის; მის გარეშე რუსული სათაურები Times New Roman-ით ჩანდა.
+- Worker `/fonts/*`-ს `immutable`-ად ქეშავს, ამიტომ ფაილის შეცვლისას **სახელი შეცვალე** (`-v49-`).
+
+## აფილიატ-სლოტები
+2026-10-09-მდე მთავარზე ცარიელი შაბლონები ჩანდა (`[სერვისის სახელი]`, „აქ ჩაჯდება…“) — ამოღებულია.
+რეალური პარტნიორის შემდეგ აღადგინე commit `5551a6d`-ის `public/index.html`-იდან (სექციები
+`#transfer` / `#loans` + `.card*` CSS) და შეავსე **მხოლოდ გადამოწმებული** საკომისიოთი.

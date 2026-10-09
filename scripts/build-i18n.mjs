@@ -185,7 +185,10 @@ function buildPage(file, lang) {
   const root = parse(html, { comment: true, blockTextElements: { script: true, style: true, noscript: true } });
   const P = sitePath(file);
 
-  if (lang !== 'ka') { translateText(root, lang); translateMeta(root, lang); patchScripts(root, lang); rewriteLinks(root, lang); }
+  if (lang !== 'ka') {
+    translateText(root, lang); translateMeta(root, lang); patchScripts(root, lang); rewriteLinks(root, lang);
+    root.querySelectorAll('link[data-ka-only]').forEach((e) => e.remove()); // ქართული შრიფტის preload
+  }
   setHead(root, lang, P);
   fixSchema(root, lang, P);
   injectChrome(root, lang, P);

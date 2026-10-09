@@ -22,7 +22,8 @@ export const SELECTORS = [
   '.rev', '.rev a',
   '.faq summary', '.faq .ans', '.faq .ans a',
   '.rates th', '.rates td', '.rates td a',
-  '.rtable th',
+  '.rtable th', '.rtable td a',
+  '.more summary',       // „მეტის ნახვა“ — ჩაკეცილი SEO-ტექსტი მთავარზე
   '.card-name', '.card-desc', '.card-fee .l', '.card-cta',
   '.strip-item .pair',
   '.conv-cell label',

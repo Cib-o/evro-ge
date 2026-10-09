@@ -89,6 +89,9 @@ export default {
     // ყოველდღიური job ავსებს, ამიტომ მოკლე TTL.
     if (url.pathname.startsWith("/data/rates/")) return cachedSeries(res, url.pathname);
 
+    // self-hosted შრიფტები: ფაილის სახელში Google-ის ვერსიაა (…-v48-…) ⇒ შიგთავსი არ იცვლება.
+    if (url.pathname.startsWith("/fonts/")) return immutableAsset(res);
+
     // SSR მხოლოდ ჩვენს HTML გვერდებზე (trailing-slash directory). ".html" პირდაპირი
     // მისამართები (მაგ. Yandex/Google verification ფაილები) უცვლელად გადის.
     const ct = res.headers.get("content-type") || "";
@@ -159,6 +162,13 @@ function cachedSeries(res, pathname) {
   const headers = new Headers(res.headers);
   headers.set("cache-control", sealed ? "public, max-age=31536000, immutable" : "public, max-age=3600, stale-while-revalidate=86400");
   headers.set("access-control-allow-origin", "*");
+  return new Response(res.body, { status: res.status, headers });
+}
+
+function immutableAsset(res) {
+  if (!res.ok) return res;
+  const headers = new Headers(res.headers);
+  headers.set("cache-control", "public, max-age=31536000, immutable");
   return new Response(res.body, { status: res.status, headers });
 }
 

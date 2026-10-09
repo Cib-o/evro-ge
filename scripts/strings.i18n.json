@@ -2944,7 +2944,7 @@
     "ru": "Сколько {n} лари в лирах сегодня | evro.ge",
     "uk": "Скільки {n} ларі в лірах сьогодні | evro.ge",
     "az": "Bu gün {n} lari neçə lirədir | evro.ge",
-    "tr": "Bugün {n} lari kaç lira | evro.ge",
+    "tr": "Bugün {n} lari kaç TL | evro.ge",
     "hy": "Քանի՞ լիրա է {n} լարին այսօր | evro.ge"
   },
   "k49eaa09105": {
@@ -2966,7 +2966,7 @@
     "ru": "Сколько {n} лари в лирах — {n} GEL to TRY",
     "uk": "Скільки {n} ларі в лірах — {n} GEL to TRY",
     "az": "Bu gün {n} lari neçə lirədir — {n} GEL to TRY",
-    "tr": "Bugün {n} lari kaç lira — {n} GEL to TRY",
+    "tr": "Bugün {n} lari kaç TL — {n} GEL to TRY",
     "hy": "Քանի՞ լիրա է {n} լարին — {n} GEL to TRY"
   },
   "k876e5edfff": {
@@ -3065,7 +3065,7 @@
     "ru": "Сколько {n} лари (GEL) в лирах (TRY) сегодня? Смотрите стоимость {n} лари в лирах по официальному курсу Национального банка — живой, ежедневно обновляемый пересчет.",
     "uk": "Скільки {n} ларі (GEL) у лірах (TRY) сьогодні? Перегляньте вартість {n} ларі в лірах за офіційним курсом Національного банку — живий конвертер, що оновлюється щодня.",
     "az": "Bu gün {n} lari (GEL) neçə lirədir (TRY)? Milli Bankın rəsmi məzənnəsi ilə {n} larinin lirə dəyərini görün — canlı, gündəlik yenilənən konvertasiya.",
-    "tr": "Bugün {n} lari (GEL) kaç lira (TRY) yapar? Ulusal Bankanın resmi kuruna göre {n} larinin lira cinsinden değerini görün — canlı, günlük güncellenen çeviri.",
+    "tr": "Bugün {n} lari (GEL) kaç TL (TRY) yapar? Ulusal Bankanın resmi kuruna göre {n} larinin lira cinsinden değerini görün — canlı, günlük güncellenen çeviri.",
     "hy": "Քանի՞ լիրա (TRY) է {n} լարին (GEL) այսօր: Տեսեք {n} լարու արժեքը լիրայով Ազգային բանկի պաշտոնական փոխարժեքով՝ կենդանի, ամեն օր թարմացվող փոխարկում:"
   },
   "k6ce144f134": {
@@ -3208,7 +3208,7 @@
     "ru": "Сколько стоит {n} лир в лари сегодня | evro.ge",
     "uk": "Скільки коштує {n} лір у ларі сьогодні | evro.ge",
     "az": "Bu gün {n} lirə neçə lari edir | evro.ge",
-    "tr": "Bugün {n} lira kaç TL yapar | evro.ge",
+    "tr": "Bugün {n} TL kaç lari | evro.ge",
     "hy": "Քանի լարի է {n} լիրան այսօր | evro.ge"
   },
   "k53f30691cc": {
@@ -3230,7 +3230,7 @@
     "ru": "Сколько {n} лир в лари — {n} TRY to GEL",
     "uk": "Скільки {n} лір у ларі — {n} TRY to GEL",
     "az": "{n} lirə neçə lari edir — {n} TRY to GEL",
-    "tr": "{n} lira kaç lari yapar — {n} TRY to GEL",
+    "tr": "{n} TL kaç lari — {n} TRY to GEL",
     "hy": "Քանի լարի է {n} լիրան — {n} TRY to GEL"
   },
   "k3c5cf87c82": {
@@ -3307,7 +3307,7 @@
     "ru": "Сколько {n} лир (TRY) в лари (GEL) сегодня? Смотрите стоимость {n} лир в лари по официальному курсу Национального банка — живая, ежедневно обновляемая конвертация.",
     "uk": "Скільки {n} лір (TRY) у ларі (GEL) сьогодні? Перегляньте вартість {n} лір у ларі за офіційним курсом Національного банку — жива конвертація, що оновлюється щодня.",
     "az": "Bu gün {n} lirə (TRY) neçə lari (GEL) edir? Milli Bankın rəsmi məzənnəsi ilə {n} lirənin lari dəyərinə baxın — canlı, gündəlik yenilənən konvertasiya.",
-    "tr": "Bugün {n} lira (TRY) kaç lari (GEL) yapar? {n} liranın Merkez Bankası resmi kuruyla lari cinsinden değerini görün — canlı, günlük güncellenen dönüşüm.",
+    "tr": "Bugün {n} TL (TRY) kaç lari (GEL) yapar? {n} liranın Merkez Bankası resmi kuruyla lari cinsinden değerini görün — canlı, günlük güncellenen dönüşüm.",
     "hy": "Քանի լարի (GEL) է {n} լիրան (TRY) այսօր: Դիտեք {n} լիրայի արժեքը լարիով Ազգային բանկի պաշտոնական փոխարժեքով՝ կենդանի, ամեն օր թարմացվող փոխարկում:"
   },
   "k81c4b03aab": {
@@ -3507,5 +3507,16 @@
     "az": "Son {n} ayda dollar məzənnəsi",
     "tr": "Son {n} ayda dolar kuru",
     "hy": "Դոլարի փոխարժեքը վերջին {n} ամսում"
+  },
+  "kf1f43f3646": {
+    "ka": "მეტის ნახვა",
+    "hasN": false,
+    "ph": 0,
+    "en": "Read more",
+    "ru": "Читать дальше",
+    "uk": "Читати далі",
+    "az": "Daha çox oxu",
+    "tr": "Devamını oku",
+    "hy": "Կարդալ ավելին"
   }
 }
