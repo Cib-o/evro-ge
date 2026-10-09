@@ -3518,5 +3518,115 @@
     "az": "Daha çox oxu",
     "tr": "Devamını oku",
     "hy": "Կարդալ ավելին"
+  },
+  "k8cf0fc6dc1": {
+    "ka": "სად გადავცვალო რუბლი საქართველოში",
+    "hasN": false,
+    "ph": 0,
+    "en": "Where to exchange rubles in Georgia",
+    "ru": "Где обменять рубли в Грузии",
+    "uk": "Де обміняти рублі в Грузії",
+    "az": "Gürcüstanda rublu harada dəyişmək olar",
+    "tr": "Gürcistan'da ruble nerede bozdurulur",
+    "hy": "Որտե՞ղ փոխանակել ռուբլին Վրաստանում"
+  },
+  "k1b969e0795": {
+    "ka": "ეროვნული ბანკი რუბლის კურსს {n} რუბლზე აქვეყნებს: {n} რუბლი = {0} ლარი. ამიტომ nbg.gov.ge-ზე ნაჩვენები რიცხვი {n} რუბლის ფასია და არა ერთის.",
+    "hasN": true,
+    "ph": 1,
+    "en": "The National Bank publishes the ruble rate per {n} rubles: {n} rubles = {0} lari. So the figure shown on nbg.gov.ge is the price of {n} rubles, not of one.",
+    "ru": "Национальный банк Грузии публикует курс рубля за {n} рублей: {n} рублей = {0} лари. Поэтому число на nbg.gov.ge — это цена {n} рублей, а не одного.",
+    "uk": "Національний банк Грузії публікує курс рубля за {n} рублів: {n} рублів = {0} ларі. Тому число на nbg.gov.ge — це ціна {n} рублів, а не одного.",
+    "az": "Gürcüstan Milli Bankı rublun məzənnəsini {n} rubl üçün dərc edir: {n} rubl = {0} lari. Buna görə nbg.gov.ge saytında göstərilən rəqəm bir yox, {n} rublun qiymətidir.",
+    "tr": "Gürcistan Merkez Bankası ruble kurunu {n} ruble için yayımlar: {n} ruble = {0} lari. Bu yüzden nbg.gov.ge'de görünen rakam bir rublenin değil, {n} rublenin fiyatıdır.",
+    "hy": "Վրաստանի Ազգային բանկը ռուբլու փոխարժեքը հրապարակում է {n} ռուբլու համար՝ {n} ռուբլի = {0} լարի։ Այդ պատճառով nbg.gov.ge-ում ցուցադրված թիվը {n} ռուբլու գինն է, ոչ թե մեկի։"
+  },
+  "k97025155c5": {
+    "ka": "ნაღდ რუბლს ყიდულობენ გადამცვლელი პუნქტები (თბილისსა და ბათუმში ბევრია) და ბანკების ნაწილი. მათი ყიდვის კურსი ოფიციალურზე დაბალია, გაყიდვის კი — მაღალი, თანაც ადგილიდან ადგილამდე შესამჩნევად იცვლება, ამიტომ ჯობია ორი-სამი ადგილი შეადარო.",
+    "hasN": false,
+    "ph": 0,
+    "en": "Cash rubles are bought by exchange offices (there are many in Tbilisi and Batumi) and by some banks. Their buying rate is below the official one and their selling rate above it, and both vary noticeably from place to place, so it pays to compare two or three offices.",
+    "ru": "Наличные рубли покупают обменные пункты (в Тбилиси и Батуми их много) и часть банков. Их курс покупки ниже официального, а курс продажи — выше, причём он заметно отличается от места к месту, поэтому стоит сравнить два-три пункта.",
+    "uk": "Готівкові рублі купують обмінні пункти (у Тбілісі та Батумі їх багато) і частина банків. Їхній курс купівлі нижчий за офіційний, а курс продажу — вищий, до того ж він помітно відрізняється від місця до місця, тож варто порівняти два-три пункти.",
+    "az": "Nağd rublu mübadilə məntəqələri (Tbilisi və Batumidə çoxdur) və bəzi banklar alır. Onların alış məzənnəsi rəsmi məzənnədən aşağı, satış məzənnəsi isə yuxarı olur və yerdən yerə nəzərəçarpacaq dərəcədə dəyişir, ona görə də iki-üç məntəqəni müqayisə etmək məsləhətdir.",
+    "tr": "Nakit rubleyi döviz büroları (Tiflis ve Batum'da çok sayıda var) ve bazı bankalar alır. Alış kurları resmi kurun altında, satış kurları ise üstündedir ve yerden yere belirgin şekilde değişir; bu yüzden iki üç büroyu karşılaştırmak iyi olur.",
+    "hy": "Կանխիկ ռուբլի գնում են փոխանակման կետերը (Թբիլիսիում և Բաթումիում դրանք շատ են) և որոշ բանկեր։ Նրանց գնման փոխարժեքը պաշտոնականից ցածր է, վաճառքինը՝ բարձր, և տարբեր վայրերում այն նկատելիորեն տարբերվում է, ուստի արժե համեմատել երկու-երեք կետ։"
+  },
+  "k81d0721517": {
+    "ka": "აეროპორტსა და ტურისტულ ადგილებში კურსი, როგორც წესი, ნაკლებად ხელსაყრელია. გადაცვლამდე იკითხე ყიდვის კურსი — რომლითაც პუნქტი შენგან რუბლს ყიდულობს — და შეადარე ზემოთ კონვერტერში ოფიციალურ კურსს.",
+    "hasN": false,
+    "ph": 0,
+    "en": "At the airport and in tourist spots the rate is usually less favourable. Before exchanging, ask for the buying rate — the rate at which the office buys rubles from you — and compare it with the official rate in the converter above.",
+    "ru": "В аэропорту и в туристических местах курс, как правило, менее выгодный. Перед обменом уточните курс покупки — по нему пункт покупает у вас рубли — и сравните его с официальным курсом в конвертере выше.",
+    "uk": "В аеропорту та в туристичних місцях курс, як правило, менш вигідний. Перед обміном уточніть курс купівлі — за ним пункт купує у вас рублі — і порівняйте його з офіційним курсом у конвертері вище.",
+    "az": "Hava limanında və turistik yerlərdə məzənnə, bir qayda olaraq, daha az sərfəlidir. Dəyişməzdən əvvəl alış məzənnəsini — məntəqənin sizdən rublu aldığı məzənnəni — soruşun və yuxarıdakı çeviricidə rəsmi məzənnə ilə müqayisə edin.",
+    "tr": "Havalimanında ve turistik yerlerde kur genellikle daha az avantajlıdır. Bozdurmadan önce alış kurunu — büronun sizden rubleyi aldığı kuru — sorun ve yukarıdaki çeviricide resmi kurla karşılaştırın.",
+    "hy": "Օդանավակայանում և զբոսաշրջային վայրերում փոխարժեքը, որպես կանոն, ավելի քիչ շահավետ է։ Փոխանակելուց առաջ ճշտեք գնման փոխարժեքը՝ որով կետը ձեզնից գնում է ռուբլին, և համեմատեք այն վերևի փոխարկիչի պաշտոնական փոխարժեքի հետ։"
+  },
+  "k48079db4f3": {
+    "ka": "რამდენი რუბლია {n} ლარი?",
+    "hasN": true,
+    "ph": 0,
+    "en": "How many rubles is {n} lari?",
+    "ru": "Сколько рублей в {n} лари?",
+    "uk": "Скільки рублів в {n} ларі?",
+    "az": "{n} lari neçə rubldur?",
+    "tr": "{n} lari kaç ruble?",
+    "hy": "Քանի՞ ռուբլի է {n} լարին։"
+  },
+  "ke88bb6e8dc": {
+    "ka": "{n} ლარის ღირებულება რუბლში ნაჩვენებია გვერდის თავში, კურსის ქვეშ — ის ეროვნული ბანკის ოფიციალური კურსით ითვლება და ყოველდღე ახლდება. ნებისმიერი თანხისთვის ჩაწერე ლარი კონვერტერის მარჯვენა ველში.",
+    "hasN": true,
+    "ph": 0,
+    "en": "The value of {n} lari in rubles is shown at the top of the page, under the rate. It is calculated from the National Bank's official rate and updated daily. For any other amount, type the lari sum into the right-hand field of the converter.",
+    "ru": "Стоимость {n} лари в рублях показана вверху страницы, под курсом. Она рассчитывается по официальному курсу Национального банка Грузии и обновляется ежедневно. Для любой другой суммы введите лари в правое поле конвертера.",
+    "uk": "Вартість {n} ларі в рублях показана вгорі сторінки, під курсом. Вона розраховується за офіційним курсом Національного банку Грузії та оновлюється щодня. Для будь-якої іншої суми введіть ларі в праве поле конвертера.",
+    "az": "{n} larinin rublla dəyəri səhifənin yuxarısında, məzənnənin altında göstərilib. O, Gürcüstan Milli Bankının rəsmi məzənnəsi ilə hesablanır və hər gün yenilənir. İstənilən digər məbləğ üçün larini çeviricinin sağ xanasına daxil edin.",
+    "tr": "{n} larinin ruble karşılığı sayfanın üst kısmında, kurun altında gösterilir. Gürcistan Merkez Bankası'nın resmi kuruyla hesaplanır ve her gün güncellenir. Başka bir tutar için lari miktarını çeviricinin sağ alanına yazın.",
+    "hy": "{n} լարիի արժեքը ռուբլով ցուցադրված է էջի վերևում՝ փոխարժեքի տակ։ Այն հաշվարկվում է Վրաստանի Ազգային բանկի պաշտոնական փոխարժեքով և թարմացվում է ամեն օր։ Ցանկացած այլ գումարի համար լարին մուտքագրեք փոխարկիչի աջ դաշտում։"
+  },
+  "k0e19615d28": {
+    "ka": "{n} ლარი = {0} რუბლი",
+    "hasN": true,
+    "ph": 1,
+    "en": "{n} lari = {0} rubles",
+    "ru": "{n} лари = {0} рубля",
+    "uk": "{n} ларі = {0} рубля",
+    "az": "{n} lari = {0} rubl",
+    "tr": "{n} lari = {0} ruble",
+    "hy": "{n} լարի = {0} ռուբլի"
+  },
+  "k6bacf31ca1": {
+    "ka": "რამდენი ლირაა {n} ლარი?",
+    "hasN": true,
+    "ph": 0,
+    "en": "How many Turkish lira is {n} lari?",
+    "ru": "Сколько лир в {n} лари?",
+    "uk": "Скільки лір в {n} ларі?",
+    "az": "{n} lari neçə lirədir?",
+    "tr": "{n} lari kaç TL?",
+    "hy": "Քանի՞ լիրա է {n} լարին։"
+  },
+  "k3a27159540": {
+    "ka": "{n} ლარის ღირებულება ლირაში ნაჩვენებია გვერდის თავში, კურსის ქვეშ — ის ეროვნული ბანკის ოფიციალური კურსით ითვლება და ყოველდღე ახლდება. ნებისმიერი თანხისთვის ჩაწერე ლარი კონვერტერის მარჯვენა ველში.",
+    "hasN": true,
+    "ph": 0,
+    "en": "The value of {n} lari in Turkish lira is shown at the top of the page, under the rate. It is calculated from the National Bank's official rate and updated daily. For any other amount, type the lari sum into the right-hand field of the converter.",
+    "ru": "Стоимость {n} лари в лирах показана вверху страницы, под курсом. Она рассчитывается по официальному курсу Национального банка Грузии и обновляется ежедневно. Для любой другой суммы введите лари в правое поле конвертера.",
+    "uk": "Вартість {n} ларі в лірах показана вгорі сторінки, під курсом. Вона розраховується за офіційним курсом Національного банку Грузії та оновлюється щодня. Для будь-якої іншої суми введіть ларі в праве поле конвертера.",
+    "az": "{n} larinin lirə ilə dəyəri səhifənin yuxarısında, məzənnənin altında göstərilib. O, Gürcüstan Milli Bankının rəsmi məzənnəsi ilə hesablanır və hər gün yenilənir. İstənilən digər məbləğ üçün larini çeviricinin sağ xanasına daxil edin.",
+    "tr": "{n} larinin TL karşılığı sayfanın üst kısmında, kurun altında gösterilir. Gürcistan Merkez Bankası'nın resmi kuruyla hesaplanır ve her gün güncellenir. Başka bir tutar için lari miktarını çeviricinin sağ alanına yazın.",
+    "hy": "{n} լարիի արժեքը լիրայով ցուցադրված է էջի վերևում՝ փոխարժեքի տակ։ Այն հաշվարկվում է Վրաստանի Ազգային բանկի պաշտոնական փոխարժեքով և թարմացվում է ամեն օր։ Ցանկացած այլ գումարի համար լարին մուտքագրեք փոխարկիչի աջ դաշտում։"
+  },
+  "ka30f96be35": {
+    "ka": "{n} ლარი = {0} ლირა",
+    "hasN": true,
+    "ph": 1,
+    "en": "{n} lari = {0} Turkish lira",
+    "ru": "{n} лари = {0} лиры",
+    "uk": "{n} ларі = {0} ліри",
+    "az": "{n} lari = {0} lirə",
+    "tr": "{n} lari = {0} TL",
+    "hy": "{n} լարի = {0} լիրա"
   }
 }

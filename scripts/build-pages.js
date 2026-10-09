@@ -606,7 +606,7 @@ const LANDINGS = [
     context: "ფუნტი დიდი ბრიტანეთის ვალუტაა და მისი კურსი გლობალურ ბაზარზე იცვლება. ეროვნული ბანკი ადგენს ოფიციალურ კურსს, ბანკებსა და გადამცვლელ პუნქტებში კი ყიდვა-გაყიდვის კურსი ოდნავ განსხვავდება — ამიტომ სანამ ფუნტს გადაცვლი, შეადარე პირობები.",
   },
   {
-    code: "TRY", slug: "liris-kursi", full: "თურქული ლირა",
+    code: "TRY", slug: "liris-kursi", full: "თურქული ლირა", inv: 2,
     nom: "ლირა", gen: "ლირის", loc: "ლირაში", a: "ლირაა", latin: "liris kursi",
     title: "ლირის კურსი დღეს — TRY/GEL ოფიციალური კურსი | evro.ge",
     og: "ლირის კურსი დღეს — TRY/GEL ოფიციალური კურსი",
@@ -615,7 +615,13 @@ const LANDINGS = [
     context: "საქართველოსა და თურქეთს შორის ვაჭრობისა და მოგზაურობის გამო ლირის კურსი ბევრს აინტერესებს. ეროვნული ბანკი ლირის ოფიციალურ კურსს ყოველ სამუშაო დღეს ადგენს, კომერციული კურსი გადამცვლელებში კი ოდნავ განსხვავდება.",
   },
   {
-    code: "RUB", slug: "rublis-kursi", full: "რუსული რუბლი",
+    code: "RUB", slug: "rublis-kursi", full: "რუსული რუბლი", inv: 2,
+    // Yandex-ში ეს გვერდი საიტის ჩვენებების 43%-ია (/ru/): ის, რასაც საძიებოს კონვერტერი ვერ იძლევა —
+    // NBG-ის 100-რუბლიანი კოტირება და სად/როგორ გადაცვალო.
+    exchange: `      <h2>სად გადავცვალო რუბლი საქართველოში</h2>
+      <p>ეროვნული ბანკი რუბლის კურსს 100 რუბლზე აქვეყნებს: 100 რუბლი = <span class="num" data-ssr="100*RUB" data-dp="2">—</span> ლარი. ამიტომ nbg.gov.ge-ზე ნაჩვენები რიცხვი 100 რუბლის ფასია და არა ერთის.</p>
+      <p>ნაღდ რუბლს ყიდულობენ გადამცვლელი პუნქტები (თბილისსა და ბათუმში ბევრია) და ბანკების ნაწილი. მათი ყიდვის კურსი ოფიციალურზე დაბალია, გაყიდვის კი — მაღალი, თანაც ადგილიდან ადგილამდე შესამჩნევად იცვლება, ამიტომ ჯობია ორი-სამი ადგილი შეადარო.</p>
+      <p>აეროპორტსა და ტურისტულ ადგილებში კურსი, როგორც წესი, ნაკლებად ხელსაყრელია. გადაცვლამდე იკითხე ყიდვის კურსი — რომლითაც პუნქტი შენგან რუბლს ყიდულობს — და შეადარე ზემოთ კონვერტერში ოფიციალურ კურსს.</p>`,
     nom: "რუბლი", gen: "რუბლის", loc: "რუბლში", a: "რუბლია", latin: "rublis kursi",
     title: "რუბლის კურსი დღეს — RUB/GEL ოფიციალური კურსი | evro.ge",
     og: "რუბლის კურსი დღეს — RUB/GEL ოფიციალური კურსი",
@@ -634,6 +640,10 @@ function buildCurrencyLanding(cfg) {
     { q: `100 ${cfg.nom} რამდენი ლარია?`, a: `100 ${cfg.gen} ღირებულება ლარში გამოითვლება დღევანდელ კურსზე გამრავლებით. ზუსტი თანხის სანახავად გამოიყენე ზემოთ მოცემული კონვერტერი.` },
     { q: `სად ვნახო ${cfg.gen} ოფიციალური კურსი?`, a: `${cfg.gen} ოფიციალურ კურსს ადგენს საქართველოს ეროვნული ბანკი (nbg.gov.ge) ყოველ სამუშაო დღეს. evro.ge სწორედ ამ მონაცემებს გიჩვენებს ცოცხლად.` },
   ];
+  if (cfg.inv) faq.push({
+    q: `რამდენი ${cfg.a} 1 ლარი?`,
+    a: `1 ლარის ღირებულება ${cfg.loc} ნაჩვენებია გვერდის თავში, კურსის ქვეშ — ის ეროვნული ბანკის ოფიციალური კურსით ითვლება და ყოველდღე ახლდება. ნებისმიერი თანხისთვის ჩაწერე ლარი კონვერტერის მარჯვენა ველში.`,
+  });
   const faqLd = JSON.stringify({
     "@context": "https://schema.org", "@type": "FAQPage", inLanguage: "ka",
     mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
@@ -694,6 +704,8 @@ ${BASE_CSS}
 .hero-rate .eyebrow{font-family:"Noto Serif Georgian",Georgia,"Noto Serif",serif;font-size:16px;color:var(--muted);font-weight:600;margin-bottom:8px}
 .hero-rate .big{font-size:clamp(46px,13vw,86px);font-weight:600;line-height:.95;display:inline-block;min-width:4ch}
 .hero-rate .cur{font-size:clamp(20px,5vw,30px);color:var(--euro);font-weight:500;margin-left:6px}
+.hero-rate .inv{margin-top:12px;font-size:16px;font-weight:600;color:#33405A}
+.hero-rate .inv .num{color:var(--ink)}
 .hero-rate .meta{margin-top:14px;font-size:13.5px;color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .conv{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:8px;display:flex;align-items:stretch;gap:8px}
 .conv-cell{flex:1;min-width:0;display:flex;flex-direction:column;padding:14px 16px;border-radius:12px}
@@ -734,7 +746,8 @@ ${BASE_CSS}
 
     <div class="hero-rate">
       <div class="eyebrow">1 ${cfg.nom} დღეს უდრის</div>
-      <div><span class="big num" id="heroRate" data-ssr="${cfg.code}" data-dp="4">—.————</span><span class="cur">₾ ლარს</span></div>
+      <div><span class="big num" id="heroRate" data-ssr="${cfg.code}" data-dp="4">—.————</span><span class="cur">₾ ლარს</span></div>${cfg.inv ? `
+      <div class="inv">1 ლარი = <span class="num" data-ssr="1/${cfg.code}" data-dp="${cfg.inv}">—</span> ${cfg.nom}</div>` : ""}
       <div class="meta">
         <span class="pill"><span class="live"></span> <span id="date" data-ssr="date">იტვირთება…</span></span>
         <span>წყარო: <span id="source">ეროვნული ბანკი</span></span>
@@ -769,7 +782,11 @@ ${popularBlock}
       <p>ამ გვერდზე ნახავ ${cfg.gen} (${cfg.code}) დღევანდელ ოფიციალურ კურსს ლარში — ანუ რა ღირს 1 ${cfg.nom} დღეს. მონაცემები საქართველოს ეროვნული ბანკიდან მოდის და ავტომატურად ახლდება, ამიტომ ${cfg.gen} კურსი (${cfg.latin}) ყოველთვის უახლესია. კონვერტერით ნებისმიერ თანხას გადათვლი ლარში ან პირიქით.</p>
       <p>${cfg.context} იხილე ასევე <a href="/valutis-kursi/">ვალუტის კურსი</a> და <a href="/">ევროს კურსი</a>.</p>
     </div>
-
+${cfg.exchange ? `
+    <div class="prose">
+${cfg.exchange}
+    </div>
+` : ""}
     <div class="block">
       <h2>ხშირად დასმული კითხვები</h2>
       <div class="faq">

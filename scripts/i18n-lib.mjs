@@ -26,6 +26,7 @@ export const SELECTORS = [
   '.more summary',       // „მეტის ნახვა“ — ჩაკეცილი SEO-ტექსტი მთავარზე
   '.card-name', '.card-desc', '.card-fee .l', '.card-cta',
   '.strip-item .pair',
+  '.hero-rate .inv',     // „1 ლარი = X რუბლი“ (შებრუნებული კურსი landing-ზე)
   '.conv-cell label',
   '.chart-cap',          // რიცხვები child-<span>-ებშია → ერთი {0}/{1}/{2} შაბლონი ყველა ვალუტაზე
   '.foot a',
