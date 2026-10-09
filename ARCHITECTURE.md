@@ -17,7 +17,7 @@ Worker-ზე, სადაც **ცოცხალი კურსი edge-SSR-
 | `scripts/build-i18n.mjs` | KA-დან 6 ენას თარგმნის (ტექსტი+meta+schema), შიდა ბმულებს `/<lang>`-ით ცვლის, hreflang/canonical/og აწყობს, ენის სვიჩერს ამატებს. |
 | `scripts/strings.i18n.json` | **თარგმანის source of truth** — hash-key → 7 ენა. |
 | `scripts/i18n-lib.mjs` | `keyFor` (ჰეშირება), `textTemplate`/`elementTemplate` (რიცხვი→`{n}`), SELECTORS/META_SELECTORS. |
-| `src/index.js` (Worker) | (1) `/api/rates` → NBG proxy (CORS-ის გარეშე); (2) edge-SSR `data-ssr`; (3) edge-SSR `data-chart` (12-თვიანი SVG, მხოლოდ 5 landing-ზე); (4) `maybeRedirect` Accept-Language-ით; (5) `/sitemap.xml`-ის `lastmod` ცოცხალი; (6) `public/ev.js`-ის ჩართვა; (7) `scheduled()` → ყოველდღიური IndexNow; (8) `/fonts/*` → `immutable` ქეში (ვერსია ფაილის სახელშია). |
+| `src/index.js` (Worker) | (1) `/api/rates` → NBG proxy (CORS-ის გარეშე; `?date=` — ერთი დღე `/kursi-tarighze/`-ისთვის); (2) edge-SSR `data-ssr`; (3) edge-SSR `data-chart` (12-თვიანი SVG, მხოლოდ 5 landing-ზე); (4) `maybeRedirect` Accept-Language-ით; (5) `/sitemap.xml`-ის `lastmod` ცოცხალი; (6) `public/ev.js`-ის ჩართვა; (7) `scheduled()` → ყოველდღიური IndexNow; (8) `/fonts/*` → `immutable` ქეში (ვერსია ფაილის სახელშია). |
 | `public/ev.js` | GA4 ინტერაქციის ივენთები. **HTML-ში არ წერია** — Worker-ი ედჯზე ურთავს. |
 | `public/data/rates/` | ისტორიული სერიები 2015-დან (`<CUR>-<YYYY>.json`) + `latest.json`. build-time-ზეც იკითხება და runtime-შიც. |
 | `scripts/rates-history-lib.mjs` | NBG-ის ისტორიის კითხვა/ჩაწერა, `quantity`-ნორმალიზაცია, `latest.json`. |

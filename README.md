@@ -117,6 +117,18 @@ JSON ყოველდღე ახლდება, HTML კი არა — �
 ახალი ვალუტის დამატება: `CURRENCIES` (`rates-history-lib.mjs`) + `CHART_CUR` (`src/index.js`)
 + `chartBlock(gen)`-ის გამოძახება ბილდერში.
 
+## კურსი თარიღის მიხედვით (`/kursi-tarighze/`)
+ინტერაქციული ხელსაწყო (`buildDatePage`, `scripts/build-pages.js`): თარიღი (‹ › / „დღეს“), იმ დღის ხუთივე
+ვალუტა (RUB — 100-ზე, როგორც nbg.gov.ge-ზე) და თანხის გადათვლა. მდგომარეობა URL-შია:
+`?d=YYYY-MM-DD&c=USD&a=250` (canonical — უპარამეტრო).
+- **მონაცემი:** client კითხულობს `public/data/rates/<CUR>-<YYYY>.json`-ს. დღე, როცა ახალი კურსი არ
+  გამოქვეყნებულა (`null` — კვირა/ორშაბათი/უქმე), = ბოლო გამოქვეყნებული; NBG-ის `?date=` ზუსტად
+  ამას აბრუნებს, გვერდი კი ამას ცალკე მიუთითებს („მოქმედებს DD.MM.YYYY-ის კურსი“).
+- **ახალი დღეები:** `fetched`-ის შემდეგი დღე (Action-მა ჯერ არ ჩაწერა) → `/api/rates?date=YYYY-MM-DD`
+  (Worker → NBG, 5 ვალუტა; წარსული დღე ედჯზე 30 დღით ქეშირდება).
+- **i18n:** ყველა ტექსტი HTML-შია (selector-ები `.tool …`), JS-ში ქართული არ წერია; Worker-ის SSR
+  spec `day` = `DD.MM.YYYY`.
+
 ## IndexNow (Bing/Yandex/Yahoo/DuckDuckGo სწრაფი ინდექსაცია)
 **ავტომატურია.** Worker-ის cron (`wrangler.jsonc` → `triggers.crons`, 06:00 UTC = 10:00 თბილისი)
 ყოველდღე პინგავს: ყველა landing (42 URL) + amount-გვერდების 1/7 როტაციით (~96 URL) ≈ 140/დღე,

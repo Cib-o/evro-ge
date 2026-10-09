@@ -526,7 +526,7 @@ a.strip-item:hover .pair{color:var(--euro)}
 ${chartBlock("დოლარის")}
     <div class="block">
       <h2>პოპულარული თანხები</h2>
-      <div class="chips">${popular}<a class="chip" href="/">ევროს კურსი →</a><a class="chip" href="/valutis-kursi/">ვალუტის კურსი →</a></div>
+      <div class="chips">${popular}<a class="chip" href="/">ევროს კურსი →</a><a class="chip" href="/valutis-kursi/">ვალუტის კურსი →</a><a class="chip" href="/kursi-tarighze/">კურსი თარიღის მიხედვით</a></div>
     </div>
 
     <div class="prose">
@@ -774,6 +774,7 @@ ${popularBlock}
         <a class="chip" href="/valutis-kursi/">ვალუტის კურსი</a>
         <a class="chip" href="/">ევროს კურსი</a>
         <a class="chip" href="/dolari-lari/">დოლარის კურსი</a>
+        <a class="chip" href="/kursi-tarighze/">კურსი თარიღის მიხედვით</a>
       </div>
     </div>
 
@@ -839,6 +840,247 @@ ${SSR_HELPERS_JS}
 }
 
 // ── ვალუტის კურსის hub /valutis-kursi/ ────────────────────────────────────────
+// ── /kursi-tarighze/ — NBG-ის ოფიციალური კურსი ნებისმიერ თარიღზე (2015-დან) ─────────────
+// მონაცემი public/data/rates/<CUR>-<YYYY>.json-იდან (client-ზე, ქეშირებადი); მხოლოდ ის 1–2
+// დღე, რომელიც ჯერ არ ჩაწერილა (`fetched`-ის შემდეგ), მოდის /api/rates?date=-ით.
+// ⚠️ სემანტიკა NBG-ისაა: v[i] = validFromDate-ის კურსი; დღე, როცა ახალი კურსი არ
+// გამოქვეყნებულა (კვირა/ორშაბათი/უქმე), = ბოლო გამოქვეყნებული — ზუსტად ის, რასაც NBG-ის
+// API აბრუნებს ?date=-ზე. ყველა ტექსტი HTML-შია (i18n pipeline თარგმნის), JS-ში ქართული არ წერია.
+function buildDatePage() {
+  const slug = "kursi-tarighze";
+  const canonical = `${SITE}/${slug}/`;
+  const h1 = "ეროვნული ბანკის კურსი თარიღის მიხედვით";
+  const title = "ვალუტის კურსი თარიღის მიხედვით — ეროვნული ბანკის კურსი 2015-დან | evro.ge";
+  const desc = "ეროვნული ბანკის ოფიციალური კურსი ნებისმიერ თარიღზე 2015 წლიდან — ევრო, დოლარი, ფუნტი, ლირა და რუბლი. აირჩიე დღე და გადათვალე თანხა ლარში.";
+  const faq = [
+    { q: "საიდან არის ეს კურსები?", a: "ყველა მაჩვენებელი საქართველოს ეროვნული ბანკის ოფიციალური კურსია (nbg.gov.ge), 2015 წლის 1 იანვრიდან დღემდე. ახალ კურსს ეროვნული ბანკი წინა დღის მეორე ნახევარში აქვეყნებს და ის მომდევნო დღიდან მოქმედებს." },
+    { q: "რომელი კურსი მოქმედებს დასვენების დღეებში?", a: "ეროვნული ბანკი ახალ კურსს სამუშაო დღეებში აწესებს. დღეს, როცა ახალი კურსი არ გამოქვეყნებულა (მაგალითად, კვირას ან უქმე დღეს), ძალაშია ბოლო გამოქვეყნებული კურსი — ასეთ შემთხვევაში ხელსაწყო ამას ცალკე მიუთითებს." },
+    { q: "რომელი კურსი გამოვიყენო დეკლარაციის ან ინვოისისთვის?", a: "უცხოურ ვალუტაში მიღებული თანხის ლარში გადასაანგარიშებლად, როგორც წესი, ეროვნული ბანკის ოფიციალური კურსი გამოიყენება იმ დღისთვის, როცა თანხა მიიღე. ზუსტი წესი შენს შემთხვევაზე გადაამოწმე ბუღალტერთან ან შემოსავლების სამსახურთან." },
+    { q: "როგორ გავუზიარო შედეგი სხვას?", a: "თარიღი, ვალუტა და თანხა გვერდის მისამართში ინახება — დააკოპირე ბმული და ის ზუსტად იმავე შედეგს გახსნის." },
+  ];
+  const faqLd = JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage", inLanguage: "ka",
+    mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  });
+  const graphLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "მთავარი", item: `${SITE}/` },
+        { "@type": "ListItem", position: 2, name: h1, item: canonical },
+      ] },
+      { "@type": "Organization", name: "evro.ge", url: SITE, logo: `${SITE}/og.svg` },
+    ],
+  });
+  const faqHtml = faq.map((f) => `        <details>\n          <summary>${f.q}</summary>\n          <div class="ans">${f.a}</div>\n        </details>`).join("\n");
+  // NBG-ის ერთეული: რუბლი 100-ზე (nbg.gov.ge-ზეც ასეა), დანარჩენი — 1-ზე
+  const rows = [["EUR", 1], ["USD", 1], ["GBP", 1], ["TRY", 1], ["RUB", 100]]
+    .map(([c, q]) => `          <tr><td>${q} ${c}</td><td class="num" id="r${c}" data-ssr="${q === 1 ? c : `${q}*${c}`}" data-dp="4">—</td></tr>`)
+    .join("\n");
+
+  return `<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+${GA_TAG}
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(desc)}">
+<meta name="keywords" content="კურსი თარიღის მიხედვით, ეროვნული ბანკის კურსი, ვალუტის კურსი თარიღზე, nbg kursi, ოფიციალური კურსი">
+<link rel="canonical" href="${canonical}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="evro.ge">
+<meta property="og:locale" content="ka_GE">
+<meta property="og:title" content="${esc(h1)}">
+<meta property="og:description" content="${esc(desc)}">
+<meta property="og:url" content="${canonical}">
+<meta property="og:image" content="${SITE}/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(h1)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${SITE}/og.svg">
+${FONT_LINKS}
+<script type="application/ld+json">${graphLd}</script>
+<script type="application/ld+json">${faqLd}</script>
+<style>
+${BASE_CSS}
+.tool{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:0 1px 2px rgba(11,21,48,.04)}
+.dpick{display:flex;gap:8px;align-items:stretch}
+.thead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.tl{font-size:13px;font-weight:600;color:var(--muted)}
+.dpick input{flex:1;min-width:0;text-align:center;font-family:"Space Grotesk",monospace;font-size:18px;font-weight:600;color:var(--ink);padding:10px 12px;border:1px solid rgba(11,21,48,.16);border-radius:12px;background:var(--paper)}
+.step,.today{border:1px solid rgba(11,21,48,.16);background:var(--panel);border-radius:12px;color:var(--euro);cursor:pointer;font-family:inherit}
+.step{width:44px;flex:0 0 auto;font-size:24px;line-height:1}
+.today{padding:6px 12px;font-size:13.5px;font-weight:600}
+.step:disabled{opacity:.35;cursor:default}
+.step:hover:not(:disabled),.today:hover{border-color:var(--euro)}
+.tnote{margin:14px 2px 6px;font-size:14px;color:var(--muted)}
+.tnote .d{color:var(--ink);font-weight:600;font-family:"Space Grotesk",monospace}
+.tnote.err{color:#C0392B}
+.dtable{width:100%;border-collapse:collapse}
+.dtable td{padding:10px 2px;border-bottom:1px solid var(--line);font-size:15px}
+.dtable tr:last-child td{border-bottom:none}
+.dtable td:first-child{font-weight:600;color:var(--muted);font-family:"Space Grotesk",monospace}
+.dtable td.num{text-align:right;font-size:19px;font-weight:600;color:var(--ink)}
+.dtable tr.sel td{color:var(--euro)}
+.dtable td.num::after{content:" ₾";color:var(--muted);font-size:15px;font-weight:500}
+.cbox{margin-top:12px;padding-top:14px;border-top:1px solid var(--line)}
+.cbox .lbl{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:8px}
+.crow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:17px}
+.crow input,.crow select{font-family:"Space Grotesk",monospace;font-size:18px;font-weight:600;color:var(--ink);padding:9px 10px;border:1px solid rgba(11,21,48,.16);border-radius:10px;background:var(--paper)}
+.crow input{width:7.5em}
+.crow select{background:var(--panel)}
+.crow .res{white-space:nowrap;font-size:18px}
+.crow .out{font-family:"Space Grotesk",monospace;font-size:22px;font-weight:700}
+.tool.loading .num,.tool.loading .out{opacity:.35}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.faq{display:grid;gap:10px;margin-top:14px}
+.faq details{background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.faq summary{cursor:pointer;list-style:none;padding:14px 18px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--euro);font-size:22px;font-weight:600;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq .ans{padding:0 18px 16px;color:#33405A;font-size:15px}
+.block{margin-top:34px}
+.block h2{font-family:"Noto Serif Georgian",Georgia,"Noto Serif",serif;font-size:22px;margin-bottom:12px;font-weight:700}
+.prose a{color:var(--euro);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="/"><span class="mark">€</span>evro<span class="dot">.ge</span></a>
+    <a class="back" href="/valutis-kursi/">← ვალუტის კურსი</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <h1>${h1}</h1>
+    <p class="sub">აირჩიე დღე — ნახავ საქართველოს ეროვნული ბანკის ოფიციალურ კურსს, რომელიც იმ დღეს მოქმედებდა. მონაცემები 2015 წლიდან.</p>
+
+    <div class="tool" id="tool">
+      <div class="thead"><label class="tl" for="dIn">თარიღი</label><button class="today" type="button" id="todayBtn">დღეს</button></div>
+      <div class="dpick">
+        <button class="step" type="button" id="prevDay"><span aria-hidden="true">‹</span><span class="vh">წინა დღე</span></button>
+        <input class="conv-input" type="date" id="dIn" min="2015-01-01">
+        <button class="step" type="button" id="nextDay"><span aria-hidden="true">›</span><span class="vh">მომდევნო დღე</span></button>
+      </div>
+      <p class="tnote" id="nOk">ეროვნული ბანკის ოფიციალური კურსი, <span class="d" data-ssr="day">—</span></p>
+      <p class="tnote" id="nCarry" hidden>ამ დღეს ახალი კურსი არ გამოქვეყნებულა — მოქმედებს <span class="d">—</span>-ის კურსი.</p>
+      <p class="tnote err" id="nErr" hidden>ამ თარიღისთვის კურსი ვერ მოიძებნა.</p>
+      <table class="dtable">
+        <tbody>
+${rows}
+        </tbody>
+      </table>
+      <div class="cbox">
+        <div class="lbl">თანხის გადათვლა ამ დღის კურსით</div>
+        <div class="crow">
+          <label class="vh" for="aIn">თანხა</label>
+          <input class="conv-input" id="aIn" inputmode="decimal" value="100">
+          <label class="vh" for="cSel">ვალუტა</label>
+          <select id="cSel"><option>EUR</option><option>USD</option><option>GBP</option><option>TRY</option><option>RUB</option></select>
+          <span class="res">= <b class="out" id="aOut" data-ssr="100*EUR" data-dp="2">—</b> ₾</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h2>ოფიციალური კურსი ნებისმიერ დღეს</h2>
+      <p>ეს ხელსაწყო გიჩვენებს ევროს, დოლარის, ფუნტის, ლირისა და რუბლის ოფიციალურ კურსს ლარში ნებისმიერ დღეს 2015 წლიდან — მაგალითად, ხელშეკრულების, ინვოისის ან ბუღალტრული აღრიცხვისთვის. დღევანდელი კურსისთვის ნახე <a href="/">ევროს კურსი</a> და <a href="/valutis-kursi/">ვალუტის კურსი</a>.</p>
+    </div>
+
+    <div class="block">
+      <h2>ხშირად დასმული კითხვები</h2>
+      <div class="faq">
+${faqHtml}
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>© <span id="yr">${TODAY.slice(0, 4)}</span> evro.ge — ვალუტის კურსი</div>
+    <p class="disc">კურსები ინფორმაციული დანიშნულებისაა და ეყრდნობა საქართველოს ეროვნული ბანკის ოფიციალურ მონაცემებს. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს.</p>
+    <div>${GITHUB_LINK}</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var CODES=["EUR","USD","GBP","TRY","RUB"],QTY={RUB:100},MIN="2015-01-01",DAY=864e5;
+  var $=function(id){return document.getElementById(id);};
+  var tool=$("tool"),dIn=$("dIn"),aIn=$("aIn"),cSel=$("cSel"),aOut=$("aOut"),nOk=$("nOk"),nCarry=$("nCarry"),nErr=$("nErr");
+  var years={},live=null,max=null,cur=null,day=null,seq=0,touched=false;
+  function pad(n){return(n<10?"0":"")+n;}
+  function ms(s){return Date.UTC(+s.slice(0,4),+s.slice(5,7)-1,+s.slice(8,10));}
+  function iso(t){var d=new Date(t);return d.getUTCFullYear()+"-"+pad(d.getUTCMonth()+1)+"-"+pad(d.getUTCDate());}
+  function add(s,n){return iso(ms(s)+n*DAY);}
+  function human(s){return s.slice(8,10)+"."+s.slice(5,7)+"."+s.slice(0,4);}
+  function today(){var d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
+  function valid(s){return /^\\d{4}-\\d{2}-\\d{2}$/.test(s||"")&&iso(ms(s))===s;}
+  function fmt(n,d){return n.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});}
+  function num(s){var x=parseFloat(String(s).replace(/\\s/g,"").replace(",","."));return isFinite(x)?x:NaN;}
+  function getJSON(u){return fetch(u).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();});}
+  function nbgDay(data){var d=Array.isArray(data)?data[0]:data;if(!d||!d.currencies)return null;var r={},n=0;
+    d.currencies.forEach(function(c){if(CODES.indexOf(c.code)>=0&&c.rate){r[c.code]=c.rate/(c.quantity||1);n++;}});
+    return n?{eff:String(d.date).slice(0,10),rates:r}:null;}
+  function year(c,y){var k=c+"-"+y;if(!years[k])years[k]=getJSON("/data/rates/"+k+".json").catch(function(){delete years[k];return null;});return years[k];}
+  // ბოლო გამოქვეყნებული კურსი თარიღზე ან მის წინ (კვირას შაბათისა მოქმედებს — NBG-ის ლოგიკა)
+  function hist(c,s){var y=+s.slice(0,4);return year(c,y).then(function(doc){
+    if(!doc)return null;
+    var i=Math.round((ms(s)-ms(doc.start))/DAY),last=doc.fetched?Math.round((ms(doc.fetched)-ms(doc.start))/DAY):-1;
+    if(i>last)return{gap:true};
+    for(var k=Math.min(i,doc.v.length-1);k>=0;k--)if(doc.v[k]!=null)return{rate:doc.v[k],eff:add(doc.start,k)};
+    return y>2015?hist(c,(y-1)+"-12-31"):null;});}
+  function load(s){
+    if(live&&s>=live.eff)return Promise.resolve(live);
+    return Promise.all(CODES.map(function(c){return hist(c,s);})).then(function(res){
+      if(res.some(function(r){return r&&r.gap;}))return getJSON("/api/rates?date="+s).then(nbgDay);
+      var out={eff:null,rates:{}};
+      res.forEach(function(r,i){if(r&&r.rate!=null){out.rates[CODES[i]]=r.rate;if(!out.eff||r.eff>out.eff)out.eff=r.eff;}});
+      return out.eff?out:null;});}
+  function render(){
+    var c=cSel.value,r=day&&day.rates;
+    CODES.forEach(function(k){var el=$("r"+k);el.textContent=r&&r[k]!=null?fmt(r[k]*(QTY[k]||1),4):"—";el.parentNode.className=k===c?"sel":"";});
+    var a=num(aIn.value);
+    aOut.textContent=r&&r[c]!=null&&!isNaN(a)?fmt(a*r[c],2):"—";
+    var carried=!!day&&day.eff!==cur;
+    nErr.hidden=!!day;nOk.hidden=!day||carried;nCarry.hidden=!carried;
+    if(day)(carried?nCarry:nOk).querySelector(".d").textContent=human(day.eff);}
+  function save(){if(!touched)return;
+    var q="?d="+cur+"&c="+cSel.value+(num(aIn.value)!==100?"&a="+encodeURIComponent(aIn.value):"");
+    try{history.replaceState(null,"",location.pathname+q);}catch(e){}}
+  function go(s){
+    if(!valid(s))s=today();
+    if(max&&s>max)s=max;if(s<MIN)s=MIN;
+    cur=s;dIn.value=s;$("prevDay").disabled=s<=MIN;$("nextDay").disabled=!!max&&s>=max;
+    var my=++seq;tool.classList.add("loading");
+    load(s).then(function(d){if(my===seq){day=d;render();}},function(){if(my===seq){day=null;render();}})
+      .then(function(){if(my===seq)tool.classList.remove("loading");});
+    save();}
+  var p=new URLSearchParams(location.search);
+  if(CODES.indexOf(p.get("c"))>=0)cSel.value=p.get("c");
+  if(!isNaN(num(p.get("a")))&&p.get("a"))aIn.value=p.get("a");
+  dIn.addEventListener("change",function(){touched=true;go(dIn.value);});
+  $("prevDay").addEventListener("click",function(){touched=true;go(add(cur,-1));});
+  $("nextDay").addEventListener("click",function(){touched=true;go(add(cur,1));});
+  $("todayBtn").addEventListener("click",function(){touched=true;go(today());});
+  cSel.addEventListener("change",function(){touched=true;render();save();});
+  aIn.addEventListener("input",function(){touched=true;render();save();});
+  getJSON("/api/rates").then(nbgDay).catch(function(){return null;}).then(function(d){
+    live=d;var t=today();max=d&&d.eff>t?d.eff:t;dIn.max=max;
+    go(p.get("d")||t);});
+})();
+</script>
+</body>
+</html>
+`;
+}
+
 function buildHubPage() {
   const canonical = `${SITE}/valutis-kursi/`;
   const title = `ვალუტის კურსი დღეს — დოლარი, ევრო, ფუნტი | evro.ge`;
@@ -968,6 +1210,10 @@ ${rows}
     </div>
 
     <div class="block">
+      <div class="chips"><a class="chip" href="/kursi-tarighze/">კურსი თარიღის მიხედვით</a></div>
+    </div>
+
+    <div class="block">
       <h2>ხშირად დასმული კითხვები</h2>
       <div class="faq">
 ${faqHtml}
@@ -1048,6 +1294,8 @@ function main() {
 
   writePage("dolari-lari", buildDollarLanding());
   writePage("valutis-kursi", buildHubPage());
+  writePage("kursi-tarighze", buildDatePage());
+  urls.push({ loc: `${SITE}/kursi-tarighze/`, priority: "0.85" });
   LANDINGS.forEach((cfg) => {
     writePage(cfg.slug, buildCurrencyLanding(cfg));
     urls.push({ loc: `${SITE}/${cfg.slug}/`, priority: "0.85" });

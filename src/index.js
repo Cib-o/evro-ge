@@ -6,6 +6,7 @@
 // დანარჩენი → სტატიკური ფაილები public/-დან.
 
 const NBG = "https://nbg.gov.ge/gw/api/ct/monetarypolicy/currencies/ka/json";
+const HISTORY_CODES = ["EUR", "USD", "GBP", "TRY", "RUB"]; // /api/rates?date= — ის, რაც public/data/rates-შია
 const SSR_CODES = ["EUR", "USD", "GBP", "TRY", "RUB"];
 
 // Multilingual: Georgian at root, other languages under /{lang}/ (static, pre-rendered).
@@ -65,7 +66,7 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/api/rates") {
-      return handleRates(env);
+      return handleRates(env, url.searchParams.get("date"));
     }
 
     const redirect = maybeRedirect(request, url);
@@ -213,7 +214,7 @@ async function submitIndexNow(env) {
 }
 
 // ── /api/rates ───────────────────────────────────────────────────────────────
-async function handleRates(env) {
+async function handleRates(env, date) {
   const json = (body, status, maxAge) =>
     new Response(body, {
       status,
@@ -223,6 +224,24 @@ async function handleRates(env) {
         "cache-control": `public, max-age=${maxAge}`,
       },
     });
+
+  // ?date=YYYY-MM-DD — /kursi-tarighze/-ისთვის, მხოლოდ იმ 1–2 დღეზე, რომელიც public/data-ში
+  // ჯერ არ ჩაწერილა. NBG თარიღზე **მოქმედ** ჩანაწერს აბრუნებს (კვირას — შაბათისას), ანუ
+  // პასუხის date = ეფექტური თარიღი. წარსული დღე უცვლელია ⇒ გრძელი ქეში.
+  if (date != null) {
+    const today = new Date().toISOString().slice(0, 10);
+    const max = new Date(Date.now() + 2 * 86400000).toISOString().slice(0, 10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || date < "2015-01-01" || date > max) return json('{"error":"bad date"}', 400, 3600);
+    const past = date < today;
+    try {
+      const qs = HISTORY_CODES.map((c) => `currencies=${c}`).join("&");
+      const upstream = await fetch(`${NBG}/?${qs}&date=${date}`, { cf: { cacheTtl: past ? 2592000 : 1800, cacheEverything: true } });
+      if (!upstream.ok) throw new Error("upstream " + upstream.status);
+      return json(await upstream.text(), 200, past ? 86400 : 1800);
+    } catch (e) {
+      return json(JSON.stringify({ error: String(e) }), 502, 0);
+    }
+  }
 
   try {
     const upstream = await fetch(NBG, { cf: { cacheTtl: 1800, cacheEverything: true } });
@@ -332,6 +351,9 @@ class SsrHandler {
     let out = null;
     if (spec === "date") {
       out = this.date ? this.rateOn + " " + this.date : null;
+    } else if (spec === "day") {
+      // მხოლოდ თარიღი, DD.MM.YYYY (/kursi-tarighze/ — client-იც ამავე ფორმატით წერს)
+      out = this.date ? this.date.slice(8, 10) + "." + this.date.slice(5, 7) + "." + this.date.slice(0, 4) : null;
     } else {
       const dp = parseInt(el.getAttribute("data-dp") || "4", 10);
       const v = evalSSR(spec, this.rates);
