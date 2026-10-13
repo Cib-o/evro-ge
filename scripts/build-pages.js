@@ -115,19 +115,73 @@ function workedExample(a, c, toGel) {
 //
 // i18n: <svg> OPAQUE-ია, ანუ არ ითარგმნება. caption-ის რიცხვები ცალკე <span>-ებშია,
 // ამიტომ შაბლონი ხდება „მინიმუმი {0} ₾, მაქსიმუმი {1} ₾…" — ერთი key ყველა ვალუტაზე.
-function chartBlock(gen) {
+function chartBlock(gen, code) {
   return `    <div class="chartbox">
-      <h2>${gen} კურსი ბოლო 12 თვეში</h2>
-      <svg class="chart" viewBox="0 0 680 180" width="680" height="180" aria-hidden="true" focusable="false">
+      <div class="chart-head">
+        <h2>${gen} კურსის დინამიკა</h2>
+${CHART_RANGES}
+      </div>
+      <div class="chart-wrap">
+      <svg class="chart" data-cur="${code}" viewBox="0 0 680 180" width="680" height="180" aria-hidden="true" focusable="false">
         <path class="chart-area" data-chart="area" d=""></path>
         <path class="chart-line" data-chart="path" d=""></path>
       </svg>
-      <p class="chart-cap">მინიმუმი <span class="num" data-chart="min">—</span> ₾, მაქსიმუმი <span class="num" data-chart="max">—</span> ₾, ცვლილება წელიწადში <span class="num" data-chart="chg">—</span></p>
+      <div class="chart-tip num" hidden></div>
+      </div>
+      <p class="chart-cap">მინიმუმი <span class="num" data-chart="min">—</span> ₾, მაქსიმუმი <span class="num" data-chart="max">—</span> ₾, ცვლილება <span class="num" data-chart="chg">—</span></p>
     </div>
 `;
 }
 
+
+// ── კონვერტერი (ნებისმიერი ორი ვალუტა, ⇄) — ლოგიკა public/conv.js-შია ─────────────────
+const CONV_CODES = ["GEL", "EUR", "USD", "GBP", "TRY", "RUB", "AMD", "AZN", "UAH", "CHF", "ILS", "AED", "CNY", "JPY", "KZT", "CAD", "PLN", "SEK", "CZK"];
+const CONV_SYM = { GEL: "₾", EUR: "€", USD: "$", GBP: "£", TRY: "₺", RUB: "₽", AMD: "֏", AZN: "₼", UAH: "₴", ILS: "₪", JPY: "¥", CNY: "¥", KZT: "₸" };
+const SWAP_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4 3 8l4 4"/><path d="M3 8h13"/><path d="m17 20 4-4-4-4"/><path d="M21 16H8"/></svg>';
+const convOpts = (sel) => CONV_CODES.map((c) => `<option value="${c}"${c === sel ? " selected" : ""}>${c}${CONV_SYM[c] ? " " + CONV_SYM[c] : ""}</option>`).join("");
+function convBlock(from) {
+  return `    <div class="conv" id="convert" data-conv>
+      <div class="conv-cell"><input class="conv-input num" inputmode="decimal" value="100" aria-label="${from}"><select class="conv-cur" aria-label="${from}">${convOpts(from)}</select></div>
+      <button class="conv-swap" type="button" aria-label="⇄">${SWAP_SVG}</button>
+      <div class="conv-cell"><input class="conv-input num" inputmode="decimal" data-ssr="100*${from}" data-dp="2" value="" aria-label="GEL"><select class="conv-cur" aria-label="GEL">${convOpts("GEL")}</select></div>
+      <div class="conv-rate num"></div>
+    </div>`;
+}
+// გრაფიკის პერიოდები — ლოგიკა public/chart.js-შია
+const CHART_RANGES = `        <div class="chart-rng" role="group"><button type="button" data-r="30" aria-pressed="false">1 თვე</button><button type="button" data-r="90" aria-pressed="false">3 თვე</button><button type="button" data-r="365" aria-pressed="true">1 წელი</button><button type="button" data-r="1825" aria-pressed="false">5 წელი</button><button type="button" data-r="all" aria-pressed="false">ყველა</button></div>`;
+const FB_LINK = '<a class="fb" href="https://www.facebook.com/ioaneabasha/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>Facebook</a>';
+
 // ── საერთო CSS / head ─────────────────────────────────────────────────────────
+// კონვერტერი/გრაფიკი/ფუტერი — იგივე ბლოკი public/index.html-შიც
+const UI_CSS = `.conv{margin-top:20px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
+.conv-cell{display:flex;flex-direction:row;align-items:center;gap:6px;min-width:0;background:var(--panel);border:1px solid rgba(11,21,48,.14);border-radius:14px;padding:6px 6px 6px 14px;transition:border-color .15s,box-shadow .15s}
+.conv-cell:focus-within{border-color:var(--euro);box-shadow:0 0 0 3px rgba(27,58,143,.12)}
+.conv-input{flex:1;min-width:0;width:100%;margin:0;border:none;background:none;font-family:"Space Grotesk",monospace;font-variant-numeric:tabular-nums;font-size:24px;font-weight:600;color:var(--ink);padding:8px 0}
+.conv-input:focus{outline:none}
+.conv-cur{flex:0 0 auto;border:none;border-radius:10px;background:var(--paper);padding:10px 6px 10px 10px;font-family:"Space Grotesk",monospace;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
+.conv-swap{width:44px;height:44px;border-radius:50%;border:1px solid rgba(11,21,48,.14);background:var(--panel);color:var(--euro);display:grid;place-items:center;cursor:pointer;transition:transform .25s,border-color .15s,background .15s}
+.conv-swap:hover{border-color:var(--euro);background:#F5F7FC}
+.conv-swap svg{width:18px;height:18px}
+.conv-swap.turned{transform:rotate(180deg)}
+.conv-rate{grid-column:1/-1;min-height:18px;font-size:13px;color:var(--muted)}
+@media(max-width:560px){.conv{grid-template-columns:1fr;gap:6px}.conv-swap{justify-self:center;transform:rotate(90deg)}.conv-swap.turned{transform:rotate(270deg)}.conv-input{font-size:22px}}
+.chart-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.chartbox .chart-head h2{margin:0}
+.chart-rng{display:flex;gap:2px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:3px}
+.chart-rng button{border:none;background:none;border-radius:7px;padding:5px 9px;font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer}
+.chart-rng button[aria-pressed=true]{background:var(--euro);color:#fff}
+.chart-wrap{position:relative}
+.chart{touch-action:pan-y;cursor:crosshair}
+.chart-vl{stroke:var(--euro);stroke-width:1;stroke-dasharray:3 3;opacity:0;vector-effect:non-scaling-stroke}
+.chart-dot{fill:var(--panel);stroke:var(--euro);stroke-width:2.5;opacity:0;vector-effect:non-scaling-stroke}
+.chartbox.hover .chart-vl,.chartbox.hover .chart-dot{opacity:1}
+.chart-tip{position:absolute;top:8px;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;font-weight:600;padding:5px 9px;border-radius:8px;white-space:nowrap;pointer-events:none}
+.chartbox.loading .chart{opacity:.5}
+.chart-cap .up{color:#0E8A5F}.chart-cap .down{color:#C0392B}
+.foot .contact{margin-top:10px}
+.foot .fb{display:inline-flex;align-items:center;gap:5px;color:#1877F2;font-weight:600;text-decoration:none}
+.foot .fb svg{width:16px;height:16px}`;
+
 const BASE_CSS = `:root{--paper:#F1F4F7;--panel:#FFFFFF;--ink:#0B1530;--euro:#1B3A8F;--euro-2:#2E54B8;--gold:#B58A23;--muted:#5A6478;--line:rgba(11,21,48,.10);--radius:18px}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
@@ -180,6 +234,7 @@ h1{font-family:"Noto Serif Georgian",Georgia,"Noto Serif",serif;font-size:clamp(
 .foot .gh:hover{color:var(--euro-2)}
 .foot .gh svg{width:15px;height:15px}
 .err{color:#C0392B;font-weight:500}
+${UI_CSS}
 @media(max-width:560px){main{padding:26px 0 10px}main .chartbox,main .block{margin-top:26px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}`;
 
@@ -350,6 +405,7 @@ ${BASE_CSS}
   <div class="wrap">
     <div>© <span id="yr">${TODAY.slice(0, 4)}</span> evro.ge — ევრო ლარის კურსი</div>
     <p class="disc">კურსები ინფორმაციული დანიშნულებისაა და ეყრდნობა საქართველოს ეროვნული ბანკის ოფიციალურ მონაცემებს. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს.</p>
+    <div class="contact">კონტაქტი, რეკლამა და თანამშრომლობა: ${FB_LINK}</div>
     <div>${GITHUB_LINK}</div>
   </div>
 </footer>
@@ -374,6 +430,8 @@ ${SSR_HELPERS_JS}
   })(0);
 })();
 </script>
+<script src="/conv.js?v=1" defer></script>
+<script src="/chart.js?v=1" defer></script>
 </body>
 </html>
 `;
@@ -459,14 +517,6 @@ ${BASE_CSS}
 .strip-item .val{font-size:18px;font-weight:600}
 a.strip-item:hover .pair{color:var(--euro)}
 @media(max-width:480px){.strip{grid-template-columns:repeat(2,1fr);gap:16px 8px}}
-.conv{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:8px;display:flex;align-items:stretch;gap:8px}
-.conv-cell{flex:1;min-width:0;display:flex;flex-direction:column;padding:14px 16px;border-radius:12px}
-.conv-cell:focus-within{background:var(--paper)}
-.conv-cell label{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:3px}
-.conv-input{margin-top:auto;width:100%;border:none;background:none;font-family:"Space Grotesk",monospace;font-variant-numeric:tabular-nums;font-size:26px;font-weight:600;color:var(--ink)}
-.conv-input:focus{outline:none}
-.conv-eq{display:grid;place-items:center;width:42px;color:var(--euro);font-size:20px;font-weight:600;flex:0 0 auto}
-@media(max-width:480px){.conv{padding:6px;gap:2px}.conv-cell{padding:10px 10px 10px 12px}.conv-input{font-size:21px}.conv-eq{width:18px;font-size:17px}}
 .faq{display:grid;gap:12px;margin-top:14px}
 .faq details{background:var(--panel);border:1px solid var(--line);border-radius:14px}
 .faq summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -511,19 +561,9 @@ a.strip-item:hover .pair{color:var(--euro)}
       <div class="strip-item"><div class="pair">RUB / GEL</div><div class="val num" data-ssr="RUB" data-dp="4">—</div></div>
     </div>
 
-    <div class="conv">
-      <div class="conv-cell">
-        <label for="usdIn">დოლარი (USD)</label>
-        <input class="conv-input num" id="usdIn" inputmode="decimal" value="100">
-      </div>
-      <div class="conv-eq">=</div>
-      <div class="conv-cell">
-        <label for="gelIn">ლარი (GEL)</label>
-        <input class="conv-input num" id="gelIn" data-ssr="100*USD" data-dp="2" inputmode="decimal" value="">
-      </div>
-    </div>
+${convBlock("USD")}
 
-${chartBlock("დოლარის")}
+${chartBlock("დოლარის", "USD")}
     <div class="block">
       <h2>პოპულარული თანხები</h2>
       <div class="chips">${popular}<a class="chip" href="/">ევროს კურსი →</a><a class="chip" href="/valutis-kursi/">ვალუტის კურსი →</a><a class="chip" href="/kursi-tarighze/">კურსი თარიღის მიხედვით</a></div>
@@ -554,6 +594,7 @@ ${faqHtml}
   <div class="wrap">
     <div>© <span id="yr">${TODAY.slice(0, 4)}</span> evro.ge — ვალუტის კურსი</div>
     <p class="disc">კურსები ინფორმაციული დანიშნულებისაა და ეყრდნობა საქართველოს ეროვნული ბანკის ოფიციალურ მონაცემებს. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს.</p>
+    <div class="contact">კონტაქტი, რეკლამა და თანამშრომლობა: ${FB_LINK}</div>
     <div>${GITHUB_LINK}</div>
   </div>
 </footer>
@@ -564,20 +605,12 @@ ${faqHtml}
   var CODES=["USD","EUR","GBP","TRY","RUB"];
   var SOURCES=${SOURCES_JS};
   var rate=null;
-  var dateEl=document.getElementById("date"), sourceEl=document.getElementById("source"),
-      usdIn=document.getElementById("usdIn"), gelIn=document.getElementById("gelIn");
+  var dateEl=document.getElementById("date"), sourceEl=document.getElementById("source");
   var y=document.getElementById("yr"); if(y) y.textContent=new Date().getFullYear();
 ${SSR_HELPERS_JS}
   function parseNum(s){return parseFloat(String(s).replace(/[^\\d.,-]/g,"").replace(",","."));}
-  function recalc(from){
-    if(!rate) return;
-    if(from==="usd"){var u=parseNum(usdIn.value);gelIn.value=isFinite(u)?fmt(u*rate,2):"";}
-    else{var g=parseNum(gelIn.value);usdIn.value=isFinite(g)?fmt(g/rate,2):"";}
-  }
   function paint(o){ rate=o.map.USD; fillSSR(o.map); if(dateEl) dateEl.textContent=o.date?("კურსი "+o.date):"განახლდა"; if(sourceEl) sourceEl.textContent=o.src; }
   function fail(){ var h=document.getElementById("heroRate"); if(h){h.textContent="ვერ ჩაიტვირთა";h.style.fontSize="clamp(28px,7vw,44px)";} if(dateEl) dateEl.textContent=""; }
-  usdIn.addEventListener("input",function(){recalc("usd");});
-  gelIn.addEventListener("input",function(){recalc("gel");});
   (function go(i){
     if(i>=SOURCES.length){fail();return;}
     var s=SOURCES[i];
@@ -588,6 +621,8 @@ ${SSR_HELPERS_JS}
   })(0);
 })();
 </script>
+<script src="/conv.js?v=1" defer></script>
+<script src="/chart.js?v=1" defer></script>
 </body>
 </html>
 `;
@@ -707,14 +742,6 @@ ${BASE_CSS}
 .hero-rate .inv{margin-top:12px;font-size:16px;font-weight:600;color:#33405A}
 .hero-rate .inv .num{color:var(--ink)}
 .hero-rate .meta{margin-top:14px;font-size:13.5px;color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.conv{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:8px;display:flex;align-items:stretch;gap:8px}
-.conv-cell{flex:1;min-width:0;display:flex;flex-direction:column;padding:14px 16px;border-radius:12px}
-.conv-cell:focus-within{background:var(--paper)}
-.conv-cell label{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:3px}
-.conv-input{margin-top:auto;width:100%;border:none;background:none;font-family:"Space Grotesk",monospace;font-variant-numeric:tabular-nums;font-size:26px;font-weight:600;color:var(--ink)}
-.conv-input:focus{outline:none}
-.conv-eq{display:grid;place-items:center;width:42px;color:var(--euro);font-size:20px;font-weight:600;flex:0 0 auto}
-@media(max-width:480px){.conv{padding:6px;gap:2px}.conv-cell{padding:10px 10px 10px 12px}.conv-input{font-size:21px}.conv-eq{width:18px;font-size:17px}}
 .faq{display:grid;gap:12px;margin-top:14px}
 .faq details{background:var(--panel);border:1px solid var(--line);border-radius:14px}
 .faq summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -754,19 +781,9 @@ ${BASE_CSS}
       </div>
     </div>
 
-    <div class="conv">
-      <div class="conv-cell">
-        <label for="curIn">${cfg.full} (${cfg.code})</label>
-        <input class="conv-input num" id="curIn" inputmode="decimal" value="100">
-      </div>
-      <div class="conv-eq">=</div>
-      <div class="conv-cell">
-        <label for="gelIn">ლარი (GEL)</label>
-        <input class="conv-input num" id="gelIn" data-ssr="100*${cfg.code}" data-dp="2" inputmode="decimal" value="">
-      </div>
-    </div>
+${convBlock(cfg.code)}
 
-${chartBlock(cfg.gen)}
+${chartBlock(cfg.gen, cfg.code)}
 ${popularBlock}
     <div class="block">
       <h2>სხვა ვალუტა</h2>
@@ -801,6 +818,7 @@ ${faqHtml}
   <div class="wrap">
     <div>© <span id="yr">${TODAY.slice(0, 4)}</span> evro.ge — ვალუტის კურსი</div>
     <p class="disc">კურსები ინფორმაციული დანიშნულებისაა და ეყრდნობა საქართველოს ეროვნული ბანკის ოფიციალურ მონაცემებს. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს.</p>
+    <div class="contact">კონტაქტი, რეკლამა და თანამშრომლობა: ${FB_LINK}</div>
     <div>${GITHUB_LINK}</div>
   </div>
 </footer>
@@ -811,19 +829,11 @@ ${faqHtml}
   var CODE="${cfg.code}";
   var SOURCES=${SOURCES_JS};
   var rate=null;
-  var dateEl=document.getElementById("date"), sourceEl=document.getElementById("source"),
-      curIn=document.getElementById("curIn"), gelIn=document.getElementById("gelIn");
+  var dateEl=document.getElementById("date"), sourceEl=document.getElementById("source");
 ${SSR_HELPERS_JS}
   function parseNum(s){return parseFloat(String(s).replace(/[^\\d.,-]/g,"").replace(",","."));}
-  function recalc(from){
-    if(!rate) return;
-    if(from==="cur"){var u=parseNum(curIn.value);gelIn.value=isFinite(u)?fmt(u*rate,2):"";}
-    else{var g=parseNum(gelIn.value);curIn.value=isFinite(g)?fmt(g/rate,2):"";}
-  }
   function paint(o){ rate=o.map[CODE]; fillSSR(o.map); if(dateEl) dateEl.textContent=o.date?("კურსი "+o.date):"განახლდა"; if(sourceEl) sourceEl.textContent=o.src; }
   function fail(){ var h=document.getElementById("heroRate"); if(h){h.textContent="ვერ ჩაიტვირთა";h.style.fontSize="clamp(28px,7vw,44px)";} if(dateEl) dateEl.textContent=""; }
-  curIn.addEventListener("input",function(){recalc("cur");});
-  gelIn.addEventListener("input",function(){recalc("gel");});
   (function go(i){
     if(i>=SOURCES.length){fail();return;}
     var s=SOURCES[i];
@@ -834,6 +844,8 @@ ${SSR_HELPERS_JS}
   })(0);
 })();
 </script>
+<script src="/conv.js?v=1" defer></script>
+<script src="/chart.js?v=1" defer></script>
 </body>
 </html>
 `;
@@ -1004,6 +1016,7 @@ ${faqHtml}
   <div class="wrap">
     <div>© <span id="yr">${TODAY.slice(0, 4)}</span> evro.ge — ვალუტის კურსი</div>
     <p class="disc">კურსები ინფორმაციული დანიშნულებისაა და ეყრდნობა საქართველოს ეროვნული ბანკის ოფიციალურ მონაცემებს. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს.</p>
+    <div class="contact">კონტაქტი, რეკლამა და თანამშრომლობა: ${FB_LINK}</div>
     <div>${GITHUB_LINK}</div>
   </div>
 </footer>
@@ -1226,6 +1239,7 @@ ${faqHtml}
   <div class="wrap">
     <div>© <span id="yr">${TODAY.slice(0, 4)}</span> evro.ge — ვალუტის კურსი</div>
     <p class="disc">კურსები ინფორმაციული დანიშნულებისაა და ეყრდნობა საქართველოს ეროვნული ბანკის ოფიციალურ მონაცემებს. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს.</p>
+    <div class="contact">კონტაქტი, რეკლამა და თანამშრომლობა: ${FB_LINK}</div>
     <div>${GITHUB_LINK}</div>
   </div>
 </footer>
@@ -1249,6 +1263,8 @@ ${SSR_HELPERS_JS}
   })(0);
 })();
 </script>
+<script src="/conv.js?v=1" defer></script>
+<script src="/chart.js?v=1" defer></script>
 </body>
 </html>
 `;

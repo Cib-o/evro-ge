@@ -3892,5 +3892,115 @@
     "az": "Tarixə görə məzənnə",
     "tr": "Tarihe göre kur",
     "hy": "Փոխարժեքն ըստ ամսաթվի"
+  },
+  "k44e8027a50": {
+    "ka": "ევროს კურსის დინამიკა",
+    "hasN": false,
+    "ph": 0,
+    "en": "Euro rate history",
+    "ru": "Динамика курса евро",
+    "uk": "Динаміка курсу євро",
+    "az": "Avro məzənnəsinin dinamikası",
+    "tr": "Avro kurunun seyri",
+    "hy": "Եվրոյի փոխարժեքի դինամիկան"
+  },
+  "k6816e14af9": {
+    "ka": "{n} თვე",
+    "hasN": true,
+    "ph": 0,
+    "en": "{n} mo",
+    "ru": "{n} мес.",
+    "uk": "{n} міс.",
+    "az": "{n} ay",
+    "tr": "{n} ay",
+    "hy": "{n} ամիս"
+  },
+  "k3e01b90dcd": {
+    "ka": "{n} წელი",
+    "hasN": true,
+    "ph": 0,
+    "en": "{n} yr",
+    "ru": "{n} г.",
+    "uk": "{n} р.",
+    "az": "{n} il",
+    "tr": "{n} yıl",
+    "hy": "{n} տարի"
+  },
+  "kf48952a1ba": {
+    "ka": "ყველა",
+    "hasN": false,
+    "ph": 0,
+    "en": "All",
+    "ru": "Все",
+    "uk": "Усі",
+    "az": "Hamısı",
+    "tr": "Tümü",
+    "hy": "Բոլորը"
+  },
+  "k459b1ea98d": {
+    "ka": "მინიმუმი {0} ₾, მაქსიმუმი {1} ₾, ცვლილება {2}",
+    "hasN": false,
+    "ph": 3,
+    "en": "Low {0} ₾, high {1} ₾, change {2}",
+    "ru": "Минимум {0} ₾, максимум {1} ₾, изменение {2}",
+    "uk": "Мінімум {0} ₾, максимум {1} ₾, зміна {2}",
+    "az": "Minimum {0} ₾, maksimum {1} ₾, dəyişiklik {2}",
+    "tr": "En düşük {0} ₾, en yüksek {1} ₾, değişim {2}",
+    "hy": "Նվազագույնը {0} ₾, առավելագույնը {1} ₾, փոփոխությունը {2}"
+  },
+  "k2b48bca06f": {
+    "ka": "კონტაქტი, რეკლამა და თანამშრომლობა: {0}",
+    "hasN": false,
+    "ph": 1,
+    "en": "Contact, advertising and partnerships: {0}",
+    "ru": "Контакты, реклама и сотрудничество: {0}",
+    "uk": "Контакти, реклама та співпраця: {0}",
+    "az": "Əlaqə, reklam və əməkdaşlıq: {0}",
+    "tr": "İletişim, reklam ve iş birliği: {0}",
+    "hy": "Կապ, գովազդ և համագործակցություն՝ {0}"
+  },
+  "ke38df6dc46": {
+    "ka": "დოლარის კურსის დინამიკა",
+    "hasN": false,
+    "ph": 0,
+    "en": "US dollar rate history",
+    "ru": "Динамика курса доллара",
+    "uk": "Динаміка курсу долара",
+    "az": "Dollar məzənnəsinin dinamikası",
+    "tr": "Dolar kurunun seyri",
+    "hy": "Դոլարի փոխարժեքի դինամիկան"
+  },
+  "ka9b5d0f9c5": {
+    "ka": "ფუნტის კურსის დინამიკა",
+    "hasN": false,
+    "ph": 0,
+    "en": "Pound rate history",
+    "ru": "Динамика курса фунта",
+    "uk": "Динаміка курсу фунта",
+    "az": "Funt məzənnəsinin dinamikası",
+    "tr": "Sterlin kurunun seyri",
+    "hy": "Ֆունտի փոխարժեքի դինամիկան"
+  },
+  "kcb779989d8": {
+    "ka": "ლირის კურსის დინამიკა",
+    "hasN": false,
+    "ph": 0,
+    "en": "Turkish lira rate history",
+    "ru": "Динамика курса лиры",
+    "uk": "Динаміка курсу ліри",
+    "az": "Lirə məzənnəsinin dinamikası",
+    "tr": "TL kurunun seyri",
+    "hy": "Լիրայի փոխարժեքի դինամիկան"
+  },
+  "kb0e5d438ea": {
+    "ka": "რუბლის კურსის დინამიკა",
+    "hasN": false,
+    "ph": 0,
+    "en": "Ruble rate history",
+    "ru": "Динамика курса рубля",
+    "uk": "Динаміка курсу рубля",
+    "az": "Rubl məzənnəsinin dinamikası",
+    "tr": "Ruble kurunun seyri",
+    "hy": "Ռուբլու փոխարժեքի դինամիկան"
   }
 }
