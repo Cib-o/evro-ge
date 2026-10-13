@@ -128,7 +128,8 @@ h1{font-family:"Noto Serif Georgian",Georgia,"Noto Serif",serif;font-size:clamp(
 .chart-cap .up{color:#0E8A5F}.chart-cap .down{color:#C0392B}
 .foot .contact{margin-top:10px}
 .foot .fb{display:inline-flex;align-items:center;gap:5px;color:#1877F2;font-weight:600;text-decoration:none}
-.foot .fb svg{width:16px;height:16px}
+.foot .fb{vertical-align:middle}
+.foot .fb svg{width:22px;height:22px}
 .conv.js .conv-cur{display:none}
 .conv-cell{position:relative}
 .cur-btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:none;border-radius:10px;background:var(--paper);padding:9px 8px 9px 10px;font-family:"Space Grotesk",monospace;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
@@ -154,6 +155,16 @@ h1{font-family:"Noto Serif Georgian",Georgia,"Noto Serif",serif;font-size:clamp(
 .rates a{color:var(--euro);font-weight:600;text-decoration:none}
 .rates a:hover{text-decoration:underline}
 @media(max-width:480px){.rates th,.rates td{padding:12px 10px;font-size:14px}.rates td.r a{font-size:13px}}
+.rates-q{width:100%;margin:22px 0 10px;border:1px solid var(--line);border-radius:12px;padding:11px 13px;font:inherit;font-size:15px;background:var(--panel);color:var(--ink)}
+.rates-all tr[data-conv-pick]{cursor:pointer}
+.rates-all tr[data-conv-pick]:hover td,.rates-all tr[data-conv-pick]:focus td{background:var(--paper)}
+.rates-all td{vertical-align:middle}
+.rates-all .flag{vertical-align:-2px;margin-right:4px}
+.rates-all .code{font-family:"Space Grotesk",monospace}
+.rates-all .cn{color:var(--muted);font-size:13.5px}
+.rates-all td.go{width:36px}
+.rates-all td.go a{font-size:18px}
+@media(max-width:480px){.rates-all .cn{display:block;margin:2px 0 0 28px}}
 .faq{display:grid;gap:12px;margin-top:14px}
 .faq details{background:var(--panel);border:1px solid var(--line);border-radius:14px}
 .faq summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -203,35 +214,228 @@ h1{font-family:"Noto Serif Georgian",Georgia,"Noto Serif",serif;font-size:clamp(
     <h1>Bugünkü döviz kurları</h1>
     <p class="sub">Gürcistan Merkez Bankası verilerine göre bugün dolar, euro, sterlin, lira ve rublenin lari karşısındaki resmi döviz kuru.</p>
 
-    <table class="rates">
+    <div class="conv" id="convert" data-conv>
+      <div class="conv-cell"><input class="conv-input num" inputmode="decimal" value="100" aria-label="USD"><select class="conv-cur" aria-label="USD"><option value="GEL">GEL ₾</option><option value="EUR">EUR €</option><option value="USD" selected>USD $</option><option value="GBP">GBP £</option><option value="TRY">TRY ₺</option><option value="RUB">RUB ₽</option><option value="AMD">AMD ֏</option><option value="AZN">AZN ₼</option><option value="UAH">UAH ₴</option><option value="CHF">CHF</option><option value="AED">AED</option><option value="AUD">AUD</option><option value="BRL">BRL</option><option value="BYN">BYN</option><option value="CAD">CAD</option><option value="CNY">CNY ¥</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="EGP">EGP</option><option value="HKD">HKD</option><option value="HUF">HUF</option><option value="ILS">ILS ₪</option><option value="INR">INR</option><option value="IRR">IRR</option><option value="ISK">ISK</option><option value="JPY">JPY ¥</option><option value="KGS">KGS</option><option value="KRW">KRW</option><option value="KWD">KWD</option><option value="KZT">KZT ₸</option><option value="MDL">MDL</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PLN">PLN</option><option value="QAR">QAR</option><option value="RON">RON</option><option value="RSD">RSD</option><option value="SEK">SEK</option><option value="SGD">SGD</option><option value="TJS">TJS</option><option value="TMT">TMT</option><option value="UZS">UZS</option><option value="ZAR">ZAR</option></select></div>
+      <button class="conv-swap" type="button" aria-label="⇄"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4 3 8l4 4"/><path d="M3 8h13"/><path d="m17 20 4-4-4-4"/><path d="M21 16H8"/></svg></button>
+      <div class="conv-cell"><input class="conv-input num" inputmode="decimal" data-ssr="100*USD" data-dp="2" value="" aria-label="GEL"><select class="conv-cur" aria-label="GEL"><option value="GEL" selected>GEL ₾</option><option value="EUR">EUR €</option><option value="USD">USD $</option><option value="GBP">GBP £</option><option value="TRY">TRY ₺</option><option value="RUB">RUB ₽</option><option value="AMD">AMD ֏</option><option value="AZN">AZN ₼</option><option value="UAH">UAH ₴</option><option value="CHF">CHF</option><option value="AED">AED</option><option value="AUD">AUD</option><option value="BRL">BRL</option><option value="BYN">BYN</option><option value="CAD">CAD</option><option value="CNY">CNY ¥</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="EGP">EGP</option><option value="HKD">HKD</option><option value="HUF">HUF</option><option value="ILS">ILS ₪</option><option value="INR">INR</option><option value="IRR">IRR</option><option value="ISK">ISK</option><option value="JPY">JPY ¥</option><option value="KGS">KGS</option><option value="KRW">KRW</option><option value="KWD">KWD</option><option value="KZT">KZT ₸</option><option value="MDL">MDL</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PLN">PLN</option><option value="QAR">QAR</option><option value="RON">RON</option><option value="RSD">RSD</option><option value="SEK">SEK</option><option value="SGD">SGD</option><option value="TJS">TJS</option><option value="TMT">TMT</option><option value="UZS">UZS</option><option value="ZAR">ZAR</option></select></div>
+      <div class="conv-rate num"></div>
+    </div>
+
+    <input class="rates-q" type="search" placeholder="USD, AMD, KZT …" aria-label="Search" autocomplete="off">
+    <table class="rates rates-all">
       <thead>
-        <tr><th>Para birimi</th><th class="r">1 birim GEL</th><th class="r"></th></tr>
+        <tr><th>Para birimi</th><th class="r">Kur ₾</th><th class="r"></th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td>ABD doları <span class="code">USD</span></td>
-          <td class="r"><span class="num" data-ssr="USD" data-dp="4">—</span> ₾</td>
-          <td class="r"><a href="/tr/dolari-lari/">Detaylar →</a></td>
-        </tr>
-        <tr>
-          <td>Euro <span class="code">EUR</span></td>
+        <tr data-conv-pick="EUR" tabindex="0">
+          <td><img class="flag" src="/flags/eu.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">EUR</b> <span class="cn"></span></td>
           <td class="r"><span class="num" data-ssr="EUR" data-dp="4">—</span> ₾</td>
-          <td class="r"><a href="/tr/">Detaylar →</a></td>
+          <td class="r go"><a href="/tr/" aria-label="EUR">→</a></td>
         </tr>
-        <tr>
-          <td>İngiliz sterlini <span class="code">GBP</span></td>
+        <tr data-conv-pick="USD" tabindex="0">
+          <td><img class="flag" src="/flags/us.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">USD</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="USD" data-dp="4">—</span> ₾</td>
+          <td class="r go"><a href="/tr/dolari-lari/" aria-label="USD">→</a></td>
+        </tr>
+        <tr data-conv-pick="GBP" tabindex="0">
+          <td><img class="flag" src="/flags/gb.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">GBP</b> <span class="cn"></span></td>
           <td class="r"><span class="num" data-ssr="GBP" data-dp="4">—</span> ₾</td>
-          <td class="r"><a href="/tr/funtis-kursi/">Detaylar →</a></td>
+          <td class="r go"><a href="/tr/funtis-kursi/" aria-label="GBP">→</a></td>
         </tr>
-        <tr>
-          <td>Türk lirası <span class="code">TRY</span></td>
+        <tr data-conv-pick="TRY" tabindex="0">
+          <td><img class="flag" src="/flags/tr.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">TRY</b> <span class="cn"></span></td>
           <td class="r"><span class="num" data-ssr="TRY" data-dp="4">—</span> ₾</td>
-          <td class="r"><a href="/tr/liris-kursi/">Detaylar →</a></td>
+          <td class="r go"><a href="/tr/liris-kursi/" aria-label="TRY">→</a></td>
         </tr>
-        <tr>
-          <td>Rus rublesi <span class="code">RUB</span></td>
-          <td class="r"><span class="num" data-ssr="RUB" data-dp="4">—</span> ₾</td>
-          <td class="r"><a href="/tr/rublis-kursi/">Detaylar →</a></td>
+        <tr data-conv-pick="RUB" tabindex="0">
+          <td><img class="flag" src="/flags/ru.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">100 RUB</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="100*RUB" data-dp="4">—</span> ₾</td>
+          <td class="r go"><a href="/tr/rublis-kursi/" aria-label="RUB">→</a></td>
+        </tr>
+        <tr data-conv-pick="AMD" tabindex="0">
+          <td><img class="flag" src="/flags/am.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">1000 AMD</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="1000*AMD" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="AZN" tabindex="0">
+          <td><img class="flag" src="/flags/az.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">AZN</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="AZN" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="UAH" tabindex="0">
+          <td><img class="flag" src="/flags/ua.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 UAH</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*UAH" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="CHF" tabindex="0">
+          <td><img class="flag" src="/flags/ch.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">CHF</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="CHF" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="AED" tabindex="0">
+          <td><img class="flag" src="/flags/ae.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 AED</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*AED" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="AUD" tabindex="0">
+          <td><img class="flag" src="/flags/au.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">AUD</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="AUD" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="BRL" tabindex="0">
+          <td><img class="flag" src="/flags/br.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">BRL</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="BRL" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="BYN" tabindex="0">
+          <td><img class="flag" src="/flags/by.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">BYN</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="BYN" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="CAD" tabindex="0">
+          <td><img class="flag" src="/flags/ca.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">CAD</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="CAD" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="CNY" tabindex="0">
+          <td><img class="flag" src="/flags/cn.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 CNY</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*CNY" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="CZK" tabindex="0">
+          <td><img class="flag" src="/flags/cz.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 CZK</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*CZK" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="DKK" tabindex="0">
+          <td><img class="flag" src="/flags/dk.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 DKK</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*DKK" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="EGP" tabindex="0">
+          <td><img class="flag" src="/flags/eg.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 EGP</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*EGP" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="HKD" tabindex="0">
+          <td><img class="flag" src="/flags/hk.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 HKD</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*HKD" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="HUF" tabindex="0">
+          <td><img class="flag" src="/flags/hu.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">100 HUF</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="100*HUF" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="ILS" tabindex="0">
+          <td><img class="flag" src="/flags/il.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 ILS</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*ILS" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="INR" tabindex="0">
+          <td><img class="flag" src="/flags/in.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">100 INR</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="100*INR" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="IRR" tabindex="0">
+          <td><img class="flag" src="/flags/ir.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10000 IRR</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10000*IRR" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="ISK" tabindex="0">
+          <td><img class="flag" src="/flags/is.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">100 ISK</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="100*ISK" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="JPY" tabindex="0">
+          <td><img class="flag" src="/flags/jp.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">100 JPY</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="100*JPY" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="KGS" tabindex="0">
+          <td><img class="flag" src="/flags/kg.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">100 KGS</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="100*KGS" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="KRW" tabindex="0">
+          <td><img class="flag" src="/flags/kr.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">1000 KRW</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="1000*KRW" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="KWD" tabindex="0">
+          <td><img class="flag" src="/flags/kw.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">KWD</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="KWD" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="KZT" tabindex="0">
+          <td><img class="flag" src="/flags/kz.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">100 KZT</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="100*KZT" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="MDL" tabindex="0">
+          <td><img class="flag" src="/flags/md.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 MDL</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*MDL" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="NOK" tabindex="0">
+          <td><img class="flag" src="/flags/no.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 NOK</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*NOK" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="NZD" tabindex="0">
+          <td><img class="flag" src="/flags/nz.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">NZD</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="NZD" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="PLN" tabindex="0">
+          <td><img class="flag" src="/flags/pl.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 PLN</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*PLN" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="QAR" tabindex="0">
+          <td><img class="flag" src="/flags/qa.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 QAR</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*QAR" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="RON" tabindex="0">
+          <td><img class="flag" src="/flags/ro.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 RON</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*RON" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="RSD" tabindex="0">
+          <td><img class="flag" src="/flags/rs.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">100 RSD</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="100*RSD" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="SEK" tabindex="0">
+          <td><img class="flag" src="/flags/se.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 SEK</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*SEK" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="SGD" tabindex="0">
+          <td><img class="flag" src="/flags/sg.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">SGD</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="SGD" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="TJS" tabindex="0">
+          <td><img class="flag" src="/flags/tj.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 TJS</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*TJS" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="TMT" tabindex="0">
+          <td><img class="flag" src="/flags/tm.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 TMT</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*TMT" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="UZS" tabindex="0">
+          <td><img class="flag" src="/flags/uz.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">1000 UZS</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="1000*UZS" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
+        </tr>
+        <tr data-conv-pick="ZAR" tabindex="0">
+          <td><img class="flag" src="/flags/za.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">10 ZAR</b> <span class="cn"></span></td>
+          <td class="r"><span class="num" data-ssr="10*ZAR" data-dp="4">—</span> ₾</td>
+          <td class="r go"></td>
         </tr>
       </tbody>
     </table>
@@ -272,7 +476,7 @@ h1{font-family:"Noto Serif Georgian",Georgia,"Noto Serif",serif;font-size:clamp(
   <div class="wrap">
     <div>© <span id="yr">2026</span> evro.ge — döviz kuru</div>
     <p class="disc">Kurlar bilgilendirme amaçlıdır ve Gürcistan Merkez Bankası'nın resmi verilerine dayanmaktadır. Bankaların veya döviz bürolarının uyguladığı gerçek kurlar farklılık gösterebilir.</p>
-    <div class="contact">İletişim, reklam ve iş birliği: <a class="fb" href="https://www.facebook.com/ioaneabasha/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>Facebook</a></div>
+    <div class="contact">İletişim, reklam ve iş birliği: <a class="fb" href="https://www.facebook.com/ioaneabasha/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a></div>
     <div><a class="gh" href="https://github.com/Cib-o/evro-ge" target="_blank" rel="noopener" aria-label="საიტის ღია კოდი GitHub-ზე"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> açık kaynak</a></div>
   </div>
 </footer>
@@ -301,7 +505,7 @@ h1{font-family:"Noto Serif Georgian",Georgia,"Noto Serif",serif;font-size:clamp(
   })(0);
 })();
 </script>
-<script src="/conv.js?v=2" defer></script>
+<script src="/conv.js?v=3" defer></script>
 <script src="/chart.js?v=2" defer></script>
 
 <script data-langscript>(function(){try{var sc=function(l){document.cookie="lang="+l+"; path=/; max-age=31536000; SameSite=Lax";};sc("tr");var w=document.querySelector(".langsel");if(w){var b=w.querySelector(".langsel-btn");b.addEventListener("click",function(e){e.stopPropagation();var o=w.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});document.addEventListener("click",function(){w.classList.remove("open");b.setAttribute("aria-expanded","false");});w.querySelectorAll(".langsel-menu a").forEach(function(a){a.addEventListener("click",function(){sc(a.getAttribute("hreflang"));});});}var tb=document.querySelector(".theme-btn");if(tb)tb.addEventListener("click",function(){var d=document.documentElement,n=d.getAttribute("data-theme")==="dark"?"light":"dark";d.setAttribute("data-theme",n);try{localStorage.setItem("evro:theme",n)}catch(e){}});}catch(e){}})();</script></body>

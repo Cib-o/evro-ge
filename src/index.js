@@ -310,8 +310,9 @@ function computeRates(data) {
   const m = {};
   day.currencies.forEach((c) => { m[c.code] = c; });
   const rates = {};
-  for (const code of SSR_CODES) {
-    if (m[code] && m[code].rate) rates[code] = m[code].rate / m[code].quantity;
+  // ყველა NBG ვალუტა (/valutis-kursi/-ის სრული ცხრილი); fallback (latest.json) — მხოლოდ SSR_CODES
+  for (const code of Object.keys(m)) {
+    if (m[code].rate) rates[code] = m[code].rate / (m[code].quantity || 1);
   }
   if (!Object.keys(rates).length) return null;
   const anchor = m.EUR || m.USD;

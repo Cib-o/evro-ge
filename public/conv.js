@@ -15,8 +15,10 @@
   var boxes = document.querySelectorAll("[data-conv]");
   if (!boxes.length) return;
   var rates = null;
-  var FLAG = { GEL: "ge", EUR: "eu", USD: "us", GBP: "gb", TRY: "tr", RUB: "ru", AMD: "am", AZN: "az", UAH: "ua", CHF: "ch",
-    ILS: "il", AED: "ae", CNY: "cn", JPY: "jp", KZT: "kz", CAD: "ca", PLN: "pl", SEK: "se", CZK: "cz" };
+  var FLAG = { GEL: "ge", EUR: "eu", USD: "us", GBP: "gb", TRY: "tr", RUB: "ru", AMD: "am", AZN: "az", UAH: "ua", CHF: "ch", AED: "ae",
+    AUD: "au", BRL: "br", BYN: "by", CAD: "ca", CNY: "cn", CZK: "cz", DKK: "dk", EGP: "eg", HKD: "hk", HUF: "hu", ILS: "il", INR: "in",
+    IRR: "ir", ISK: "is", JPY: "jp", KGS: "kg", KRW: "kr", KWD: "kw", KZT: "kz", MDL: "md", NOK: "no", NZD: "nz", PLN: "pl", QAR: "qa",
+    RON: "ro", RSD: "rs", SEK: "se", SGD: "sg", TJS: "tj", TMT: "tm", UZS: "uz", ZAR: "za" };
   var lang = document.documentElement.lang || "ka";
   var KEY = "evro:pair:" + location.pathname.replace(/^\/(en|ru|uk|az|tr|hy)(?=\/)/, "");
   function names(l) { try { return new Intl.DisplayNames([l], { type: "currency" }); } catch (e) { return null; } }
@@ -121,6 +123,36 @@
   }
 
   for (var i = 0; i < boxes.length; i++) setup(boxes[i]);
+
+  // ── /valutis-kursi/: ცხრილის რიგი → კონვერტერი (X → GEL), სახელები გვერდის ენაზე, ძებნა ──
+  var rows = document.querySelectorAll("[data-conv-pick]");
+  Array.prototype.forEach.call(rows, function (tr) {
+    var c = tr.getAttribute("data-conv-pick"), cn = tr.querySelector(".cn");
+    if (cn) cn.textContent = nameOf(c, dn);
+    tr.setAttribute("data-q", (c + " " + nameOf(c, dn) + " " + nameOf(c, dnEn)).toLowerCase());
+  });
+  function pickRow(tr) {
+    var box = boxes[0], sel = box && box.querySelectorAll("select.conv-cur");
+    if (!sel || sel.length < 2) return;
+    sel[0].value = tr.getAttribute("data-conv-pick"); sel[1].value = "GEL";
+    sel[0].dispatchEvent(new Event("change")); sel[1].dispatchEvent(new Event("change"));
+    var inp = box.querySelector("input.conv-input");
+    box.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (inp && window.matchMedia("(hover: hover)").matches) inp.focus({ preventScroll: true });
+  }
+  document.addEventListener("click", function (e) {
+    var tr = e.target.closest("[data-conv-pick]");
+    if (tr && !e.target.closest("a")) pickRow(tr);
+  });
+  document.addEventListener("keydown", function (e) {
+    var tr = e.target.closest && e.target.closest("[data-conv-pick]");
+    if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); pickRow(tr); }
+  });
+  var rq = document.querySelector(".rates-q");
+  if (rq) rq.addEventListener("input", function () {
+    var t = rq.value.trim().toLowerCase();
+    Array.prototype.forEach.call(rows, function (tr) { tr.hidden = !!t && tr.getAttribute("data-q").indexOf(t) < 0; });
+  });
 
   fetch("/api/rates")
     .then(function (r) { if (!r.ok) throw 0; return r.json(); })

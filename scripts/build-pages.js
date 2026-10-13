@@ -135,7 +135,10 @@ ${CHART_RANGES}
 
 
 // ── კონვერტერი (ნებისმიერი ორი ვალუტა, ⇄) — ლოგიკა public/conv.js-შია ─────────────────
-const CONV_CODES = ["GEL", "EUR", "USD", "GBP", "TRY", "RUB", "AMD", "AZN", "UAH", "CHF", "ILS", "AED", "CNY", "JPY", "KZT", "CAD", "PLN", "SEK", "CZK"];
+// NBG-ის 42 ვალუტა და მისი ერთეული (quantity, როგორც nbg.gov.ge-ზე). პირველი 9 — ყველაზე ხშირი.
+const NBG_QTY = { EUR: 1, USD: 1, GBP: 1, TRY: 1, RUB: 100, AMD: 1000, AZN: 1, UAH: 10, CHF: 1, AED: 10, AUD: 1, BRL: 1, BYN: 1, CAD: 1, CNY: 10, CZK: 10, DKK: 10, EGP: 10, HKD: 10, HUF: 100, ILS: 10, INR: 100, IRR: 10000, ISK: 100, JPY: 100, KGS: 100, KRW: 1000, KWD: 1, KZT: 100, MDL: 10, NOK: 10, NZD: 1, PLN: 10, QAR: 10, RON: 10, RSD: 100, SEK: 10, SGD: 1, TJS: 10, TMT: 10, UZS: 1000, ZAR: 10 };
+const CONV_CODES = ["GEL", ...Object.keys(NBG_QTY)];
+const FLAG = { GEL: "ge", EUR: "eu", USD: "us", GBP: "gb", TRY: "tr", RUB: "ru", AMD: "am", AZN: "az", UAH: "ua", CHF: "ch", AED: "ae", AUD: "au", BRL: "br", BYN: "by", CAD: "ca", CNY: "cn", CZK: "cz", DKK: "dk", EGP: "eg", HKD: "hk", HUF: "hu", ILS: "il", INR: "in", IRR: "ir", ISK: "is", JPY: "jp", KGS: "kg", KRW: "kr", KWD: "kw", KZT: "kz", MDL: "md", NOK: "no", NZD: "nz", PLN: "pl", QAR: "qa", RON: "ro", RSD: "rs", SEK: "se", SGD: "sg", TJS: "tj", TMT: "tm", UZS: "uz", ZAR: "za" };
 const CONV_SYM = { GEL: "₾", EUR: "€", USD: "$", GBP: "£", TRY: "₺", RUB: "₽", AMD: "֏", AZN: "₼", UAH: "₴", ILS: "₪", JPY: "¥", CNY: "¥", KZT: "₸" };
 const SWAP_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4 3 8l4 4"/><path d="M3 8h13"/><path d="m17 20 4-4-4-4"/><path d="M21 16H8"/></svg>';
 const convOpts = (sel) => CONV_CODES.map((c) => `<option value="${c}"${c === sel ? " selected" : ""}>${c}${CONV_SYM[c] ? " " + CONV_SYM[c] : ""}</option>`).join("");
@@ -149,7 +152,7 @@ function convBlock(from) {
 }
 // გრაფიკის პერიოდები — ლოგიკა public/chart.js-შია
 const CHART_RANGES = `        <div class="chart-rng" role="group"><button type="button" data-r="30" aria-pressed="false">1 თვე</button><button type="button" data-r="90" aria-pressed="false">3 თვე</button><button type="button" data-r="365" aria-pressed="true">1 წელი</button><button type="button" data-r="1825" aria-pressed="false">5 წელი</button><button type="button" data-r="all" aria-pressed="false">ყველა</button></div>`;
-const FB_LINK = '<a class="fb" href="https://www.facebook.com/ioaneabasha/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>Facebook</a>';
+const FB_LINK = '<a class="fb" href="https://www.facebook.com/ioaneabasha/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>';
 
 // ── საერთო CSS / head ─────────────────────────────────────────────────────────
 // კონვერტერი/გრაფიკი/ფუტერი — იგივე ბლოკი public/index.html-შიც
@@ -180,7 +183,8 @@ const UI_CSS = `.conv{margin-top:20px;display:grid;grid-template-columns:1fr aut
 .chart-cap .up{color:#0E8A5F}.chart-cap .down{color:#C0392B}
 .foot .contact{margin-top:10px}
 .foot .fb{display:inline-flex;align-items:center;gap:5px;color:#1877F2;font-weight:600;text-decoration:none}
-.foot .fb svg{width:16px;height:16px}
+.foot .fb{vertical-align:middle}
+.foot .fb svg{width:22px;height:22px}
 .conv.js .conv-cur{display:none}
 .conv-cell{position:relative}
 .cur-btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:none;border-radius:10px;background:var(--paper);padding:9px 8px 9px 10px;font-family:"Space Grotesk",monospace;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
@@ -444,7 +448,7 @@ ${SSR_HELPERS_JS}
   })(0);
 })();
 </script>
-<script src="/conv.js?v=2" defer></script>
+<script src="/conv.js?v=3" defer></script>
 <script src="/chart.js?v=2" defer></script>
 </body>
 </html>
@@ -635,7 +639,7 @@ ${SSR_HELPERS_JS}
   })(0);
 })();
 </script>
-<script src="/conv.js?v=2" defer></script>
+<script src="/conv.js?v=3" defer></script>
 <script src="/chart.js?v=2" defer></script>
 </body>
 </html>
@@ -858,7 +862,7 @@ ${SSR_HELPERS_JS}
   })(0);
 })();
 </script>
-<script src="/conv.js?v=2" defer></script>
+<script src="/conv.js?v=3" defer></script>
 <script src="/chart.js?v=2" defer></script>
 </body>
 </html>
@@ -1116,17 +1120,11 @@ function buildHubPage() {
   const keywords = `ვალუტის კურსი, ვალუტის კურსი დღეს, valutis kursi, ეროვნული ბანკის კურსი, დოლარის კურსი, ევროს კურსი`;
   const h1 = `ვალუტის კურსი დღეს`;
 
-  const rows = [
-    { code: "USD", name: "ამერიკული დოლარი", href: "/dolari-lari/" },
-    { code: "EUR", name: "ევრო", href: "/" },
-    { code: "GBP", name: "ბრიტანული ფუნტი", href: "/funtis-kursi/" },
-    { code: "TRY", name: "თურქული ლირა", href: "/liris-kursi/" },
-    { code: "RUB", name: "რუსული რუბლი", href: "/rublis-kursi/" },
-  ]
-    .map(
-      (r) =>
-        `        <tr>\n          <td>${r.name} <span class="code">${r.code}</span></td>\n          <td class="r"><span class="num" data-ssr="${r.code}" data-dp="4">—</span> ₾</td>\n          <td class="r">${r.href ? `<a href="${r.href}">დეტალურად →</a>` : ""}</td>\n        </tr>`
-    )
+  // ყველა NBG ვალუტა: დროშა + კოდი + კურსი NBG-ის ერთეულით (SSR); სახელს client ჩასვამს
+  // გვერდის ენაზე (Intl.DisplayNames, .cn). landing-იანი 5 ვალუტა → „→" ბმული.
+  const LANDING = { USD: "/dolari-lari/", EUR: "/", GBP: "/funtis-kursi/", TRY: "/liris-kursi/", RUB: "/rublis-kursi/" };
+  const rows = Object.entries(NBG_QTY)
+    .map(([c, q]) => `        <tr data-conv-pick="${c}" tabindex="0">\n          <td><img class="flag" src="/flags/${FLAG[c]}.svg" alt="" width="20" height="15" loading="lazy"> <b class="code">${q > 1 ? q + " " : ""}${c}</b> <span class="cn"></span></td>\n          <td class="r"><span class="num" data-ssr="${q > 1 ? q + "*" + c : c}" data-dp="4">—</span> ₾</td>\n          <td class="r go">${LANDING[c] ? `<a href="${LANDING[c]}" aria-label="${c}">→</a>` : ""}</td>\n        </tr>`)
     .join("\n");
 
   const faq = [
@@ -1193,6 +1191,16 @@ ${BASE_CSS}
 .rates a{color:var(--euro);font-weight:600;text-decoration:none}
 .rates a:hover{text-decoration:underline}
 @media(max-width:480px){.rates th,.rates td{padding:12px 10px;font-size:14px}.rates td.r a{font-size:13px}}
+.rates-q{width:100%;margin:22px 0 10px;border:1px solid var(--line);border-radius:12px;padding:11px 13px;font:inherit;font-size:15px;background:var(--panel);color:var(--ink)}
+.rates-all tr[data-conv-pick]{cursor:pointer}
+.rates-all tr[data-conv-pick]:hover td,.rates-all tr[data-conv-pick]:focus td{background:var(--paper)}
+.rates-all td{vertical-align:middle}
+.rates-all .flag{vertical-align:-2px;margin-right:4px}
+.rates-all .code{font-family:"Space Grotesk",monospace}
+.rates-all .cn{color:var(--muted);font-size:13.5px}
+.rates-all td.go{width:36px}
+.rates-all td.go a{font-size:18px}
+@media(max-width:480px){.rates-all .cn{display:block;margin:2px 0 0 28px}}
 .faq{display:grid;gap:12px;margin-top:14px}
 .faq details{background:var(--panel);border:1px solid var(--line);border-radius:14px}
 .faq summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -1219,9 +1227,12 @@ ${BASE_CSS}
     <h1>${h1}</h1>
     <p class="sub">დოლარის, ევროს, ფუნტის, ლირის და რუბლის ოფიციალური კურსი ლარში დღეს, საქართველოს ეროვნული ბანკის მონაცემებით.</p>
 
-    <table class="rates">
+${convBlock("USD")}
+
+    <input class="rates-q" type="search" placeholder="USD, AMD, KZT …" aria-label="Search" autocomplete="off">
+    <table class="rates rates-all">
       <thead>
-        <tr><th>ვალუტა</th><th class="r">1 ერთეული ₾</th><th class="r"></th></tr>
+        <tr><th>ვალუტა</th><th class="r">კურსი ₾</th><th class="r"></th></tr>
       </thead>
       <tbody>
 ${rows}
@@ -1277,7 +1288,7 @@ ${SSR_HELPERS_JS}
   })(0);
 })();
 </script>
-<script src="/conv.js?v=2" defer></script>
+<script src="/conv.js?v=3" defer></script>
 <script src="/chart.js?v=2" defer></script>
 </body>
 </html>

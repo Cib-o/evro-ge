@@ -67,9 +67,10 @@
   .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none}
   .brand .mark{width:30px;height:30px;border-radius:8px;background:var(--euro);color:var(--gold);display:grid;place-items:center;font-family:Georgia,serif;font-size:19px;font-weight:700}
   .brand .dot{color:var(--euro)}
-  .nav{display:flex;gap:22px;font-size:14.5px;font-weight:500;color:var(--muted)}
+  .nav{display:flex;gap:18px;font-size:14px;font-weight:500;color:var(--muted);margin:0 0 0 auto;white-space:nowrap}
   .nav a{text-decoration:none}
   .nav a:hover{color:var(--ink)}
+  @media(max-width:860px){.nav a[href="#faq"],.nav a[href="#convert"]{display:none}}
   @media(max-width:560px){.nav a:not(.nav-keep){display:none}}
 
   .hero{padding:48px 0 40px}
@@ -201,7 +202,8 @@
   .chart-cap .up{color:#0E8A5F}.chart-cap .down{color:#C0392B}
   .foot .contact{margin-top:10px}
   .foot .fb{display:inline-flex;align-items:center;gap:5px;color:#1877F2;font-weight:600;text-decoration:none}
-  .foot .fb svg{width:16px;height:16px}
+  .foot .fb{vertical-align:middle}
+  .foot .fb svg{width:22px;height:22px}
   .conv.js .conv-cur{display:none}
   .conv-cell{position:relative}
   .cur-btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:none;border-radius:10px;background:var(--paper);padding:9px 8px 9px 10px;font-family:"Space Grotesk",monospace;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
@@ -276,9 +278,9 @@
       </div>
 
       <div class="conv" id="convert" data-conv>
-        <div class="conv-cell"><input class="conv-input num" inputmode="decimal" value="100" aria-label="EUR"><select class="conv-cur" aria-label="EUR"><option value="GEL">GEL ₾</option><option value="EUR" selected>EUR €</option><option value="USD">USD $</option><option value="GBP">GBP £</option><option value="TRY">TRY ₺</option><option value="RUB">RUB ₽</option><option value="AMD">AMD ֏</option><option value="AZN">AZN ₼</option><option value="UAH">UAH ₴</option><option value="CHF">CHF</option><option value="ILS">ILS ₪</option><option value="AED">AED</option><option value="CNY">CNY ¥</option><option value="JPY">JPY ¥</option><option value="KZT">KZT ₸</option><option value="CAD">CAD</option><option value="PLN">PLN</option><option value="SEK">SEK</option><option value="CZK">CZK</option></select></div>
+        <div class="conv-cell"><input class="conv-input num" inputmode="decimal" value="100" aria-label="EUR"><select class="conv-cur" aria-label="EUR"><option value="GEL">GEL ₾</option><option value="EUR" selected>EUR €</option><option value="USD">USD $</option><option value="GBP">GBP £</option><option value="TRY">TRY ₺</option><option value="RUB">RUB ₽</option><option value="AMD">AMD ֏</option><option value="AZN">AZN ₼</option><option value="UAH">UAH ₴</option><option value="CHF">CHF</option><option value="AED">AED</option><option value="AUD">AUD</option><option value="BRL">BRL</option><option value="BYN">BYN</option><option value="CAD">CAD</option><option value="CNY">CNY ¥</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="EGP">EGP</option><option value="HKD">HKD</option><option value="HUF">HUF</option><option value="ILS">ILS ₪</option><option value="INR">INR</option><option value="IRR">IRR</option><option value="ISK">ISK</option><option value="JPY">JPY ¥</option><option value="KGS">KGS</option><option value="KRW">KRW</option><option value="KWD">KWD</option><option value="KZT">KZT ₸</option><option value="MDL">MDL</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PLN">PLN</option><option value="QAR">QAR</option><option value="RON">RON</option><option value="RSD">RSD</option><option value="SEK">SEK</option><option value="SGD">SGD</option><option value="TJS">TJS</option><option value="TMT">TMT</option><option value="UZS">UZS</option><option value="ZAR">ZAR</option></select></div>
         <button class="conv-swap" type="button" aria-label="⇄"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4 3 8l4 4"/><path d="M3 8h13"/><path d="m17 20 4-4-4-4"/><path d="M21 16H8"/></svg></button>
-        <div class="conv-cell"><input class="conv-input num" inputmode="decimal" data-ssr="100*EUR" data-dp="2" value="" aria-label="GEL"><select class="conv-cur" aria-label="GEL"><option value="GEL" selected>GEL ₾</option><option value="EUR">EUR €</option><option value="USD">USD $</option><option value="GBP">GBP £</option><option value="TRY">TRY ₺</option><option value="RUB">RUB ₽</option><option value="AMD">AMD ֏</option><option value="AZN">AZN ₼</option><option value="UAH">UAH ₴</option><option value="CHF">CHF</option><option value="ILS">ILS ₪</option><option value="AED">AED</option><option value="CNY">CNY ¥</option><option value="JPY">JPY ¥</option><option value="KZT">KZT ₸</option><option value="CAD">CAD</option><option value="PLN">PLN</option><option value="SEK">SEK</option><option value="CZK">CZK</option></select></div>
+        <div class="conv-cell"><input class="conv-input num" inputmode="decimal" data-ssr="100*EUR" data-dp="2" value="" aria-label="GEL"><select class="conv-cur" aria-label="GEL"><option value="GEL" selected>GEL ₾</option><option value="EUR">EUR €</option><option value="USD">USD $</option><option value="GBP">GBP £</option><option value="TRY">TRY ₺</option><option value="RUB">RUB ₽</option><option value="AMD">AMD ֏</option><option value="AZN">AZN ₼</option><option value="UAH">UAH ₴</option><option value="CHF">CHF</option><option value="AED">AED</option><option value="AUD">AUD</option><option value="BRL">BRL</option><option value="BYN">BYN</option><option value="CAD">CAD</option><option value="CNY">CNY ¥</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="EGP">EGP</option><option value="HKD">HKD</option><option value="HUF">HUF</option><option value="ILS">ILS ₪</option><option value="INR">INR</option><option value="IRR">IRR</option><option value="ISK">ISK</option><option value="JPY">JPY ¥</option><option value="KGS">KGS</option><option value="KRW">KRW</option><option value="KWD">KWD</option><option value="KZT">KZT ₸</option><option value="MDL">MDL</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PLN">PLN</option><option value="QAR">QAR</option><option value="RON">RON</option><option value="RSD">RSD</option><option value="SEK">SEK</option><option value="SGD">SGD</option><option value="TJS">TJS</option><option value="TMT">TMT</option><option value="UZS">UZS</option><option value="ZAR">ZAR</option></select></div>
         <div class="conv-rate num"></div>
       </div>
 
@@ -390,12 +392,12 @@
     <div class="foot-row">
       <div>© <span id="yr">2026</span> evro.ge — ევრო ლარის კურსი</div>
       <div><a href="#convert">კონვერტერი</a> · <a href="#about">კურსის შესახებ</a> · <a class="gh" href="https://github.com/Cib-o/evro-ge" target="_blank" rel="noopener" aria-label="საიტის ღია კოდი GitHub-ზე"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> ღია კოდი</a></div>
-      <div class="contact">კონტაქტი, რეკლამა და თანამშრომლობა: <a class="fb" href="https://www.facebook.com/ioaneabasha/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>Facebook</a></div>
+      <div class="contact">კონტაქტი, რეკლამა და თანამშრომლობა: <a class="fb" href="https://www.facebook.com/ioaneabasha/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a></div>
     </div>
     <p class="disclaimer">კურსები ინფორმაციული დანიშნულებისაა. ბანკის ან გადამცვლელის რეალური კურსი შესაძლოა განსხვავდებოდეს. გადაამოწმე საბოლოო პირობები ტრანზაქციამდე.</p>
   </div>
 </footer>
-<script src="/conv.js?v=2" defer></script>
+<script src="/conv.js?v=3" defer></script>
 <script src="/chart.js?v=2" defer></script>
 
 <script>
