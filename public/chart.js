@@ -8,7 +8,7 @@
   "use strict";
   var svg = document.querySelector("svg.chart[data-cur]");
   if (!svg || !window.fetch) return;
-  var CUR = svg.getAttribute("data-cur"), W = 680, H = 180, P = 8, DAY = 864e5, NS = "http://www.w3.org/2000/svg";
+  var CUR = svg.getAttribute("data-cur"), HOME = CUR, W = 680, H = 180, P = 8, DAY = 864e5, NS = "http://www.w3.org/2000/svg";
   var box = svg.closest(".chartbox"), tip = box.querySelector(".chart-tip");
   var line = svg.querySelector(".chart-line"), area = svg.querySelector(".chart-area");
   var cap = { min: box.querySelector('[data-chart="min"]'), max: box.querySelector('[data-chart="max"]'), chg: box.querySelector('[data-chart="chg"]') };
@@ -16,16 +16,19 @@
   vl.setAttribute("class", "chart-vl"); vl.setAttribute("y1", 0); vl.setAttribute("y2", H);
   dot.setAttribute("class", "chart-dot"); dot.setAttribute("r", 4.5);
   svg.appendChild(vl); svg.appendChild(dot);
-  var years = {}, live = null, pts = [], range = 365, nowY = new Date().getFullYear();
+  var years = {}, liveAll = {}, live = null, pts = [], range = 365, nowY = new Date().getFullYear();
+  var HIST = { EUR: "eu", USD: "us", GBP: "gb", TRY: "tr", RUB: "ru" }; // ვალუტები, რომლებსაც 2015-დან ისტორია აქვთ
+  var h2 = box.querySelector("h2"), h2Text = h2 ? h2.textContent : "";
 
   function pad(n) { return (n < 10 ? "0" : "") + n; }
   function human(t) { var d = new Date(t); return pad(d.getUTCDate()) + "." + pad(d.getUTCMonth() + 1) + "." + d.getUTCFullYear(); }
   function ms(s) { return Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10)); }
   function fmt(n) { return n.toLocaleString("en-US", { minimumFractionDigits: 4, maximumFractionDigits: 4 }); }
   function year(y) {
-    if (!years[y]) years[y] = fetch("/data/rates/" + CUR + "-" + y + ".json")
+    var k = CUR + "-" + y;
+    if (!years[k]) years[k] = fetch("/data/rates/" + k + ".json")
       .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
-    return years[y];
+    return years[k];
   }
   function series(fromY) {
     var ps = [];
@@ -85,6 +88,26 @@
   // შეხებაზე თითის აწევაც pointerleave-ია — tooltip მხოლოდ მაუსით გასვლისას ქრება
   svg.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") hide(); });
 
+  function curSwitch() {
+    var head = box.querySelector(".chart-head");
+    if (!head || box.querySelector(".chart-cur")) return;
+    var g = document.createElement("div");
+    g.className = "chart-cur"; g.setAttribute("role", "group");
+    g.innerHTML = Object.keys(HIST).map(function (c) {
+      return '<button type="button" data-c="' + c + '" aria-pressed="' + (c === CUR) + '"><img class="flag" src="/flags/' + HIST[c] + '.svg" alt="" width="20" height="15">' + c + "</button>";
+    }).join("");
+    head.insertBefore(g, head.querySelector(".chart-rng"));
+    g.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-c]");
+      if (!b || b.getAttribute("data-c") === CUR) return;
+      CUR = b.getAttribute("data-c"); live = liveAll[CUR] || null;
+      Array.prototype.forEach.call(g.children, function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      if (h2) h2.textContent = CUR === HOME ? h2Text : CUR + " / GEL";
+      var on = box.querySelector('.chart-rng button[aria-pressed="true"]');
+      if (on) select(on);
+    });
+  }
+
   var btns = box.querySelectorAll(".chart-rng button");
   function select(b) {
     for (var i = 0; i < btns.length; i++) btns[i].setAttribute("aria-pressed", btns[i] === b ? "true" : "false");
@@ -100,8 +123,10 @@
     .then(function (data) {
       var day = data && (Array.isArray(data) ? data[0] : data);
       (day && day.currencies || []).forEach(function (c) {
-        if (c.code === CUR && c.rate) live = { t: ms(String(c.validFromDate || day.date).slice(0, 10)), v: c.rate / (c.quantity || 1) };
+        if (c.rate && HIST[c.code]) liveAll[c.code] = { t: ms(String(c.validFromDate || day.date).slice(0, 10)), v: c.rate / (c.quantity || 1) };
       });
+      live = liveAll[CUR] || null;
+      curSwitch();
       var on = box.querySelector('.chart-rng button[aria-pressed="true"]') || btns[0];
       if (on) select(on);
     });

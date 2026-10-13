@@ -174,6 +174,11 @@ const UI_CSS = `.conv{margin-top:20px;display:grid;grid-template-columns:1fr aut
 .chart-rng button{border:none;background:none;border-radius:7px;padding:5px 9px;font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer}
 .chart-rng button[aria-pressed=true]{background:var(--euro);color:#fff}
 .chart-wrap{position:relative}
+.chart-cur{display:flex;gap:2px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:3px}
+.chart-cur button{display:inline-flex;align-items:center;gap:5px;border:none;background:none;border-radius:7px;padding:5px 8px;font-family:"Space Grotesk",monospace;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer}
+.chart-cur button[aria-pressed=true]{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.chart-cur .flag{width:16px;height:12px}
+@media(max-width:700px){.chart-head h2{flex-basis:100%}}
 .chart{touch-action:pan-y;cursor:crosshair}
 .chart-vl{stroke:var(--euro);stroke-width:1;stroke-dasharray:3 3;opacity:0;vector-effect:non-scaling-stroke}
 .chart-dot{fill:var(--panel);stroke:var(--euro);stroke-width:2.5;opacity:0;vector-effect:non-scaling-stroke}
@@ -449,7 +454,7 @@ ${SSR_HELPERS_JS}
 })();
 </script>
 <script src="/conv.js?v=3" defer></script>
-<script src="/chart.js?v=2" defer></script>
+<script src="/chart.js?v=3" defer></script>
 </body>
 </html>
 `;
@@ -640,7 +645,7 @@ ${SSR_HELPERS_JS}
 })();
 </script>
 <script src="/conv.js?v=3" defer></script>
-<script src="/chart.js?v=2" defer></script>
+<script src="/chart.js?v=3" defer></script>
 </body>
 </html>
 `;
@@ -863,7 +868,7 @@ ${SSR_HELPERS_JS}
 })();
 </script>
 <script src="/conv.js?v=3" defer></script>
-<script src="/chart.js?v=2" defer></script>
+<script src="/chart.js?v=3" defer></script>
 </body>
 </html>
 `;
@@ -1289,7 +1294,7 @@ ${SSR_HELPERS_JS}
 })();
 </script>
 <script src="/conv.js?v=3" defer></script>
-<script src="/chart.js?v=2" defer></script>
+<script src="/chart.js?v=3" defer></script>
 </body>
 </html>
 `;
