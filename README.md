@@ -117,6 +117,16 @@ JSON ყოველდღე ახლდება, HTML კი არა — �
 ახალი ვალუტის დამატება: `CURRENCIES` (`rates-history-lib.mjs`) + `CHART_CUR` (`src/index.js`)
 + `chartBlock(gen)`-ის გამოძახება ბილდერში.
 
+## კონვერტერი, გრაფიკი, თემა (client)
+- `public/conv.js` — `[data-conv]` ბლოკი: 19 ვალუტა (`CONV_CODES`, build-pages.js), ⇄, ძებნადი ამრჩევი დროშებით
+  (`public/flags/`, flag-icons, MIT), სახელები `Intl.DisplayNames`-ით გვერდის ენაზე (თარგმანი არ სჭირდება);
+  ბოლო წყვილი `localStorage` → `evro:pair:<გვერდი ენის გარეშე>`.
+- `public/chart.js` — tooltip (თარიღი · კურსი) და პერიოდები 1 თვე … ყველა, `/data/rates/`-იდან.
+- თემა: `build-i18n.mjs` (`THEME_HEAD`/`THEME_CSS`/`THEME_BTN`) ყველა გვერდზე — სისტემის
+  `prefers-color-scheme`, დაუდგენელზე ნათელი, ☀/☾ არჩევანი `localStorage` → `evro:theme`. ბნელი ფერები
+  `:root[data-theme=dark]`-ზე; ახალ CSS-ში hardcode ფერის ნაცვლად ცვლადები (`--ink`, `--panel` …) გამოიყენე.
+- JS/CSS ცვლილებისას `?v=` გაზარდე (`conv.js?v=2`).
+
 ## კურსი თარიღის მიხედვით (`/kursi-tarighze/`)
 ინტერაქციული ხელსაწყო (`buildDatePage`, `scripts/build-pages.js`): თარიღი (‹ › / „დღეს“), იმ დღის ხუთივე
 ვალუტა (RUB — 100-ზე, როგორც nbg.gov.ge-ზე) და თანხის გადათვლა. მდგომარეობა URL-შია:

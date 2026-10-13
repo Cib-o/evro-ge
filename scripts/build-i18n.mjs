@@ -163,16 +163,50 @@ function switcherHTML(lang, P) {
 }
 
 const setCookieJS = 'function(l){document.cookie="lang="+l+"; path=/; max-age=31536000; SameSite=Lax";}';
-const LANG_SCRIPT = (lang) => `<script>(function(){try{var sc=${setCookieJS};sc("${lang}");var w=document.querySelector(".langsel");if(w){var b=w.querySelector(".langsel-btn");b.addEventListener("click",function(e){e.stopPropagation();var o=w.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});document.addEventListener("click",function(){w.classList.remove("open");b.setAttribute("aria-expanded","false");});w.querySelectorAll(".langsel-menu a").forEach(function(a){a.addEventListener("click",function(){sc(a.getAttribute("hreflang"));});});}}catch(e){}})();</script>`;
+const LANG_SCRIPT = (lang) => `<script>(function(){try{var sc=${setCookieJS};sc("${lang}");var w=document.querySelector(".langsel");if(w){var b=w.querySelector(".langsel-btn");b.addEventListener("click",function(e){e.stopPropagation();var o=w.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});document.addEventListener("click",function(){w.classList.remove("open");b.setAttribute("aria-expanded","false");});w.querySelectorAll(".langsel-menu a").forEach(function(a){a.addEventListener("click",function(){sc(a.getAttribute("hreflang"));});});}${THEME_TOGGLE_JS}}catch(e){}})();</script>`;
+
+// ---- თემა: სისტემის (prefers-color-scheme) → თუ დაუდგენელია, ნათელი; არჩევანი localStorage-ში ----
+// head-ის თავში, CSS-მდე — რომ ბნელ სისტემაზე თეთრი „ციმციმი" არ ჩანდეს. data-theme ყოველთვის
+// დგება JS-ით, ამიტომ ბნელი წესები ერთხელ წერია (:root[data-theme=dark]); JS-ის გარეშე — ნათელი.
+const THEME_HEAD = `<meta name="color-scheme" content="light dark">
+<script id="theme-js">(function(){var d=document.documentElement,k="evro:theme",t=null;try{t=localStorage.getItem(k)}catch(e){}var m=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)");d.setAttribute("data-theme",t==="dark"||t==="light"?t:m&&m.matches?"dark":"light");if(!t&&m&&m.addEventListener)m.addEventListener("change",function(e){var s=null;try{s=localStorage.getItem(k)}catch(x){}if(!s)d.setAttribute("data-theme",e.matches?"dark":"light")});})();</script>`;
+const D = ':root[data-theme=dark]';
+const THEME_CSS = `<style id="theme-css">${D}{--paper:#0D1322;--panel:#151D31;--ink:#E7ECF6;--muted:#9AA5BC;--line:rgba(255,255,255,.09);--line-strong:rgba(255,255,255,.16);--euro:#8EA9FF;--euro-2:#B3C6FF;--gold:#D9B45A;--up:#3DD196;--down:#FF7B6E;color-scheme:dark}
+${D} .top{background:rgba(13,19,34,.96)}
+${D} .prose p,${D} .faq .ans,${D} .rev,${D} .hero-rate .inv{color:#C3CBDB}
+${D} .disclaimer,${D} .foot .disc{color:#8C97AD}
+${D} .sec-num{color:#D9B45A}
+${D} .conv-cell,${D} .conv-swap,${D} .step,${D} .today,${D} .crow input,${D} .crow select,${D} .dpick input{border-color:rgba(255,255,255,.14)}
+${D} .conv-swap:hover{background:#1C2640}
+${D} .conv-cell:focus-within{box-shadow:0 0 0 3px rgba(142,169,255,.2)}
+${D} .chart-area{fill:rgba(142,169,255,.14)}
+${D} .chart-tip{background:#E7ECF6;color:#0D1322}
+${D} .chart-rng button[aria-pressed=true],${D} .cta{color:#0D1322}
+${D} .err,${D} .tnote.err{color:#FF7B6E}
+${D} .chart-cap .down{color:#FF7B6E}${D} .chart-cap .up{color:#3DD196}
+${D} .foot .fb{color:#6AA6FF}
+${D} .brand .mark{background:#1B3A8F;color:#D9B45A}
+${D} .cur-pop{box-shadow:0 14px 40px rgba(0,0,0,.5)}
+${D} .flag{box-shadow:0 0 0 1px rgba(255,255,255,.15)}
+.theme-btn{display:inline-grid;place-items:center;flex:0 0 auto;width:34px;height:34px;margin-left:8px;border-radius:999px;border:1px solid var(--line,rgba(11,21,48,.14));background:var(--panel,#fff);color:var(--muted,#5A6478);cursor:pointer;padding:0}
+.theme-btn:hover{color:var(--ink);border-color:var(--euro)}
+.theme-btn svg{width:16px;height:16px}
+.theme-btn .sun,${D} .theme-btn .moon{display:none}
+${D} .theme-btn .sun{display:block}</style>`;
+const THEME_BTN = '<button class="theme-btn" type="button" aria-label="Theme"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>';
+const THEME_TOGGLE_JS = 'var tb=document.querySelector(".theme-btn");if(tb)tb.addEventListener("click",function(){var d=document.documentElement,n=d.getAttribute("data-theme")==="dark"?"light":"dark";d.setAttribute("data-theme",n);try{localStorage.setItem("evro:theme",n)}catch(e){}});';
 
 function injectChrome(root, lang, P) {
   const head = root.querySelector('head');
-  root.querySelectorAll('#langsel-css').forEach((e) => e.remove());
-  head.insertAdjacentHTML('beforeend', '\n' + SWITCHER_CSS);
+  root.querySelectorAll('#langsel-css, #theme-css, #theme-js, meta[name="color-scheme"]').forEach((e) => e.remove());
+  const vp = head.querySelector('meta[name="viewport"]');
+  // ბოლო "\n" — რომ build-pages-ის ახალ გვერდზეც პირველი და მეორე გაშვება byte-იდენტური იყოს
+  if (vp) vp.insertAdjacentHTML('afterend', '\n' + THEME_HEAD + '\n'); else head.insertAdjacentHTML('afterbegin', THEME_HEAD);
+  head.insertAdjacentHTML('beforeend', '\n' + SWITCHER_CSS + '\n' + THEME_CSS);
   const host = root.querySelector('header .top-in') || root.querySelector('header .wrap');
   if (host) {
-    host.querySelectorAll('.langsel').forEach((e) => e.remove());
-    host.insertAdjacentHTML('beforeend', switcherHTML(lang, P));
+    host.querySelectorAll('.langsel, .theme-btn').forEach((e) => e.remove());
+    host.insertAdjacentHTML('beforeend', switcherHTML(lang, P) + THEME_BTN);
   }
   const body = root.querySelector('body');
   body.querySelectorAll('script[data-langscript]').forEach((e) => e.remove());

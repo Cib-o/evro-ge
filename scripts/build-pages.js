@@ -180,7 +180,21 @@ const UI_CSS = `.conv{margin-top:20px;display:grid;grid-template-columns:1fr aut
 .chart-cap .up{color:#0E8A5F}.chart-cap .down{color:#C0392B}
 .foot .contact{margin-top:10px}
 .foot .fb{display:inline-flex;align-items:center;gap:5px;color:#1877F2;font-weight:600;text-decoration:none}
-.foot .fb svg{width:16px;height:16px}`;
+.foot .fb svg{width:16px;height:16px}
+.conv.js .conv-cur{display:none}
+.conv-cell{position:relative}
+.cur-btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:none;border-radius:10px;background:var(--paper);padding:9px 8px 9px 10px;font-family:"Space Grotesk",monospace;font-size:15px;font-weight:700;color:var(--ink);cursor:pointer}
+.cur-btn:hover{background:var(--line)}
+.cur-btn svg{width:14px;height:14px;opacity:.6}
+.flag{width:20px;height:15px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(11,21,48,.1);flex:0 0 auto;display:inline-block}
+.cur-pop{position:absolute;z-index:40;top:calc(100% + 6px);right:0;width:min(320px,calc(100vw - 32px));background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 40px rgba(11,21,48,.18);padding:8px}
+.cur-q{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font:inherit;font-size:15px;background:var(--paper);color:var(--ink);margin-bottom:6px}
+.cur-q:focus{outline:2px solid var(--euro);outline-offset:-1px}
+.cur-list{max-height:280px;overflow:auto;overscroll-behavior:contain}
+.cur-list button{display:flex;align-items:center;gap:10px;width:100%;border:none;background:none;padding:9px 8px;border-radius:8px;font:inherit;font-size:14.5px;color:var(--ink);cursor:pointer;text-align:left}
+.cur-list button:hover,.cur-list button[aria-selected=true]{background:var(--paper)}
+.cur-list b{font-family:"Space Grotesk",monospace;width:40px;flex:0 0 auto}
+.cur-list span{color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}`;
 
 const BASE_CSS = `:root{--paper:#F1F4F7;--panel:#FFFFFF;--ink:#0B1530;--euro:#1B3A8F;--euro-2:#2E54B8;--gold:#B58A23;--muted:#5A6478;--line:rgba(11,21,48,.10);--radius:18px}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -430,8 +444,8 @@ ${SSR_HELPERS_JS}
   })(0);
 })();
 </script>
-<script src="/conv.js?v=1" defer></script>
-<script src="/chart.js?v=1" defer></script>
+<script src="/conv.js?v=2" defer></script>
+<script src="/chart.js?v=2" defer></script>
 </body>
 </html>
 `;
@@ -621,8 +635,8 @@ ${SSR_HELPERS_JS}
   })(0);
 })();
 </script>
-<script src="/conv.js?v=1" defer></script>
-<script src="/chart.js?v=1" defer></script>
+<script src="/conv.js?v=2" defer></script>
+<script src="/chart.js?v=2" defer></script>
 </body>
 </html>
 `;
@@ -844,8 +858,8 @@ ${SSR_HELPERS_JS}
   })(0);
 })();
 </script>
-<script src="/conv.js?v=1" defer></script>
-<script src="/chart.js?v=1" defer></script>
+<script src="/conv.js?v=2" defer></script>
+<script src="/chart.js?v=2" defer></script>
 </body>
 </html>
 `;
@@ -1263,8 +1277,8 @@ ${SSR_HELPERS_JS}
   })(0);
 })();
 </script>
-<script src="/conv.js?v=1" defer></script>
-<script src="/chart.js?v=1" defer></script>
+<script src="/conv.js?v=2" defer></script>
+<script src="/chart.js?v=2" defer></script>
 </body>
 </html>
 `;
